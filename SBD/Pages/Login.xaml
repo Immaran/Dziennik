@@ -1,0 +1,23 @@
+﻿<Page x:Class="SBD.Pages.Login"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SBD.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="200" d:DesignWidth="300"
+      Title="Login">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <Label Margin="5" Padding="5">Login:</Label>
+                <TextBox Name="login" Margin="5" Padding="5" MinWidth="100"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Margin="5" Padding="5">Hasło:</Label>
+                <PasswordBox Name="password" Margin="5" Padding="5" MinWidth="100"></PasswordBox>
+            </StackPanel>
+            <Button Margin="5" Padding="5" Click="onLogin" IsDefault="True">Zaloguj</Button>
+        </StackPanel>
+    </Grid>
+</Page>

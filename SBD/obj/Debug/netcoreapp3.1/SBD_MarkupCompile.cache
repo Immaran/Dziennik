@@ -1,0 +1,20 @@
+﻿SBD
+1.0.0.0
+
+winexe
+C#
+.cs
+c:\Users\mateu\Desktop\Projekt z Baz - WPF\SBD\obj\Debug\netcoreapp3.1\
+SBD
+none
+false
+TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
+c:\Users\mateu\Desktop\Projekt z Baz - WPF\SBD\App.xaml
+171885593496
+
+32-1264843443
+219-1549811484
+MainWindow.xaml;Pages\Event\StudentPage.xaml;Pages\Event\TeacherPage.xaml;Pages\Grade\StudentPage.xaml;Pages\Grade\TeacherPage.xaml;Pages\Group\AdminPage.xaml;Pages\Group\StudentPage.xaml;Pages\Group\TeacherPage.xaml;Pages\Home.xaml;Pages\HomeAdmin.xaml;Pages\Login.xaml;Pages\LoginData\AdminPage.xaml;Pages\Message\StudentPage.xaml;Pages\Message\TeacherPage.xaml;Pages\Student\AdminPage.xaml;Pages\Subject\AdminPage.xaml;Pages\Teacher\AdminPage.xaml;
+
+True
+
