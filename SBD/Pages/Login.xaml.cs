@@ -22,6 +22,14 @@ namespace SBD.Pages
             {
                 this.NavigationService.Navigate(new HomeAdmin());
             }
+            else if(login.Text=="student" && password.Password == "student")
+            {
+                this.NavigationService.Navigate(new HomeStudent());
+            }
+            else if(login.Text == "teacher" && password.Password == "teacher")
+            {
+                this.NavigationService.Navigate(new HomeTeacher());
+            }
             else 
             {
                 MessageBox.Show("Błędne nazwa użytkownika lub hasło");

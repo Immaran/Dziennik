@@ -22,6 +22,29 @@ namespace SBD.Pages.Student
         {
             InitializeComponent();
         }
+        private void ClickAdd(object sender, RoutedEventArgs e)
+        {
+            Windows.StudentWindow studentWindow = new Windows.StudentWindow
+            {
+                Owner = ((MainWindow)Application.Current.MainWindow)
+            };
+            if (true == studentWindow.ShowDialog())
+            {
+                //_context.SaveChanges();
+            }
+        }
+        private void ClickEdit(object sender, RoutedEventArgs e)
+        {
+            Windows.StudentWindow studentWindow = new Windows.StudentWindow
+            {
+                Owner = ((MainWindow)Application.Current.MainWindow)
+            };
+            if (true == studentWindow.ShowDialog())
+            {
+                //_context.SaveChanges();
+            }
+        }
+
         private void ClickCancel(object sender, RoutedEventArgs e)
         {
             this.NavigationService.GoBack();

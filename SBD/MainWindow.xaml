@@ -5,6 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SBD"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="450">
+        Title="E-dziennik" Height="300" Width="450">
     <Frame Name="frame" NavigationUIVisibility="Hidden" />
 </Window>

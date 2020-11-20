@@ -34,10 +34,25 @@
     <Compile Update="Pages\HomeAdmin.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\HomeforStudent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\HomeStudent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\HomeTeacher.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\Login.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\LoginData\AdminPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\LoginData\StudentPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\LoginData\TeacherPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\Message\StudentPage.xaml.cs">
@@ -52,7 +67,25 @@
     <Compile Update="Pages\Subject\AdminPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\Subject\StudentPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Subject\TeacherPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\Teacher\AdminPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\GroupWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\StudentWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\SubjectWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\TeacherWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -87,10 +120,25 @@
     <Page Update="Pages\HomeAdmin.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Pages\HomeforStudent.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\HomeStudent.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\HomeTeacher.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Pages\Login.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\LoginData\AdminPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\LoginData\StudentPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\LoginData\TeacherPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Message\StudentPage.xaml">
@@ -105,7 +153,25 @@
     <Page Update="Pages\Subject\AdminPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Pages\Subject\StudentPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Subject\TeacherPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Pages\Teacher\AdminPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\GroupWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\StudentWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\SubjectWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\TeacherWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

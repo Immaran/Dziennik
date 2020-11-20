@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 C:\Users\mateu\Desktop\Projekt z Baz - WPF\SBD\App.xaml
-17473074976
+281455228606
 
-321463546734
+43-1373603118
 219-2085248919
-MainWindow.xaml;Pages\Event\StudentPage.xaml;Pages\Event\TeacherPage.xaml;Pages\Grade\StudentPage.xaml;Pages\Grade\TeacherPage.xaml;Pages\Group\AdminPage.xaml;Pages\Group\StudentPage.xaml;Pages\Group\TeacherPage.xaml;Pages\Home.xaml;Pages\HomeAdmin.xaml;Pages\Login.xaml;Pages\LoginData\AdminPage.xaml;Pages\Message\StudentPage.xaml;Pages\Message\TeacherPage.xaml;Pages\Student\AdminPage.xaml;Pages\Subject\AdminPage.xaml;Pages\Teacher\AdminPage.xaml;
+MainWindow.xaml;Pages\Event\StudentPage.xaml;Pages\Event\TeacherPage.xaml;Pages\Grade\StudentPage.xaml;Pages\Grade\TeacherPage.xaml;Pages\Group\AdminPage.xaml;Pages\Group\StudentPage.xaml;Pages\Group\TeacherPage.xaml;Pages\Home.xaml;Pages\HomeAdmin.xaml;Pages\HomeforStudent.xaml;Pages\HomeStudent.xaml;Pages\HomeTeacher.xaml;Pages\Login.xaml;Pages\LoginData\AdminPage.xaml;Pages\LoginData\StudentPage.xaml;Pages\LoginData\TeacherPage.xaml;Pages\Message\StudentPage.xaml;Pages\Message\TeacherPage.xaml;Pages\Student\AdminPage.xaml;Pages\Subject\AdminPage.xaml;Pages\Subject\StudentPage.xaml;Pages\Subject\TeacherPage.xaml;Pages\Teacher\AdminPage.xaml;Windows\GroupWindow.xaml;Windows\StudentWindow.xaml;Windows\SubjectWindow.xaml;Windows\TeacherWindow.xaml;
 
-True
+False
 

@@ -22,6 +22,28 @@ namespace SBD.Pages.Subject
         {
             InitializeComponent();
         }
+        private void ClickAdd(object sender, RoutedEventArgs e)
+        {
+            Windows.SubjectWindow subjectWindow = new Windows.SubjectWindow
+            {
+                Owner = ((MainWindow)Application.Current.MainWindow)
+            };
+            if (true == subjectWindow.ShowDialog())
+            {
+                //_context.SaveChanges();
+            }
+        }
+        private void ClickEdit(object sender, RoutedEventArgs e)
+        {
+            Windows.SubjectWindow subjectWindow = new Windows.SubjectWindow
+            {
+                Owner = ((MainWindow)Application.Current.MainWindow)
+            };
+            if (true == subjectWindow.ShowDialog())
+            {
+                //_context.SaveChanges();
+            }
+        }
         private void ClickCancel(object sender, RoutedEventArgs e)
         {
             this.NavigationService.GoBack();

@@ -9,6 +9,6 @@
       Title="StudentPage">
 
     <Grid>
-        
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center">Grupy</Label>
     </Grid>
 </Page>

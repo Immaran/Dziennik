@@ -22,6 +22,28 @@ namespace SBD.Pages.Group
         {
             InitializeComponent();
         }
+        private void ClickAdd(object sender, RoutedEventArgs e)
+        {
+            Windows.GroupWindow groupWindow = new Windows.GroupWindow
+            {
+                Owner = ((MainWindow)Application.Current.MainWindow)
+            };
+            if (true == groupWindow.ShowDialog())
+            {
+                //_context.SaveChanges();
+            }
+        }
+        private void ClickEdit(object sender, RoutedEventArgs e)
+        {
+            Windows.GroupWindow groupWindow = new Windows.GroupWindow
+            {
+                Owner = ((MainWindow)Application.Current.MainWindow)
+            };
+            if (true == groupWindow.ShowDialog())
+            {
+                //_context.SaveChanges();
+            }
+        }
         private void ClickCancel(object sender, RoutedEventArgs e)
         {
             this.NavigationService.GoBack();
