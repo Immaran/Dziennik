@@ -23,15 +23,16 @@
             <Button Padding="5" Click="ClickEdit">Edytuj</Button>
             <Button Padding="5">Usuń</Button>
         </StackPanel>
-        <DataGrid Grid.Row="2" Name="teachersDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" 
-          ItemsSource="{Binding Source={StaticResource teacherViewSource}}" Margin="5">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Id}" Header="Teacher Id" Width="SizeToHeader" IsReadOnly="True"/>
-                <DataGridTextColumn Binding="{Binding FirstName}" Header="First Name" Width="*"/>
-                <DataGridTextColumn Binding="{Binding SecondName}" Header="Second Name" Width="*"/>
-                <DataGridTextColumn Binding="{Binding Surname}" Header="Surname" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <ListView Grid.Row="2" Name="teacherListView" ItemsSource="{Binding Source={StaticResource teacherViewSource}}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" />
+                    <GridViewColumn Header="Imię" DisplayMemberBinding="{Binding FirstName}" />
+                    <GridViewColumn Header="Drugie imię" DisplayMemberBinding="{Binding SecondName}" />
+                    <GridViewColumn Header="Nazwisko" DisplayMemberBinding="{Binding Surname}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
         <Button Grid.Row="3" Margin="5" Padding="5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="ClickCancel">Powrót</Button>
     </Grid>
 </Page>

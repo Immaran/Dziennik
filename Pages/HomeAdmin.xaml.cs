@@ -32,5 +32,9 @@ namespace SBD.Pages
         {
             this.NavigationService.Navigate(new Teacher.AdminPage());
         }
+        private void ClickLogOut(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Login());
+        }
     }
 }

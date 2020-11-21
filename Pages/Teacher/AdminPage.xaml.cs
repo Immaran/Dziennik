@@ -29,6 +29,7 @@ namespace SBD.Pages.Teacher
             //_context.Database.EnsureCreated();
 
             // load the entities into EF Core
+            
             _context.Teacher.Load();
 
             // bind to the source
