@@ -1,9 +1,9 @@
 ﻿using System.Windows;
-using System.Windows.Data;
 using System.Windows.Controls;
-using Microsoft.EntityFrameworkCore;
-using System.ComponentModel;
-
+using System.Collections.Generic;
+using System.Linq;
+using SBD.Models;
+using SBD.Windows;
 
 namespace SBD.Pages.Teacher
 {
@@ -12,56 +12,56 @@ namespace SBD.Pages.Teacher
     /// </summary>
     public partial class AdminPage : Page
     {
-        private readonly Models.ModelContext _context = new Models.ModelContext();
+        private readonly ModelContext _context;
+        private IList<Models.Teacher> TeacherList { get; set; }
 
-        private CollectionViewSource teacherViewSource;
-
-        public SBD.Models.Teacher Teacher { get; set; }
         public AdminPage()
         {
+            _context = ((MainWindow)Application.Current.MainWindow).context;
             InitializeComponent();
-            teacherViewSource = (CollectionViewSource)FindResource(nameof(teacherViewSource));
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            // this is for make it easier purposes only
-            // to get up and running
-            //_context.Database.EnsureCreated();
-
-            // load the entities into EF Core
-            
-            _context.Teacher.Load();
-
-            // bind to the source
-            teacherViewSource.Source = _context.Teacher.Local.ToObservableCollection();
+            TeacherList = _context.Teacher.ToList();    // wczytanie nauczycieli z bazy danych
+            listbox.ItemsSource = TeacherList;          // przypisanie listy nauczycieli do listboxa
         }
         private void ClickAdd(object sender, RoutedEventArgs e)
         {
-            Windows.TeacherWindow teacherWindow = new Windows.TeacherWindow
+            TeacherWindow teacherWindow = new TeacherWindow
             {
                 Owner = ((MainWindow)Application.Current.MainWindow)
             };
             if (true == teacherWindow.ShowDialog())
             {
-                _context.SaveChanges();
+                //_context.SaveChanges();
             }
         }
         private void ClickEdit(object sender, RoutedEventArgs e)
         {
-            Windows.TeacherWindow teacherWindow = new Windows.TeacherWindow
+            if(listbox.SelectedItem != null)
             {
-                Owner = ((MainWindow)Application.Current.MainWindow)
-            };
-            if (true == teacherWindow.ShowDialog())
+                TeacherWindow teacherWindow = new TeacherWindow((Models.Teacher)listbox.SelectedItem)
+                {
+                    Owner = ((MainWindow)Application.Current.MainWindow)
+                };
+                if (true == teacherWindow.ShowDialog())
+                {
+                    //_context.SaveChanges();
+                }
+            }
+        }
+        private void ClickRemove(object sender, RoutedEventArgs e)
+        {
+            if(listbox.SelectedItem != null)
             {
+                _context.Teacher.Remove((Models.Teacher)listbox.SelectedItem);
                 _context.SaveChanges();
             }
         }
 
         private void ClickCancel(object sender, RoutedEventArgs e)
         {
-            _context.SaveChanges();
-            _context.Dispose();
+            //_context.SaveChanges();
             this.NavigationService.GoBack();
         }
     }

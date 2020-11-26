@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Collections.Generic;
+using System.Linq;
+using SBD.Models;
+using SBD.Windows;
 
 namespace SBD.Pages.Group
 {
@@ -18,13 +12,22 @@ namespace SBD.Pages.Group
     /// </summary>
     public partial class AdminPage : Page
     {
+        private readonly ModelContext _context;
+        private IList<Models.Group> GroupList { get; set; }
+
         public AdminPage()
         {
+            _context = ((MainWindow)Application.Current.MainWindow).context;
             InitializeComponent();
+        }
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            GroupList = _context.Group.ToList();    // wczytanie grup z bazy danych
+            listbox.ItemsSource = GroupList;        // przypisanie listy grup do listboxa
         }
         private void ClickAdd(object sender, RoutedEventArgs e)
         {
-            Windows.GroupWindow groupWindow = new Windows.GroupWindow
+            GroupWindow groupWindow = new GroupWindow
             {
                 Owner = ((MainWindow)Application.Current.MainWindow)
             };
@@ -35,13 +38,24 @@ namespace SBD.Pages.Group
         }
         private void ClickEdit(object sender, RoutedEventArgs e)
         {
-            Windows.GroupWindow groupWindow = new Windows.GroupWindow
+            if(listbox.SelectedItem != null)
             {
-                Owner = ((MainWindow)Application.Current.MainWindow)
-            };
-            if (true == groupWindow.ShowDialog())
+                GroupWindow groupWindow = new GroupWindow((Models.Group)listbox.SelectedItem)
+                {
+                    Owner = ((MainWindow)Application.Current.MainWindow)
+                };
+                if (true == groupWindow.ShowDialog())
+                {
+                    //_context.SaveChanges();
+                }
+            }
+        }
+        private void ClickRemove(object sender, RoutedEventArgs e)
+        {
+            if (listbox.SelectedItem != null)
             {
-                //_context.SaveChanges();
+                _context.Group.Remove((Models.Group)listbox.SelectedItem);
+                _context.SaveChanges();
             }
         }
         private void ClickCancel(object sender, RoutedEventArgs e)

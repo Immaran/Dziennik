@@ -1,5 +1,7 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
+using Microsoft.EntityFrameworkCore;
+using SBD.Models;
+
 
 namespace SBD.Windows
 {
@@ -8,32 +10,59 @@ namespace SBD.Windows
     /// </summary>
     public partial class StudentWindow : Window
     {
+        private readonly ModelContext _context;
+        private Student Student { get; set; }
         public StudentWindow()
         {
+            _context = ((MainWindow)Application.Current.MainWindow).context;
             InitializeComponent();
         }
-        private Models.Student student;
+        public StudentWindow(Student student) // konstrukor gdy dane są do modyfikacji
+        {
+            _context = ((MainWindow)Application.Current.MainWindow).context;
+            this.Student = student;
+            InitializeComponent();
+        }
         private void OkClick(object sender, RoutedEventArgs e)
         {
             if (name.Text.Length > 0 && surname.Text.Length > 0)
             {
-                //if (student == null)
-                //{
-                //    student = new Models.Student();
-                //}
-                if (secondName.Text.Length != 0)
+                if (Student == null) // gdy tworzymy nowego ucznia
                 {
-                    //student.FirstName = name.Text;
-                    //student.SecondName = secondName.Text;
-                    //student.Surname = surname.Text;
-                    //DialogResult = true;
+                    Student = new Student();
+                    Student.FirstName = name.Text;
+                    if (secondName.Text.Length != 0)
+                        Student.SecondName = secondName.Text;
+                    Student.Surname = surname.Text;
+                    /// tu należy przypisać dane logowania dla nowo utworzonego ucznia
+                    /// ja widzę 4 wyjścia 
+                    /// 1 - albo nowe okno gdzie wprowadzamy jakieś dane logowania
+                    /// 2 - albo wbijamy coś na sztywno, a potem to edytujemy ręcznie w zarządzaniu danymi logowania
+                    /// 3 - generujemy login i hasło automatycznie i przekazujemy dla ucznia, a potem hasło będzie mógł zmienić
+                    /// 4 - dodajemy nowe pola w tym oknie czyli login i hasło i je uzupełniamy 
+                    /// Student.IdNavigation = ??? new LoginData();
+                    _context.Student.Add(Student);
                 }
-                else
+                else // gdy edytujemy dane nauczyciela
                 {
-                    //student.FirstName = name.Text;
-                    //student.Surname = surname.Text;
-                    //DialogResult = true;
+                    Student.FirstName = name.Text;
+                    if (secondName.Text.Length != 0)
+                        Student.SecondName = secondName.Text;
+                    Student.Surname = surname.Text;
+                    _context.Attach(Student).State = EntityState.Modified;
                 }
+
+                try
+                {
+                    _context.SaveChanges();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    throw;
+                }
+
+                //_context.SaveChanges();
+                DialogResult = true;
             }
             else
             {
@@ -43,9 +72,13 @@ namespace SBD.Windows
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //if to edit 
-            //name.Text = ?
-            //secondName.Text = ?
-            //surname.Text = ?
+            if (Student != null)
+            {
+                name.Text = Student.FirstName;
+                if (Student.SecondName != null)
+                    secondName.Text = Student.SecondName;
+                surname.Text = Student.Surname;
+            }
         }
     }
 }

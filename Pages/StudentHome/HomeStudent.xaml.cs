@@ -19,6 +19,7 @@ namespace SBD.Pages.StudentHome
     /// </summary>
     public partial class HomeStudent : Page
     {
+        private Button clicked = null;
         public HomeStudent()
         {
             InitializeComponent();
@@ -31,28 +32,41 @@ namespace SBD.Pages.StudentHome
             }
             navigator.Navigate(new HomeForStudent());
         }
+        private void update_button(Button btn)
+        {
+            if (clicked != null)
+                clicked.IsEnabled = true;
+            clicked = btn;
+            clicked.IsEnabled = false;
+        }
         private void ClickGrade(object sender, RoutedEventArgs e)
         {
+            update_button((Button)sender);
             navigator.Navigate(new Grade.StudentPage());
         }
         private void ClickEvent(object sender, RoutedEventArgs e)
         {
+            update_button((Button)sender);
             navigator.Navigate(new Event.StudentPage());
         }
         private void ClickGroup(object sender, RoutedEventArgs e)
         {
+            update_button((Button)sender);
             navigator.Navigate(new Group.StudentPage());
         }
         private void ClickMessage(object sender, RoutedEventArgs e)
         {
+            update_button((Button)sender);
             navigator.Navigate(new Message.StudentPage());
         }
         private void ClickSubject(object sender, RoutedEventArgs e)
         {
+            update_button((Button)sender);
             navigator.Navigate(new Subject.StudentPage());
         }
         private void ClickLoginData(object sender, RoutedEventArgs e)
         {
+            update_button((Button)sender);
             navigator.Navigate(new LoginData.StudentPage());
         }
 

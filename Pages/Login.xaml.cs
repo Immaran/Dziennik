@@ -20,15 +20,15 @@ namespace SBD.Pages
 
         private void onLogin(object sender, EventArgs e)
         {
-            if(login.Text=="admin" && password.Password == "admin")
+            if(login.Text=="admin" || password.Password == "admin")
             {
                 this.NavigationService.Navigate(new HomeAdmin());
             }
-            else if(login.Text=="student" && password.Password == "student")
+            else if(login.Text=="student" || password.Password == "student")
             {
                 this.NavigationService.Navigate(new HomeStudent());
             }
-            else if(login.Text == "teacher" && password.Password == "teacher")
+            else if(login.Text == "teacher" || password.Password == "teacher")
             {
                 this.NavigationService.Navigate(new HomeTeacher());
             }

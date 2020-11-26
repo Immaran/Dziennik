@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Collections.Generic;
+using System.Linq;
+using SBD.Models;
+using SBD.Windows;
 
 namespace SBD.Pages.Subject
 {
@@ -18,13 +12,22 @@ namespace SBD.Pages.Subject
     /// </summary>
     public partial class AdminPage : Page
     {
+        private readonly ModelContext _context;
+        private IList<Models.Subject> SubjectList { get; set; }
+
         public AdminPage()
         {
+            _context = ((MainWindow)Application.Current.MainWindow).context;
             InitializeComponent();
+        }
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            SubjectList = _context.Subject.ToList();    // wczytanie przedmiotów z bazy danych
+            listbox.ItemsSource = SubjectList;          // przypisanie listy przedmiotów do listboxa
         }
         private void ClickAdd(object sender, RoutedEventArgs e)
         {
-            Windows.SubjectWindow subjectWindow = new Windows.SubjectWindow
+            SubjectWindow subjectWindow = new SubjectWindow
             {
                 Owner = ((MainWindow)Application.Current.MainWindow)
             };
@@ -35,17 +38,29 @@ namespace SBD.Pages.Subject
         }
         private void ClickEdit(object sender, RoutedEventArgs e)
         {
-            Windows.SubjectWindow subjectWindow = new Windows.SubjectWindow
+            if (listbox.SelectedItem != null)
             {
-                Owner = ((MainWindow)Application.Current.MainWindow)
-            };
-            if (true == subjectWindow.ShowDialog())
+                SubjectWindow subjectWindow = new SubjectWindow((Models.Subject)listbox.SelectedItem)
+                {
+                    Owner = ((MainWindow)Application.Current.MainWindow)
+                };
+                if (true == subjectWindow.ShowDialog())
+                {
+                    //_context.SaveChanges();
+                }
+            }
+        }
+        private void ClickRemove(object sender, RoutedEventArgs e)
+        {
+            if(listbox.SelectedItem != null)
             {
-                //_context.SaveChanges();
+                _context.Subject.Remove((Models.Subject)listbox.SelectedItem);
+                _context.SaveChanges();
             }
         }
         private void ClickCancel(object sender, RoutedEventArgs e)
         {
+            //_context.SaveChanges();
             this.NavigationService.GoBack();
         }
     }

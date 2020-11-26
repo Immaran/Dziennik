@@ -21,18 +21,9 @@
         <StackPanel Grid.Row="1">
             <Button Padding="5" Click="ClickAdd">Dodaj</Button>
             <Button Padding="5" Click="ClickEdit">Edytuj</Button>
-            <Button Padding="5">Usuń</Button>
+            <Button Padding="5" Click="ClickRemove">Usuń</Button>
         </StackPanel>
-        <ListView Grid.Row="2" Name="teacherListView" ItemsSource="{Binding Source={StaticResource teacherViewSource}}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" />
-                    <GridViewColumn Header="Imię" DisplayMemberBinding="{Binding FirstName}" />
-                    <GridViewColumn Header="Drugie imię" DisplayMemberBinding="{Binding SecondName}" />
-                    <GridViewColumn Header="Nazwisko" DisplayMemberBinding="{Binding Surname}" />
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <ListBox Name="listbox" Grid.Row="2" Margin="5" Padding="5"/>
         <Button Grid.Row="3" Margin="5" Padding="5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="ClickCancel">Powrót</Button>
     </Grid>
 </Page>

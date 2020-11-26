@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using Microsoft.EntityFrameworkCore;
+using SBD.Models;
 
 namespace SBD.Windows
 {
@@ -17,24 +9,60 @@ namespace SBD.Windows
     /// </summary>
     public partial class SubjectWindow : Window
     {
+        private readonly ModelContext _context;
+        private Subject Subject { get; set; }
         public SubjectWindow()
         {
+            _context = ((MainWindow)Application.Current.MainWindow).context;
             InitializeComponent();
         }
-        private Models.Subject subject;
+        public SubjectWindow(Subject subject) // konstrukor gdy dane są do modyfikacji
+        {
+            _context = ((MainWindow)Application.Current.MainWindow).context;
+            this.Subject = subject;
+            InitializeComponent();
+        }
         private void OkClick(object sender, RoutedEventArgs e)
         {
             if (name.Text.Length > 0 && teacher.SelectedItem != null && group.SelectedItem != null)
             {
-                //if (subject == null)
-                //{
-                //    subject = new Models.Subject();
-                //}
+                if (Subject == null) // gdy tworzymy nową grupę
+                {
+                    Subject = new Subject();
+                    Subject.Name = name.Text;
 
-                //subject.Name = name.Text;
-                //subject.TeacherId = teacher.SelectedItem.Id;
-                //miejsce na przypisanie przedmiotu do danej grupy
-                //DialogResult = true;
+                    /// tu należy przypisać nauczyciela
+                    /// Subject.TeacherId = ??
+
+                    /// tu należy przypisać grupę
+
+                    _context.Subject.Add(Subject);
+                }
+                else // gdy edytujemy dane przedmiotu
+                {
+                    Subject.Name = name.Text;
+
+                    /// tu należy przypisać nauczyciela
+                    /// Subject.TeacherId = ??
+
+                    /// tu należy przypisać grupę
+
+                    _context.Subject.Add(Subject);
+
+                    _context.Attach(Subject).State = EntityState.Modified;
+                }
+
+                try
+                {
+                    _context.SaveChanges();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    throw;
+                }
+
+                //_context.SaveChanges();
+                DialogResult = true;
             }
             else
             {
@@ -44,8 +72,16 @@ namespace SBD.Windows
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //if to edit 
-            //name.Text = ?
-            //teacher.SelectedItem = ?
+            if (Subject != null)
+            {
+                name.Text = Subject.Name;
+
+                /// tu należy przypisać nauczyciela
+                /// teacher.SelectedItem = ??
+
+                /// tu należy przypisać grupę
+                /// group.SelectedItem = ??
+            }
         }
     }
 }

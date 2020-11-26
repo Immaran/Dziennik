@@ -10,15 +10,15 @@ namespace SBD
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ISampleService sampleService;
-        public MainWindow(ISampleService sampleService)
+        public readonly Models.ModelContext context = new Models.ModelContext();
+        public MainWindow()
         {
             InitializeComponent();
-            this.sampleService = sampleService;
-            int a = 5;
+
             // Set an icon using code
             //Uri iconUri = new Uri("pack://application:,,,/[name].ico", UriKind.RelativeOrAbsolute);
             //this.Icon = BitmapFrame.Create(iconUri);
+
             frame.NavigationService.Navigate(new Home());
         }
     }
