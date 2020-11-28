@@ -22,12 +22,12 @@ namespace SBD
             //this.Icon = BitmapFrame.Create(iconUri);
 
             frame.NavigationService.Navigate(new Home());
-            
+
 
             /* var logindata = new Models.LoginData { Login = "Hej", Password = "Czesc", Role = "Ml. szeregowy" };
             context.Add<Models.LoginData>(logindata);
             context.SaveChanges();*/
-            
+
 
         }
     }
