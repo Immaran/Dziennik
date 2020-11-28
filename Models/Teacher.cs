@@ -21,5 +21,10 @@ namespace SBD.Models
         public virtual ICollection<Event> Event { get; set; }
         public virtual ICollection<Message> Message { get; set; }
         public virtual ICollection<Subject> Subject { get; set; }
+
+        public override string ToString()
+        {
+            return FirstName + " " + Surname;
+        }
     }
 }

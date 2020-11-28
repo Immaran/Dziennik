@@ -21,5 +21,9 @@ namespace SBD.Models
         public virtual ICollection<Grade> Grade { get; set; }
         public virtual ICollection<GroupStudent> GroupStudent { get; set; }
         public virtual ICollection<Message> Message { get; set; }
+        public override string ToString()
+        {
+            return FirstName + " " + Surname;
+        }
     }
 }

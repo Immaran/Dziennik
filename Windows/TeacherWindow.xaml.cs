@@ -13,6 +13,7 @@ namespace SBD.Windows
     {
         private readonly ModelContext _context;
         private Teacher Teacher { get; set; }
+        private LoginData LoginData { get; set; }
         public TeacherWindow()
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
@@ -24,24 +25,42 @@ namespace SBD.Windows
             this.Teacher = teacher;
             InitializeComponent();
         }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            //if to edit 
+            if (Teacher != null)
+            {
+                name.Text = Teacher.FirstName;
+                if (Teacher.SecondName != null)
+                    secondName.Text = Teacher.SecondName;
+                surname.Text = Teacher.Surname;
+                Teacher.IdNavigation = _context.LoginData.FirstOrDefault(x => x.Id == Teacher.Id);
+                login.Text = Teacher.IdNavigation.Login;
+                password.Password = Teacher.IdNavigation.Password;
+            }
+        }
         private void OkClick(object sender, RoutedEventArgs e)
         {
-            if (name.Text.Length > 0 && surname.Text.Length > 0)
+            if (name.Text.Length > 0 && surname.Text.Length > 0 && login.Text != null && password.Password != null)
             {
-                if (Teacher == null) // gdy tworzymy nowego nauczyciela
+                if (Teacher == null && LoginData == null) // gdy tworzymy nowego nauczyciela
                 {
                     Teacher = new Teacher();
                     Teacher.FirstName = name.Text;
                     if (secondName.Text.Length != 0)
                         Teacher.SecondName = secondName.Text;
                     Teacher.Surname = surname.Text;
-                    /// tu należy przypisać dane logowania dla nowo utworzonego nauczyciela
-                    /// ja widzę 4 wyjścia 
-                    /// 1 - albo nowe okno gdzie wprowadzamy jakieś dane logowania
-                    /// 2 - albo wbijamy coś na sztywno, a potem to edytujemy ręcznie w zarządzaniu danymi logowania
-                    /// 3 - generujemy login i hasło automatycznie i przekazujemy dla nauczyciela, a potem hasło będzie mógł zmienić
-                    /// 4 - dodajemy nowe pola w tym oknie czyli login i hasło i je uzupełniamy 
-                    /// Teacher.IdNavigation = ??? new LoginData();
+                    LoginData = new LoginData
+                    {
+                        Login = login.Text,
+                        Password = password.Password,
+                        Role = "teacher"
+                    };
+                    _context.LoginData.Add(LoginData);
+                    _context.SaveChanges();
+                    LoginData = _context.LoginData.FirstOrDefault(x => x.Login == LoginData.Login);
+                    Teacher.Id = LoginData.Id;
+                    Teacher.IdNavigation = LoginData;
                     _context.Teacher.Add(Teacher);
                 }
                 else // gdy edytujemy dane nauczyciela
@@ -50,6 +69,8 @@ namespace SBD.Windows
                     if (secondName.Text.Length != 0)
                         Teacher.SecondName = secondName.Text;
                     Teacher.Surname = surname.Text;
+                    Teacher.IdNavigation.Login = login.Text;
+                    Teacher.IdNavigation.Password = password.Password;
                     _context.Attach(Teacher).State = EntityState.Modified;
                 }
 
@@ -68,17 +89,6 @@ namespace SBD.Windows
             else
             {
                 MessageBox.Show("Brak wszystkich danych", "Nauczyciel", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            //if to edit 
-            if(Teacher != null)
-            {
-                name.Text = Teacher.FirstName;
-                if(Teacher.SecondName != null)
-                    secondName.Text = Teacher.SecondName;
-                surname.Text = Teacher.Surname;
             }
         }
     }
