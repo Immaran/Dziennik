@@ -18,5 +18,9 @@ namespace SBD.Models
         public virtual Teacher Teacher { get; set; }
         public virtual ICollection<Grade> Grade { get; set; }
         public virtual ICollection<GroupSubject> GroupSubject { get; set; }
+        public override string ToString()
+        {
+            return Name + " " + Teacher;
+        }
     }
 }

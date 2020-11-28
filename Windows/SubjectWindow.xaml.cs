@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using SBD.Models;
 
@@ -11,6 +13,7 @@ namespace SBD.Windows
     {
         private readonly ModelContext _context;
         private Subject Subject { get; set; }
+        private IList<Teacher> TeacherList { get; set; }
         public SubjectWindow()
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
@@ -24,17 +27,18 @@ namespace SBD.Windows
         }
         private void OkClick(object sender, RoutedEventArgs e)
         {
-            if (name.Text.Length > 0 && teacher.SelectedItem != null && group.SelectedItem != null)
+            if (name.Text.Length > 0 && teacher.SelectedItem != null)
             {
                 if (Subject == null) // gdy tworzymy nową grupę
                 {
                     Subject = new Subject();
                     Subject.Name = name.Text;
 
-                    /// tu należy przypisać nauczyciela
-                    /// Subject.TeacherId = ??
+                    // przypisanie nauczyciela
+                    Teacher Teacher = (Teacher)teacher.SelectedItem;
+                    Subject.TeacherId = Teacher.Id;
 
-                    /// tu należy przypisać grupę
+                    // tu należy przypisać grupę
 
                     _context.Subject.Add(Subject);
                 }
@@ -42,13 +46,13 @@ namespace SBD.Windows
                 {
                     Subject.Name = name.Text;
 
-                    /// tu należy przypisać nauczyciela
-                    /// Subject.TeacherId = ??
+                    // przypisanie nauczyciela
+                    Teacher Teacher = (Teacher)teacher.SelectedItem;
+                    Subject.TeacherId = Teacher.Id;
 
-                    /// tu należy przypisać grupę
+                    // tu należy przypisać grupę
 
                     _context.Subject.Add(Subject);
-
                     _context.Attach(Subject).State = EntityState.Modified;
                 }
 
@@ -61,7 +65,6 @@ namespace SBD.Windows
                     throw;
                 }
 
-                //_context.SaveChanges();
                 DialogResult = true;
             }
             else
@@ -71,13 +74,15 @@ namespace SBD.Windows
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            TeacherList = _context.Teacher.ToList();    // wczytanie nauczycieli z bazy danych
+            teacher.ItemsSource = TeacherList;          // przypisanie listy nauczycieli do comboboxa
             //if to edit 
             if (Subject != null)
             {
                 name.Text = Subject.Name;
 
-                /// tu należy przypisać nauczyciela
-                /// teacher.SelectedItem = ??
+                // przypisanie nauczyciela
+                teacher.SelectedItem = Subject.Teacher;
 
                 /// tu należy przypisać grupę
                 /// group.SelectedItem = ??

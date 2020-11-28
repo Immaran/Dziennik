@@ -25,6 +25,11 @@ namespace SBD.Pages.Subject
             SubjectList = _context.Subject.ToList();    // wczytanie przedmiotów z bazy danych
             listbox.ItemsSource = SubjectList;          // przypisanie listy przedmiotów do listboxa
         }
+        private void Refresh()
+        {
+            SubjectList = _context.Subject.ToList();    // wczytanie przedmiotów z bazy danych
+            listbox.ItemsSource = SubjectList;          // przypisanie listy przedmiotów do listboxa
+        }
         private void ClickAdd(object sender, RoutedEventArgs e)
         {
             SubjectWindow subjectWindow = new SubjectWindow
@@ -33,7 +38,7 @@ namespace SBD.Pages.Subject
             };
             if (true == subjectWindow.ShowDialog())
             {
-                //_context.SaveChanges();
+                this.Refresh();
             }
         }
         private void ClickEdit(object sender, RoutedEventArgs e)
@@ -46,7 +51,7 @@ namespace SBD.Pages.Subject
                 };
                 if (true == subjectWindow.ShowDialog())
                 {
-                    //_context.SaveChanges();
+                    this.Refresh();
                 }
             }
         }
@@ -56,6 +61,7 @@ namespace SBD.Pages.Subject
             {
                 _context.Subject.Remove((Models.Subject)listbox.SelectedItem);
                 _context.SaveChanges();
+                this.Refresh();
             }
         }
         private void ClickCancel(object sender, RoutedEventArgs e)
