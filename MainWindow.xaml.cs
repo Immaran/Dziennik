@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using SBD.Models;
 using SBD.Pages;
 
 namespace SBD
@@ -20,6 +22,13 @@ namespace SBD
             //this.Icon = BitmapFrame.Create(iconUri);
 
             frame.NavigationService.Navigate(new Home());
+            
+
+            /* var logindata = new Models.LoginData { Login = "Hej", Password = "Czesc", Role = "Ml. szeregowy" };
+            context.Add<Models.LoginData>(logindata);
+            context.SaveChanges();*/
+            
+
         }
     }
 }

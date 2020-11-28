@@ -197,6 +197,12 @@ namespace SBD.Models
                 entity.Property(e => e.Password)
                     .IsRequired()
                     .HasColumnName("PASSWORD")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Role)
+                    .IsRequired()
+                    .HasColumnName("ROLE")
                     .HasMaxLength(20)
                     .IsUnicode(false);
             });

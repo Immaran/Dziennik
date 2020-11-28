@@ -8,6 +8,8 @@ namespace SBD.Models
         public int Id { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
+        public string Role { get; set; }
+
 
         public virtual Student Student { get; set; }
         public virtual Teacher Teacher { get; set; }

@@ -20,6 +20,7 @@ namespace SBD.Pages.Grade
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             //wczytanie danych 
+            
         }
     }
 }
