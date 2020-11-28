@@ -12,10 +12,6 @@ namespace SBD.Pages
         {
             InitializeComponent();
         }
-        public void ClickLoginData(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new LoginData.AdminPage());
-        }
         public void CLickGroup(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new Group.AdminPage());

@@ -15,7 +15,6 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Vertical">
-            <Button Padding="5" Click="ClickLoginData">Zarządzanie danymi logowania</Button>
             <Button Padding="5" Click="CLickGroup">Zarządzanie grupami</Button>
             <Button Padding="5" Click="ClickSubject">Zarządzanie przedmiotami</Button>
             <Button Padding="5" Click="ClickStudent">Zarządzanie uczniami</Button>
