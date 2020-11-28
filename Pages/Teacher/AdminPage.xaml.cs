@@ -17,9 +17,6 @@ namespace SBD.Pages.Teacher
     {
         private readonly ModelContext _context;
         private IList<Models.Teacher> TeacherList { get; set; }
-        
-
-
         public AdminPage()
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;

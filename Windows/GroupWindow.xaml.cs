@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
 using Microsoft.EntityFrameworkCore;
 using SBD.Models;
 
@@ -11,6 +13,8 @@ namespace SBD.Windows
     {
         private readonly ModelContext _context;
         private Group Group { get; set; }
+        private IList<Models.Student> StudentList { get; set; }
+        private IList<Models.Subject> SubjectList { get; set; }
         public GroupWindow()
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
@@ -21,6 +25,24 @@ namespace SBD.Windows
             _context = ((MainWindow)Application.Current.MainWindow).context;
             this.Group = group;
             InitializeComponent();
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            SubjectList = _context.Subject.ToList();
+            StudentList = _context.Student.ToList();
+            studentBox.ItemsSource = StudentList;
+            subjectBox.ItemsSource = SubjectList;
+            //if to edit 
+            if (Group != null)
+            {
+                name.Text = Group.Name;
+
+                /// tu należy przypisać listę uczniów
+                //studentList.Items = ?
+
+                /// tu należy przypisać listę przedmiotów 
+                //subjectList.Items = ?
+            }
         }
         private void OkClick(object sender, RoutedEventArgs e)
         {
@@ -69,18 +91,21 @@ namespace SBD.Windows
                 MessageBox.Show("Brak wszystkich danych", "Grupa", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+
+        private void AddStudent(object sender, RoutedEventArgs e)
         {
-            //if to edit 
-            if (Group != null)
+            if(studentBox.SelectedItem != null)
             {
-                name.Text = Group.Name;
-
-                /// tu należy przypisać listę uczniów
-                //studentList.Items = ?
-
-                /// tu należy przypisać listę przedmiotów 
-                //subjectList.Items = ?
+                if( !studentList.Items.Contains(studentBox.SelectedItem) )
+                    studentList.Items.Add(studentBox.SelectedItem);
+            }
+        }
+        private void AddSubject(object sender, RoutedEventArgs e)
+        {
+            if(subjectBox.SelectedItem != null)
+            {
+                if( !subjectList.Items.Contains(subjectBox.SelectedItem) )
+                    subjectList.Items.Add(subjectBox.SelectedItem);
             }
         }
     }
