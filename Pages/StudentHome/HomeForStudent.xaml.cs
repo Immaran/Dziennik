@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -24,7 +25,8 @@ namespace SBD.Pages.StudentHome
         }
         private void Page_Loaded(object sendet, RoutedEventArgs e)
         {
-
+            Models.Student student = ((MainWindow)Application.Current.MainWindow).loggedUser;
+            mainLabel.Content = "Strona główna studenta " + student.FirstName + " " + student.Surname;
         }
     }
 }

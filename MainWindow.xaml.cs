@@ -13,6 +13,7 @@ namespace SBD
     public partial class MainWindow : Window
     {
         public readonly Models.ModelContext context = new Models.ModelContext();
+        public dynamic loggedUser; //public int loggedId; 
         public MainWindow()
         {
             InitializeComponent();

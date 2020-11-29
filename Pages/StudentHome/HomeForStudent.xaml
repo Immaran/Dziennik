@@ -9,6 +9,6 @@
       Title="HomeForStudent" Loaded="Page_Loaded">
 
     <Grid>
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center">Strona główna studenta</Label>
+        <Label x:Name="mainLabel" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
     </Grid>
 </Page>

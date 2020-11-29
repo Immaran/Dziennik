@@ -25,7 +25,8 @@ namespace SBD.Pages.TeacherHome
 
         private void Page_Loaded(object sendet, RoutedEventArgs e)
         {
-
+            Models.Teacher teacher = ((MainWindow)Application.Current.MainWindow).loggedUser;
+            mainLabel.Content = "Strona główna nauczyciela " + teacher.FirstName + " " + teacher.Surname;
         }
     }
 }
