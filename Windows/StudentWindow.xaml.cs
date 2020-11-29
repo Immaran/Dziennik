@@ -1,8 +1,10 @@
 ﻿using System.Linq;
+using System.Text;
 using System.Windows;
 using Microsoft.EntityFrameworkCore;
 using SBD.Models;
-
+using System;
+using System.Windows.Documents;
 
 namespace SBD.Windows
 {
@@ -14,6 +16,8 @@ namespace SBD.Windows
         private readonly ModelContext _context;
         private Student Student { get; set; }
         private LoginData LoginData { get; set; }
+
+        private readonly Random _rand = new Random(); //static
         public StudentWindow()
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
@@ -35,13 +39,12 @@ namespace SBD.Windows
                     secondName.Text = Student.SecondName;
                 surname.Text = Student.Surname;
                 Student.IdNavigation = _context.LoginData.FirstOrDefault(x => x.Id == Student.Id);
-                login.Text = Student.IdNavigation.Login;
-                password.Password = Student.IdNavigation.Password;
+                
             }
         }
         private void OkClick(object sender, RoutedEventArgs e)
         {
-            if (name.Text.Length > 0 && surname.Text.Length > 0 && login.Text != null && password.Password != null)
+            if (name.Text.Length > 0 && surname.Text.Length > 0)
             {
                 if (Student == null && LoginData == null) // gdy tworzymy nowego ucznia
                 {
@@ -50,10 +53,12 @@ namespace SBD.Windows
                     if (secondName.Text.Length != 0)
                         Student.SecondName = secondName.Text;
                     Student.Surname = surname.Text;
+                    string login = this.generateLogin(Student.FirstName, Student.Surname);
+                    string password = this.generatePassword();
                     LoginData = new LoginData
                     {
-                        Login = login.Text,
-                        Password = password.Password,
+                        Login = login,
+                        Password = password,
                         Role = "student"
                     };
                     _context.LoginData.Add(LoginData);
@@ -69,8 +74,6 @@ namespace SBD.Windows
                     if (secondName.Text.Length != 0)
                         Student.SecondName = secondName.Text;
                     Student.Surname = surname.Text;
-                    Student.IdNavigation.Login = login.Text;
-                    Student.IdNavigation.Password = password.Password;
                     _context.Attach(Student).State = EntityState.Modified;
                 }
 
@@ -91,5 +94,38 @@ namespace SBD.Windows
                 MessageBox.Show("Brak wszystkich danych", "Uczeń", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
+        public string generatePassword()
+        {
+            const string lowers = "abcdefghijklmnopqrstuvwxyz";
+            const string uppers = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const string numbers = "1234567890";
+            const string specials = "#$%&!?-*%";
+
+            string[] characters = { lowers, uppers, numbers, specials };
+
+            StringBuilder stringBuilder = new StringBuilder();
+            
+            int index;
+            for (int i = 0; i < 2; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    index = _rand.Next(characters[j].Length);
+
+                    stringBuilder.Append(characters[j][index]);
+                }
+            }
+            return stringBuilder.ToString();
+        }
+
+        public string generateLogin(string name, string surname)
+        {
+            
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append(name[0]).Append(".").Append(surname);
+            return stringBuilder.ToString().ToLower();
+        }
+
     }
 }
