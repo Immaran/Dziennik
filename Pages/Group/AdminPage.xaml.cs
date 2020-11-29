@@ -25,6 +25,11 @@ namespace SBD.Pages.Group
             GroupList = _context.Group.ToList();    // wczytanie grup z bazy danych
             listbox.ItemsSource = GroupList;        // przypisanie listy grup do listboxa
         }
+        private void Refresh()
+        {
+            GroupList = _context.Group.ToList();    // wczytanie grup z bazy danych
+            listbox.ItemsSource = GroupList;        // przypisanie listy grup do listboxa
+        }
         private void ClickAdd(object sender, RoutedEventArgs e)
         {
             GroupWindow groupWindow = new GroupWindow
@@ -33,7 +38,7 @@ namespace SBD.Pages.Group
             };
             if (true == groupWindow.ShowDialog())
             {
-                //_context.SaveChanges();
+                this.Refresh();
             }
         }
         private void ClickEdit(object sender, RoutedEventArgs e)
@@ -46,7 +51,7 @@ namespace SBD.Pages.Group
                 };
                 if (true == groupWindow.ShowDialog())
                 {
-                    //_context.SaveChanges();
+                    this.Refresh();
                 }
             }
         }
@@ -56,6 +61,7 @@ namespace SBD.Pages.Group
             {
                 _context.Group.Remove((Models.Group)listbox.SelectedItem);
                 _context.SaveChanges();
+                this.Refresh();
             }
         }
         private void ClickCancel(object sender, RoutedEventArgs e)

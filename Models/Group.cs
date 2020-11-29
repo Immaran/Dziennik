@@ -16,5 +16,9 @@ namespace SBD.Models
 
         public virtual ICollection<GroupStudent> GroupStudent { get; set; }
         public virtual ICollection<GroupSubject> GroupSubject { get; set; }
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

@@ -19,16 +19,16 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Margin="5">Imię</Label>
-        <TextBox Name="name" Grid.Row="0" Grid.Column="1" Margin="5"/>
-        <Label Grid.Row="1" Grid.Column="0" Margin="5">Drugię imię</Label>
-        <TextBox Name="secondName" Grid.Row="1" Grid.Column="1" Margin="5"/>
-        <Label Grid.Row="2" Grid.Column="0" Margin="5">Nazwisko</Label>
-        <TextBox Name="surname" Grid.Row="2" Grid.Column="1" Margin="5"/>
-        <Label Grid.Row="3" Grid.Column="0" Margin="5">Login</Label>
-        <TextBox Name="login" Grid.Row="3" Grid.Column="1" Margin="5"/>
-        <Label Grid.Row="4" Grid.Column="0" Margin="5">Hasło</Label>
-        <PasswordBox Name="password" Grid.Row="4" Grid.Column="1" Margin="5"/>
+        <Label Grid.Row="0" Grid.Column="0" Margin="5" Padding="5">Imię</Label>
+        <TextBox Name="name" Grid.Row="0" Grid.Column="1" Margin="5" Padding="5"/>
+        <Label Grid.Row="1" Grid.Column="0" Margin="5" Padding="5">Drugię imię</Label>
+        <TextBox Name="secondName" Grid.Row="1" Grid.Column="1" Margin="5" Padding="5"/>
+        <Label Grid.Row="2" Grid.Column="0" Margin="5" Padding="5">Nazwisko</Label>
+        <TextBox Name="surname" Grid.Row="2" Grid.Column="1" Margin="5" Padding="5"/>
+        <Label Grid.Row="3" Grid.Column="0" Margin="5" Padding="5">Login</Label>
+        <TextBox Name="login" Grid.Row="3" Grid.Column="1" Margin="5" Padding="5"/>
+        <Label Grid.Row="4" Grid.Column="0" Margin="5" Padding="5">Hasło</Label>
+        <PasswordBox Name="password" Grid.Row="4" Grid.Column="1" Margin="5" Padding="5"/>
         <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button IsDefault="True" Click="OkClick" Margin="5" Padding="15,3">OK</Button>
             <Button IsCancel="True" Margin="5" Padding="15,3">Anuluj</Button>

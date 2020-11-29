@@ -11,7 +11,9 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
@@ -19,17 +21,27 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Margin="5">Nazwa</Label>
-        <TextBox Name="name" Grid.Row="0" Grid.Column="1" Margin="5"/>
-        <Label Grid.Row="1" Grid.Column="0" Margin="5">Lista uczniów</Label>
+        <Label Grid.Row="0" Grid.Column="0" Margin="5" Padding="5">Nazwa</Label>
+        <TextBox Name="name" Grid.Row="0" Grid.Column="1" Margin="5" Padding="5"/>
+        <Label Grid.Row="1" Grid.Column="0" Margin="5" Padding="5">Lista uczniów</Label>
         <ListBox Name="studentList" Grid.Row="1" Grid.Column="1" Margin="5"/>
-        <Button Click="AddStudent" Grid.Row="2" Grid.Column="0" Margin="5">Dodaj ucznia</Button>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
+            <Button HorizontalAlignment="Left" Click="AddStudent" Margin="5" Padding="5,0">Dodaj</Button>
+            <Button HorizontalAlignment="Right" Click="RemoveStudent" Margin="0,5" Padding="5,0">Usuń</Button>
+        </StackPanel>
+        <!--<Button Click="AddStudent" Grid.Row="2" Grid.Column="0" Margin="5">Dodaj ucznia</Button>
+        <Button Click="AddStudent" Grid.Row="3" Grid.Column="0" Margin="5">Usuń ucznia</Button>-->
         <ComboBox Name="studentBox"  Grid.Row="2" Grid.Column="1" Margin="5"/>
-        <Label Grid.Row="3" Grid.Column="0" Margin="5">Lista przedmiotów</Label>
-        <ListBox Name="subjectList" Grid.Row="3" Grid.Column="1" Margin="5"/>
-        <Button Click="AddSubject" Grid.Row="4" Grid.Column="0" Margin="5">Dodaj przedmiot</Button>
-        <ComboBox Name="subjectBox" Grid.Row="4" Grid.Column="1" Margin="5"/>
-        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+        <Label Grid.Row="4" Grid.Column="0" Margin="5" Padding="5">Lista przedmiotów</Label>
+        <ListBox Name="subjectList" Grid.Row="4" Grid.Column="1" Margin="5"/>
+        <!--<StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="0">
+            <Button Click="AddSubject" Margin="5">Dodaj</Button>
+            <Button Click="AddSubject" Margin="5">Usuń</Button>
+        </StackPanel>-->
+        <Button Click="AddSubject" Grid.Row="5" Grid.Column="0" Margin="5">Dodaj przedmiot</Button>
+        <Button Click="RemoveSubject" Grid.Row="6" Grid.Column="0" Margin="5">Usuń przedmiot</Button>
+        <ComboBox Name="subjectBox" Grid.Row="5" Grid.Column="1" Margin="5"/>
+        <StackPanel Grid.Row="7" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button IsDefault="True" Click="OkClick" Margin="5" Padding="15,3">OK</Button>
             <Button IsCancel="True" Margin="5" Padding="15,3">Anuluj</Button>
         </StackPanel>

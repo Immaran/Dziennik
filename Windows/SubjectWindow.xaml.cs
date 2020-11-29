@@ -38,8 +38,6 @@ namespace SBD.Windows
                     Teacher Teacher = (Teacher)teacher.SelectedItem;
                     Subject.TeacherId = Teacher.Id;
 
-                    // tu należy przypisać grupę
-
                     _context.Subject.Add(Subject);
                 }
                 else // gdy edytujemy dane przedmiotu
@@ -49,8 +47,6 @@ namespace SBD.Windows
                     // przypisanie nauczyciela
                     Teacher Teacher = (Teacher)teacher.SelectedItem;
                     Subject.TeacherId = Teacher.Id;
-
-                    // tu należy przypisać grupę
 
                     _context.Subject.Add(Subject);
                     _context.Attach(Subject).State = EntityState.Modified;
@@ -83,9 +79,6 @@ namespace SBD.Windows
 
                 // przypisanie nauczyciela
                 teacher.SelectedItem = Subject.Teacher;
-
-                /// tu należy przypisać grupę
-                /// group.SelectedItem = ??
             }
         }
     }

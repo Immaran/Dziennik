@@ -20,7 +20,7 @@ namespace SBD.Models
         public virtual ICollection<GroupSubject> GroupSubject { get; set; }
         public override string ToString()
         {
-            return Name + " " + Teacher;
+            return Name + " " + TeacherId;
         }
     }
 }
