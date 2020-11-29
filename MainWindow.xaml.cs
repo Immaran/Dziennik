@@ -18,17 +18,7 @@ namespace SBD
         {
             InitializeComponent();
 
-            // Set an icon using code
-            //Uri iconUri = new Uri("pack://application:,,,/[name].ico", UriKind.RelativeOrAbsolute);
-            //this.Icon = BitmapFrame.Create(iconUri);
-
             frame.NavigationService.Navigate(new Home());
-
-
-            /* var logindata = new Models.LoginData { Login = "Hej", Password = "Czesc", Role = "Ml. szeregowy" };
-            context.Add<Models.LoginData>(logindata);
-            context.SaveChanges();*/
-
 
         }
     }
