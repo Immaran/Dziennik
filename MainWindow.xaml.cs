@@ -13,13 +13,12 @@ namespace SBD
     public partial class MainWindow : Window
     {
         public readonly Models.ModelContext context = new Models.ModelContext();
-        public dynamic loggedUser; //public int loggedId; 
+        public dynamic loggedUser;
         public MainWindow()
         {
             InitializeComponent();
-
+            context.Database.EnsureCreated();
             frame.NavigationService.Navigate(new Home());
-
         }
     }
 }

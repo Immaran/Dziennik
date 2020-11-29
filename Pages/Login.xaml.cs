@@ -16,40 +16,51 @@ namespace SBD.Pages
     public partial class Login : Page
     {
         private readonly ModelContext _context;
+        private bool logged = false;
         public Login()
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
+            ((MainWindow)Application.Current.MainWindow).loggedUser = null;
             InitializeComponent();
-
         }
-
         private void onLogin(object sender, EventArgs e)
         {
-            if(login.Text=="admin" || password.Password == "admin")
+            if (login.Text.Length > 0 && password.Password.Length > 0)
             {
-                this.NavigationService.Navigate(new HomeAdmin());
-            }
-
-            Models.LoginData ldata = _context.LoginData.SingleOrDefault(ld => ld.Login == login.Text);
-            if (ldata!=null)
-            {
-               if (ldata.Password==password.Password)
-               {
-                    //((MainWindow)Application.Current.MainWindow).loggedId = ldata.Id;
-                    if (ldata.Role.Equals("student"))
+                if (login.Text == "admin" && password.Password == "admin")
+                {
+                    this.NavigationService.Navigate(new HomeAdmin());
+                    logged = true;
+                }
+                else
+                {
+                    Models.LoginData ldata = _context.LoginData.SingleOrDefault(ld => ld.Login == login.Text);
+                    if (ldata != null)
                     {
-                        ((MainWindow)Application.Current.MainWindow).loggedUser = _context.Student.SingleOrDefault(s => s.Id == ldata.Id);
-                        this.NavigationService.Navigate(new HomeStudent());
-                        return;
+                        if (ldata.Password == password.Password)
+                        {
+                            if (ldata.Role.Equals("student"))
+                            {
+                                ((MainWindow)Application.Current.MainWindow).loggedUser = _context.Student.SingleOrDefault(s => s.Id == ldata.Id);
+                                this.NavigationService.Navigate(new HomeStudent());
+                            }
+                            else if (ldata.Role.Equals("teacher"))
+                            {
+                                ((MainWindow)Application.Current.MainWindow).loggedUser = _context.Teacher.SingleOrDefault(t => t.Id == ldata.Id);
+                                this.NavigationService.Navigate(new HomeTeacher());
+                            }
+                            logged = true;
+                        }
                     }
-                    ((MainWindow)Application.Current.MainWindow).loggedUser = _context.Teacher.SingleOrDefault(t => t.Id == ldata.Id);
-                    this.NavigationService.Navigate(new HomeTeacher());
-               }
+                }
+                if (logged == false)
+                {
+                    MessageBox.Show("Błędne nazwa użytkownika lub hasło");
+                }
             }
-
-            else 
+            else
             {
-                MessageBox.Show("Błędne nazwa użytkownika lub hasło");
+                MessageBox.Show("Brak wszystkich danych");
             }
         }
     }
