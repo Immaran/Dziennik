@@ -1,0 +1,24 @@
+﻿<Window x:Class="SBD.Windows.MessageWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SBD.Windows"
+        mc:Ignorable="d"
+        Title="MessageWindow" SizeToContent="Height" Width="300" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Margin="5" Padding="5">Odbiorca:</Label>
+        <ComboBox Grid.Row="0" Grid.Column="1" Name="RecipientBox" Margin="5" Padding="5"/>
+        <TextBox Name="Message" Grid.Row="1" Grid.ColumnSpan="2" Margin="5" Padding="5"/>
+        <Button Click="SendClick" Grid.Row="2" Grid.ColumnSpan="2"  Margin="5" Padding="5">Wyślij</Button>
+    </Grid>
+</Window>

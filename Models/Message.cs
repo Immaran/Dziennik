@@ -13,5 +13,9 @@ namespace SBD.Models
 
         public virtual Student Student { get; set; }
         public virtual Teacher Teacher { get; set; }
+        public override string ToString()
+        {
+            return Content + "\nData: " + Date.ToString();
+        }
     }
 }
