@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Windows;
 using System.Windows.Controls;
 using SBD.Models;
@@ -39,7 +40,7 @@ namespace SBD.Pages
                     Models.LoginData ldata = _context.LoginData.SingleOrDefault(ld => ld.Login == login.Text);
                     if (ldata != null)
                     {
-                        if (ldata.Password == password.Password)
+                        if (this.decrypt(ldata.Password, password.Password))
                         {
                             if (ldata.Role.Equals("student"))
                             {
@@ -64,6 +65,20 @@ namespace SBD.Pages
             {
                 MessageBox.Show("Brak wszystkich danych");
             }
+        }
+
+        public bool decrypt(string hashedPassword, string typedPassword)
+        {
+            byte[] combinedBytes = Convert.FromBase64String(hashedPassword);
+            byte[] salt = new byte[16];
+            Array.Copy(combinedBytes, 0, salt, 0, 16);
+            Rfc2898DeriveBytes pbkdf2 = new Rfc2898DeriveBytes(typedPassword, salt, 10000); //Password-Based Key Derivation Function 2; 10k iterations
+            byte[] hash = pbkdf2.GetBytes(20);
+            byte[] originalHash = new byte[20];
+            Array.Copy(combinedBytes, 16, originalHash, 0, 20);
+            if (hash.SequenceEqual(originalHash))
+                return true;
+            return false;
         }
     }
 }

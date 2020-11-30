@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
 using Microsoft.EntityFrameworkCore;
@@ -53,10 +54,13 @@ namespace SBD.Windows
                     Teacher.Surname = surname.Text;
                     string login = this.generateLogin(Teacher.FirstName, Teacher.Surname);
                     string password = this.generatePassword();
+                    MessageBox.Show("Generated password: " + password);
+                    Clipboard.SetText(password);
+                    string hashedPassword = this.hashPassword(password);
                     LoginData = new LoginData
                     {
                         Login = login,
-                        Password = password,
+                        Password = hashedPassword,
                         Role = "teacher"
                     };
                     _context.LoginData.Add(LoginData);
@@ -123,6 +127,23 @@ namespace SBD.Windows
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append(name[0]).Append(".").Append(surname);
             return stringBuilder.ToString().ToLower();
+        }
+
+        public string hashPassword(string password)
+        {
+            byte[] salt = new byte[16];
+            using (RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider())
+            {
+                // Fill the array with a random value
+                rngCsp.GetBytes(salt);
+            }
+            Rfc2898DeriveBytes pbkdf2 = new Rfc2898DeriveBytes(password, salt, 10000); //Password-Based Key Derivation Function 2; 10k iterations
+            byte[] hash = pbkdf2.GetBytes(20); //Get pseudorandomkey
+            byte[] combinedBytes = new byte[36];
+            Array.Copy(salt, 0, combinedBytes, 0, 16);
+            Array.Copy(hash, 0, combinedBytes, 16, 20);
+            string hashedPassword = Convert.ToBase64String(combinedBytes);
+            return hashedPassword;
         }
     }
 }
