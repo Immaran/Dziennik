@@ -14,5 +14,9 @@ namespace SBD.Models
 
         public virtual Student Student { get; set; }
         public virtual Subject Subject { get; set; }
+        public override string ToString()
+        {
+            return Value + " " + Description + " " + Student.FirstName + " " + Student.SecondName + " " + Date.ToString();
+        }
     }
 }
