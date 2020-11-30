@@ -69,7 +69,14 @@ namespace SBD.Pages.TeacherHome
         }
         private void ClickLoginData(object sender, RoutedEventArgs e)
         {
-            navigator.Navigate(new LoginData.TeacherPage());
+            LoginDataWindow logindataWindow = new LoginDataWindow
+            {
+                Owner = ((MainWindow)Application.Current.MainWindow)
+            };
+            if (true == logindataWindow.ShowDialog())
+            {
+                //_context.SaveChanges();
+            }
         }
         private void ClickGoBack(object sender, RoutedEventArgs e)
         {
