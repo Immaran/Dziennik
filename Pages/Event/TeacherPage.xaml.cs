@@ -40,5 +40,28 @@ namespace SBD.Pages.Event
                 this.fetchData();
             }
         }
+        private void EditEvent(object sender, RoutedEventArgs e)
+        {
+            if (EventListBox.SelectedItem != null)
+            {
+                EventWindow eventWindow = new EventWindow((Models.Event)EventListBox.SelectedItem)
+                {
+                    Owner = ((MainWindow)Application.Current.MainWindow)
+                };
+                if (true == eventWindow.ShowDialog())
+                {
+                    this.fetchData();
+                }
+            }
+        }
+        private void RemoveEvent(object sender, RoutedEventArgs e)
+        {
+            if(EventListBox.SelectedItem != null)
+            {
+                _context.Event.Remove((Models.Event)EventListBox.SelectedItem);
+                _context.SaveChanges();
+                this.fetchData();
+            }
+        }
     }
 }

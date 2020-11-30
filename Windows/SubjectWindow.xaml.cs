@@ -48,7 +48,6 @@ namespace SBD.Windows
                     Teacher Teacher = (Teacher)teacher.SelectedItem;
                     Subject.TeacherId = Teacher.Id;
 
-                    _context.Subject.Add(Subject);
                     _context.Attach(Subject).State = EntityState.Modified;
                 }
 

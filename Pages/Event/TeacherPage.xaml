@@ -13,9 +13,13 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" FontSize="30" HorizontalAlignment="Center">Wydarzenia</Label>
         <ListBox Name="EventListBox" Grid.Row="1"/>
-        <Button Click="CreateEvent" Grid.Row="2" Margin="5" Padding="5">Stwórz wydarzenie</Button>
+        <Button Click="CreateEvent" Grid.Row="2" Padding="5">Stwórz wydarzenie</Button>
+        <Button Click="EditEvent" Grid.Row="3" Padding="5">Edytuj wydarzenie</Button>
+        <Button Click="RemoveEvent" Grid.Row="4" Padding="5">Usuń wydarzenie</Button>
     </Grid>
 </Page>

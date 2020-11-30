@@ -14,7 +14,11 @@ namespace SBD.Models
         public virtual Teacher Teacher { get; set; }
         public override string ToString()
         {
-            return Name + "\n" + Description + "\n" + Date.ToString();
+            if(Description != null)
+            {
+                return Name + "\n" + Description + "\n" + Date.ToString();
+            }
+            else return Name + "\n" + Date.ToString();
         }
     }
 }

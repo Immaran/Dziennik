@@ -53,13 +53,13 @@ namespace SBD.Windows
             {
                 Message message = new Message
                 {
-                    Content = Message.Text,
                     Date = DateTime.Now
                 };
                 // jeżeli wiadomośc wysyła nauczyciel
                 if (User.GetType() == typeof(Teacher))
                 {
                     Teacher teacher = (Teacher)User;
+                    message.Content = Message.Text + "\nWysłano przez " + teacher;
                     message.Teacher = teacher;
                     message.TeacherId = teacher.Id;
                     message.SenderId = teacher.Id;
@@ -73,6 +73,7 @@ namespace SBD.Windows
                 else if (User.GetType() == typeof(Student))
                 {
                     Student student = (Student)User;
+                    message.Content = Message.Text + "\nWysłano przez " + student;
                     message.Student = student;
                     message.StudentId = student.Id;
                     message.SenderId = student.Id;
