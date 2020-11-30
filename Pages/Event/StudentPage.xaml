@@ -14,6 +14,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" FontSize="30" HorizontalAlignment="Center">Wydarzenia</Label>
-        <ListBox Name="EventListBox" Grid.Row="1"/>
+
+        <ListBox Name="EventListBox" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" VirtualizingPanel.ScrollUnit="Pixel"/>
     </Grid>
 </Page>

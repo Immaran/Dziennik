@@ -3,6 +3,9 @@ using SBD.Models;
 using System.Collections.Generic;
 using System.Windows;
 using Microsoft.EntityFrameworkCore;
+using System.Text.RegularExpressions;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace SBD.Windows
 {
@@ -19,12 +22,16 @@ namespace SBD.Windows
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
             InitializeComponent();
+
+            NameOfEvent.Focus();
         }
         public EventWindow(Event ev)
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
             Event = ev;
             InitializeComponent();
+
+            NameOfEvent.Focus();
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -39,7 +46,10 @@ namespace SBD.Windows
         }
         private void OkClick(object sender, RoutedEventArgs e)
         {
-            if(NameOfEvent.Text.Length > 0 && DateOfEvent.SelectedDate != null)
+            int hh = int.Parse(HourOfEvent.Text);
+            int mm = int.Parse(MinuteOfEvent.Text);
+
+            if(NameOfEvent.Text.Length > 0 && DateOfEvent.SelectedDate != null && hh >= 0 && hh <= 23 && mm >= 0 && mm <= 59)
             {
                 // if add new event
                 if(Event == null)
@@ -77,7 +87,37 @@ namespace SBD.Windows
             }
             else
             {
-                MessageBox.Show("Brak wszystkich danych", "Wydarzenie", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Brak poprawnych danych", "Wydarzenie", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void PreviewInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.Text);
+        }
+        private static readonly Regex _regex = new Regex("[^0-9]"); //regex that matches disallowed text
+        private static bool IsTextAllowed(string text)
+        {
+            return !_regex.IsMatch(text);
+        }
+        private void SelectAddress(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (sender as TextBox);
+            if (tb != null)
+            {
+                tb.SelectAll();
+            }
+        }
+        private void SelectivelyIgnoreMouseButton(object sender, MouseButtonEventArgs e)
+        {
+            TextBox tb = (sender as TextBox);
+            if (tb != null)
+            {
+                if (!tb.IsKeyboardFocusWithin)
+                {
+                    e.Handled = true;
+                    tb.Focus();
+                }
             }
         }
     }

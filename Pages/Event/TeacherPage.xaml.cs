@@ -63,5 +63,20 @@ namespace SBD.Pages.Event
                 this.fetchData();
             }
         }
+
+        private void EventListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(EventListBox.SelectedItem != null)
+            {
+                Edit.IsEnabled = true;
+                Remove.IsEnabled = true;
+            }
+            else
+            {
+                Edit.IsEnabled = false;
+                Remove.IsEnabled = false;
+            }
+
+        }
     }
 }

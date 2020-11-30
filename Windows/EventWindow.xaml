@@ -15,14 +15,28 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        
         <Label Grid.Row="0" Grid.Column="0" Margin="5" Padding="5">Nazwa</Label>
-        <TextBox Name="NameOfEvent" Grid.Row="0" Grid.Column="1" Margin="5" Padding="5"/>
+        <TextBox Name="NameOfEvent" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" Padding="5"/>
+        
         <Label Grid.Row="1" Grid.Column="0" Margin="5" Padding="5">Opis</Label>
-        <TextBox Name="DescriptionOfEvent" Grid.Row="1" Grid.Column="1" Margin="5" Padding="5"/>
+        <TextBox Name="DescriptionOfEvent" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" Padding="5" MinHeight="80"/>
+        
         <Label Grid.Row="2" Grid.Column="0" Margin="5" Padding="5">Data</Label>
         <DatePicker Name="DateOfEvent" Grid.Row="2" Grid.Column="1" Margin="5" Padding="5"/>
-        <Button Click="OkClick" Grid.Row="3" Grid.ColumnSpan="2" Margin="5" Padding="5">Zatwierdź</Button>
+        <WrapPanel Grid.Row="2" Grid.Column="2" VerticalAlignment="Center">
+            <TextBox Name="HourOfEvent"  Margin="5" Padding="5" MaxLength="2" Width="29" PreviewTextInput="PreviewInput"
+                     MouseDoubleClick="SelectAddress" GotKeyboardFocus="SelectAddress" PreviewMouseLeftButtonDown="SelectivelyIgnoreMouseButton">00</TextBox>
+            
+            <Label FontSize="16" VerticalAlignment="Center">:</Label>
+            
+            <TextBox Name="MinuteOfEvent" Margin="5" Padding="5" MaxLength="2" Width="29" PreviewTextInput="PreviewInput"
+                     MouseDoubleClick="SelectAddress" GotKeyboardFocus="SelectAddress" PreviewMouseLeftButtonDown="SelectivelyIgnoreMouseButton">00</TextBox>
+        </WrapPanel>
+        
+        <Button Click="OkClick" Grid.Row="3" Grid.ColumnSpan="3" Margin="5" Padding="5">Zatwierdź</Button>
     </Grid>
 </Window>
