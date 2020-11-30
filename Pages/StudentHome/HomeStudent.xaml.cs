@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SBD.Windows;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -32,49 +33,58 @@ namespace SBD.Pages.StudentHome
             }
             navigator.Navigate(new HomeForStudent());
         }
-        private void update_button(Button btn)
-        {
-            if (clicked != null)
-                clicked.IsEnabled = true;
-            clicked = btn;
-            clicked.IsEnabled = false;
-        }
         private void ClickGrade(object sender, RoutedEventArgs e)
         {
-            update_button((Button)sender);
             navigator.Navigate(new Grade.StudentPage());
         }
         private void ClickEvent(object sender, RoutedEventArgs e)
         {
-            update_button((Button)sender);
             navigator.Navigate(new Event.StudentPage());
         }
         private void ClickGroup(object sender, RoutedEventArgs e)
         {
-            update_button((Button)sender);
             navigator.Navigate(new Group.StudentPage());
         }
-        private void ClickMessage(object sender, RoutedEventArgs e)
+        private void ClickMessageSent(object sender, RoutedEventArgs e)
         {
-            update_button((Button)sender);
-            navigator.Navigate(new Message.StudentPage());
+            //
+        }
+        private void ClickMessageRecived(object sender, RoutedEventArgs e)
+        {
+            //
+        }
+        private void ClickNewMessage(object sender, RoutedEventArgs e)
+        {
+            MessageWindow messageWindow = new MessageWindow
+            {
+                Owner = ((MainWindow)Application.Current.MainWindow)
+            };
+            if (true == messageWindow.ShowDialog())
+            {
+
+            }
         }
         private void ClickSubject(object sender, RoutedEventArgs e)
         {
-            update_button((Button)sender);
             navigator.Navigate(new Subject.StudentPage());
         }
         private void ClickLoginData(object sender, RoutedEventArgs e)
         {
-            update_button((Button)sender);
             navigator.Navigate(new LoginData.StudentPage());
         }
 
-        private void ClickCancel(object sender, RoutedEventArgs e)
+        private void ClickGoBack(object sender, RoutedEventArgs e)
         {
             if(this.NavigationService.CanGoBack)
             {
                 this.NavigationService.GoBack();
+            }
+        }
+        private void ClickGoForward(object sender, RoutedEventArgs e)
+        {
+            if(this.NavigationService.CanGoBack)
+            {
+                this.NavigationService.GoForward();
             }
         }
         private void ClickLogOut(object sender, RoutedEventArgs e)

@@ -14,16 +14,28 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <WrapPanel Orientation="Horizontal">
-            <Button Click="ClickGrade">Oceny</Button>
-            <Button Click="ClickEvent">Wydarzenia</Button>
-            <Button Click="ClickGroup">Grupy</Button>
-            <Button Click="ClickMessage">Wiadomości</Button>
-            <Button Click="ClickSubject">Przedmioty</Button>
-            <Button Click="ClickLoginData">Zmiana hasła</Button>
-        </WrapPanel>
+        <Menu>
+            <MenuItem Header=" ... " BorderBrush="Black">
+                <MenuItem Header="Grupy" Click="ClickGroup"/>
+                <MenuItem Header="Przedmioty" Click="ClickSubject"/>
+                <MenuItem Header="Wydarzenia" Click="ClickEvent"/>
+                <MenuItem Header="Wiadomości">
+                    <MenuItem Header="Wysłane" Click="ClickMessageSent"/>
+                    <MenuItem Header="Odebrane" Click="ClickMessageRecived"/>
+                    <Separator></Separator>
+                    <MenuItem Header="Wyślij nową wiadomość" Click="ClickNewMessage"/>
+                </MenuItem>
+                <MenuItem Header="Konto">
+                    <MenuItem Header="Zmień hasło" Click="ClickLoginData"/>
+                </MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Wyloguj" Click="ClickLogOut"/>
+            </MenuItem>
+        </Menu>
         <Frame Name="navigator" Grid.Row="1" NavigationUIVisibility="Hidden"/>
-        <Button Grid.Row="2"  Name="cancelButton" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5" Padding="5" Click="ClickCancel">Powrót</Button>
-        <Button Grid.Row="2"  Name="logoutButton" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Padding="5" Click="ClickLogOut">Wyloguj</Button>
+        <WrapPanel Grid.Row="2">
+            <Button Name="goBackButton" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5" Padding="5" Click="ClickGoBack">Wróć</Button>
+            <Button Name="goForwardButton" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5" Padding="5" Click="ClickGoForward">Naprzód</Button>
+        </WrapPanel>
     </Grid>
 </Page>

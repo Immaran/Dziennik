@@ -22,6 +22,8 @@ namespace SBD.Pages
             _context = ((MainWindow)Application.Current.MainWindow).context;
             ((MainWindow)Application.Current.MainWindow).loggedUser = null;
             InitializeComponent();
+
+            login.Focus();
         }
         private void onLogin(object sender, EventArgs e)
         {
