@@ -40,8 +40,8 @@ namespace SBD.Pages
                     Models.LoginData ldata = _context.LoginData.SingleOrDefault(ld => ld.Login == login.Text);
                     if (ldata != null)
                     {
-                        //if (ldata.Password==password.Password)
-                        if (this.decrypt(ldata.Password, password.Password))
+                        if (ldata.Password==password.Password)
+                        //if (this.decrypt(ldata.Password, password.Password))
                         {
                             if (ldata.Role.Equals("student"))
                             {

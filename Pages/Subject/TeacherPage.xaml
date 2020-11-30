@@ -6,9 +6,14 @@
       xmlns:local="clr-namespace:SBD.Pages.Subject"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="TeacherPage">
+      Title="TeacherPage" Loaded="Page_Loaded">
 
     <Grid>
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center">Przedmioty</Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" FontSize="30" HorizontalAlignment="Center">Przedmioty</Label>
+        <ListBox Name="SubjectListBox" Grid.Row="1"/>
     </Grid>
 </Page>
