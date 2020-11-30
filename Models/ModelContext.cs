@@ -231,6 +231,10 @@ namespace SBD.Models
                     .HasColumnName("TEACHER_ID")
                     .HasColumnType("NUMBER(6)");
 
+                entity.Property(e => e.SenderId)
+                    .HasColumnName("SENDER_ID")
+                    .HasColumnType("NUMBER(6)");
+
                 entity.HasOne(d => d.Student)
                     .WithMany(p => p.Message)
                     .HasForeignKey(d => d.StudentId)
