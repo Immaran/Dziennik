@@ -12,24 +12,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" FontSize="30" HorizontalAlignment="Center">Wiadomości</Label>
+        <Label Name="MainLabel" Grid.Row="0" FontSize="30" HorizontalAlignment="Center"/>
         <ListBox Name="MessageBox" Grid.Row="1"/>
-        <!--<Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" FontSize="15">Odebrane</Label>
-            <ListBox Name="ReceivedMessages" Grid.Row="1" Grid.Column="0"/>
-            <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" FontSize="15">Wysłane</Label>
-            <ListBox Name="SendedMessages" Grid.Row="1" Grid.Column="1"/>
-        </Grid>-->
-        <Button Click="CreateMessage" Grid.Row="2" Margin="5" Padding="5">Napisz nową wiadomość</Button>
     </Grid>
 </Page>

@@ -12,40 +12,57 @@ namespace SBD.Pages.Message
     public partial class StudentPage : Page
     {
         private readonly ModelContext _context;
-        private List<Models.Message> MessageList { get; set; }
-        public StudentPage()
+        private List<Models.Message> MessagesList { get; set; }
+        private readonly string type;
+        public StudentPage(string type)
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
+            this.type = type;
             InitializeComponent();
         }
-        private void fetchData()
+        private void fetchData() // wczytanie wiadomości z serwera
         {
-            //wczytanie wiadomości z serwera
+            // obecnie zalogowany student
             Models.Student student = ((MainWindow)Application.Current.MainWindow).loggedUser;
-            MessageList = new List<Models.Message>();
-            foreach (Models.Message message in _context.Message)
+            
+            // jeśli odebrane
+            if(type == "received")
             {
-                if (message.Student == student)
+                MessagesList = new List<Models.Message>();
+                foreach (Models.Message message in _context.Message)
                 {
-                    MessageList.Add(message);
+                    if (message.Student == student)
+                    {
+                        if (message.SenderId != student.Id)
+                        {
+                            MessagesList.Add(message);
+                        }
+                    }
                 }
+                MessageBox.ItemsSource = MessagesList;
+                MainLabel.Content = "Odebrane";
             }
-            MessageBox.ItemsSource = MessageList;
+            // jeśli wysłane
+            else if (type == "sent")
+            {
+                MessagesList = new List<Models.Message>();
+                foreach (Models.Message message in _context.Message)
+                {
+                    if (message.Student == student)
+                    {
+                        if (message.SenderId == student.Id)
+                        {
+                            MessagesList.Add(message);
+                        }
+                    }
+                }
+                MessageBox.ItemsSource = MessagesList;
+                MainLabel.Content = "Wysłane";
+            }
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             this.fetchData();
-        }
-        private void CreateMessage(object sender, RoutedEventArgs e)
-        {
-            MessageWindow messageWindow = new MessageWindow
-            {
-                Owner = ((MainWindow)Application.Current.MainWindow)
-            };
-            if (true == messageWindow.ShowDialog())
-            {
-                this.fetchData();
-            }
         }
     }
 }

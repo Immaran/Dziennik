@@ -20,7 +20,6 @@ namespace SBD.Pages.StudentHome
     /// </summary>
     public partial class HomeStudent : Page
     {
-        private Button clicked = null;
         public HomeStudent()
         {
             InitializeComponent();
@@ -47,11 +46,11 @@ namespace SBD.Pages.StudentHome
         }
         private void ClickMessageSent(object sender, RoutedEventArgs e)
         {
-            //
+            navigator.Navigate(new Message.StudentPage("sent"));
         }
         private void ClickMessageRecived(object sender, RoutedEventArgs e)
         {
-            //
+            navigator.Navigate(new Message.StudentPage("received"));
         }
         private void ClickNewMessage(object sender, RoutedEventArgs e)
         {

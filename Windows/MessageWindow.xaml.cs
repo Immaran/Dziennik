@@ -56,22 +56,26 @@ namespace SBD.Windows
                     Content = Message.Text,
                     Date = DateTime.Now
                 };
+                // jeżeli wiadomośc wysyła nauczyciel
                 if (User.GetType() == typeof(Teacher))
                 {
                     Teacher teacher = (Teacher)User;
                     message.Teacher = teacher;
                     message.TeacherId = teacher.Id;
+                    message.SenderId = teacher.Id;
                     Student student = (Student)RecipientBox.SelectedItem;
                     message.Student = student;
                     message.StudentId = student.Id;
                     _context.Message.Add(message);
                     this.SaveDB();
                 }
+                // jeżeli wiadomość wysyła uczeń
                 else if (User.GetType() == typeof(Student))
                 {
                     Student student = (Student)User;
                     message.Student = student;
                     message.StudentId = student.Id;
+                    message.SenderId = student.Id;
                     Teacher teacher = (Teacher)RecipientBox.SelectedItem;
                     message.Teacher = teacher;
                     message.TeacherId = teacher.Id;

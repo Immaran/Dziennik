@@ -12,10 +12,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" FontSize="30" HorizontalAlignment="Center">Wiadomości</Label>
+        <Label Name="MainLabel" Grid.Row="0" FontSize="30" HorizontalAlignment="Center"/>
         <ListBox Name="MessageBox" Grid.Row="1"/>
-        <Button Click="CreateMessage" Grid.Row="2" Margin="5" Padding="5">Napisz nową wiadomość</Button>
     </Grid>
 </Page>
