@@ -10,7 +10,6 @@ namespace SBD.Models
         public DateTime Date { get; set; }
         public int TeacherId { get; set; }
         public int StudentId { get; set; }
-        
         public int SenderId { get; set; }
 
         public virtual Student Student { get; set; }

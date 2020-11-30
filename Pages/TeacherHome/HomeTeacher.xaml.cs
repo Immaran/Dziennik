@@ -81,7 +81,7 @@ namespace SBD.Pages.TeacherHome
         }
         private void ClickGoForward(object sender, RoutedEventArgs e)
         {
-            if (this.NavigationService.CanGoBack)
+            if (this.NavigationService.CanGoForward)
             {
                 this.NavigationService.GoForward();
             }
