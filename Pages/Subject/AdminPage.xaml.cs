@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SBD.Models;
 using SBD.Windows;
+using Microsoft.EntityFrameworkCore;
 
 namespace SBD.Pages.Subject
 {
@@ -25,8 +26,9 @@ namespace SBD.Pages.Subject
             SubjectList = _context.Subject.ToList();    // wczytanie przedmiotów z bazy danych
             listbox.ItemsSource = SubjectList;          // przypisanie listy przedmiotów do listboxa
         }
-        private void Refresh()
+        private void fetchData()
         {
+            _context.Teacher.Load();                    // wczytanie nauczycieli, aby wyświetlać całe nazwy przedmiotów
             SubjectList = _context.Subject.ToList();    // wczytanie przedmiotów z bazy danych
             listbox.ItemsSource = SubjectList;          // przypisanie listy przedmiotów do listboxa
         }
@@ -38,7 +40,7 @@ namespace SBD.Pages.Subject
             };
             if (true == subjectWindow.ShowDialog())
             {
-                this.Refresh();
+                this.fetchData();
             }
         }
         private void ClickEdit(object sender, RoutedEventArgs e)
@@ -51,7 +53,7 @@ namespace SBD.Pages.Subject
                 };
                 if (true == subjectWindow.ShowDialog())
                 {
-                    this.Refresh();
+                    this.fetchData();
                 }
             }
         }
@@ -61,7 +63,7 @@ namespace SBD.Pages.Subject
             {
                 _context.Subject.Remove((Models.Subject)listbox.SelectedItem);
                 _context.SaveChanges();
-                this.Refresh();
+                this.fetchData();
             }
         }
         private void ClickCancel(object sender, RoutedEventArgs e)

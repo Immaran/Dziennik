@@ -30,6 +30,7 @@ namespace SBD.Windows
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            _context.Teacher.Load(); // wczytanie nauczycieli, aby wyświetlać całe nazwy przedmiotów
             SubjectList = _context.Subject.ToList();
             StudentList = _context.Student.ToList();
             studentBox.ItemsSource = StudentList;
