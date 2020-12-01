@@ -35,20 +35,28 @@ namespace SBD.Windows
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            CalendarDateRange rangeOfBlackoutDates;
             // if to edit
             if (Event != null)
             {
+                if (Event.Date < DateTime.Today) //if event have date from past
+                    rangeOfBlackoutDates = new CalendarDateRange(DateTime.MinValue, Event.Date.AddDays(-1));
+                else
+                    rangeOfBlackoutDates = new CalendarDateRange(DateTime.MinValue, DateTime.Today.AddDays(-1));
                 NameOfEvent.Text = Event.Name;
                 if (Event.Description.Length > 0)
                     DescriptionOfEvent.Text = Event.Description;
                 DateOfEvent.SelectedDate = Event.Date;
+                HourOfEvent.Text = Event.Date.Hour.ToString();
+                MinuteOfEvent.Text = Event.Date.Minute.ToString();
+
             }
             else
             {
                 //DateOfEvent.DisplayDateStart = DateTime.Today;
-                CalendarDateRange cdr = new CalendarDateRange(DateTime.MinValue, DateTime.Today.AddDays(-1));
-                DateOfEvent.BlackoutDates.Add(cdr);
+                rangeOfBlackoutDates = new CalendarDateRange(DateTime.MinValue, DateTime.Today.AddDays(-1));
             }
+            DateOfEvent.BlackoutDates.Add(rangeOfBlackoutDates);
         }
         private void OkClick(object sender, RoutedEventArgs e)
         {
