@@ -26,7 +26,7 @@ namespace SBD.Pages.Event
         }
         private void fetchData()
         {
-            EventList = _context.Event.ToList();
+            EventList = _context.Event.OrderByDescending(e => e.Date).ToList();
             EventListBox.ItemsSource = EventList;
         }
         private void CreateEvent(object sender, RoutedEventArgs e)

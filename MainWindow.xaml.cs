@@ -17,7 +17,15 @@ namespace SBD
         public MainWindow()
         {
             InitializeComponent();
-            context.Database.EnsureCreated();
+            try
+            {
+                context.Database.EnsureCreated();
+            }
+            catch (Exception e) //Oracle.ManagedDataAccess.Client.OracleException
+            {
+                MessageBox.Show("Wystąpił problem z połączeniem z bazą danych: " + e.Message, "Wyjątek", MessageBoxButton.OK, MessageBoxImage.Warning);
+                this.Close();
+            }
             frame.NavigationService.Navigate(new Home());
         }
     }
