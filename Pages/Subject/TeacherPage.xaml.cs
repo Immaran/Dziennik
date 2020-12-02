@@ -16,11 +16,14 @@ namespace SBD.Pages.Subject
         private readonly ModelContext _context;
         private IList<Models.Subject> SubjectList { get; set; } // lista przedmiotów, które uczy dany nauczyciel
         
-        private List<Models.GroupSubject> GroupSubjectList;     // lista groupstudent do ktorej naleza przedmioty, ktore uczy nauczyciel
-        private List<Models.Group> GroupList;                   // lista grup w ktorych sa nauczane przedmioty przez danego nauczyciela
+        private List<GroupSubject> GroupSubjectList;    // lista groupstudent do ktorej naleza przedmioty, ktore uczy nauczyciel
+        private List<Models.Group> GroupList;           // lista grup w ktorych sa nauczane przedmioty przez danego nauczyciela
+
+        private List<GroupSubject> gsList;      // lista groupsubject dla konkretnego przedmiotu
+        private List<Models.Group> gList;       // lista grup dla konkretnego przedmiotu
         
-        private List<GroupSubject> gsList = new List<GroupSubject>();   // lista groupsubject dla konkretnego przedmiotu
-        private List<Models.Group> gList = new List<Models.Group>();    // lista grup dla konkretnego przedmiotu
+        private List< List<Models.Group> > GroupsForSubjects;           // lista list grup dla przedmiotow
+        private int counter;                    // licznik, aby wiedziec ktora lista grup jest przypisana do jakiego przycisku
 
         // obecnie zalogowany nauczyciel
         private readonly Models.Teacher Teacher = (Models.Teacher)((MainWindow)Application.Current.MainWindow).loggedUser;
@@ -40,32 +43,22 @@ namespace SBD.Pages.Subject
 
             //SubjectList = _context.Subject.Where(x => x.Teacher == Teacher).ToList();
 
-            GroupSubjectList = new List<GroupSubject>();
-            // przejscie po groupstudent i wyciaganie obiektow ktore maja powiazanie z przedmiotami
-            foreach (GroupSubject gs in _context.GroupSubject)
-            {
-                if (SubjectList.Any(s => s.Id == gs.SubjectId))
-                {
-                    GroupSubjectList.Add(gs);
-                }
-            }
+            this.FindGroupSubject();    // znajdowanie obiektow groupstudent ktore maja powiazanie z przedmiotami
 
-            GroupList = new List<Models.Group>();
-            // przejscie po group i wyciaganie tych grup ktore maja powiazanie z przedmiotami
-            foreach (Models.Group g in _context.Group)
-            {
-                if (GroupSubjectList.Any(gs => gs.GroupId == g.Id))
-                {
-                    GroupList.Add(g);
-                }
-            }
+            this.FindGroup();           // znajdowanie tych grup ktore maja powiazanie z przedmiotami
 
             // czyszczenie StackPanela, aby nie dublowały się przyciski, gdy klika się powrót
             SubjectPanel.Children.Clear();
+
+            GroupsForSubjects = new List<List<Models.Group>>(); // inicjalizacja listy, ktora bedzie potem potrzebna
+
+            counter = -1; // reset licznika
+
             // przejscie po liscie przedmiotow
             foreach (Models.Subject subject in SubjectList)
             {
-                gsList.Clear(); // czyszcenie listy groupsubject
+                gsList = new List<GroupSubject>(); // czyszcenie listy groupsubject
+
                 // znajdujemy odpowiednie obiekty groupsubject dla przedmiotu
                 foreach(GroupSubject gs in GroupSubjectList)
                 {
@@ -75,7 +68,8 @@ namespace SBD.Pages.Subject
                     }
                 }
 
-                gList.Clear(); // czyszczenie listy grup
+                gList = new List<Models.Group>(); // czyszczenie listy grup
+
                 // jezeli znalezlismy chociaz jeden groupsubject tzn do przedmiotu jest przypisana co najmniej jedna grupa
                 if (gsList.Count > 0)
                 {
@@ -92,6 +86,12 @@ namespace SBD.Pages.Subject
                     }
                 }
                 
+                if(gList.Count > 0) // jezeli znalezlismy jakas grupe przypisana do przedmiotu
+                {
+                    GroupsForSubjects.Add(gList);   // dodanie listy grup dla danego przedmiotu
+                    counter++;
+                }
+
                 Button btn = new Button(); // przycisk z nawami przedmiotow
 
                 btn.Margin = new Thickness(5, 5, 5, 5);
@@ -100,19 +100,18 @@ namespace SBD.Pages.Subject
 
                 if (gList.Count == 0) // jezeli przedmiot nie jest przypisany do żadnej grupy
                 {
-                    //continue;
-                    //btn.Tag = subject.Id;
-                    btn.Content = subject.Name;
-                    btn.IsEnabled = false;
+                    continue; // wtedy nie bedzie sie wgl pokazywal na liscie
+                    //btn.Content = subject.Name;
+                    //btn.IsEnabled = false;
                 }
                 else if(gList.Count == 1) // jezeli przedmiot jest przypisany do jednej grupy
                 {
-                    btn.Tag = subject.Id;
+                    btn.Tag = counter + " " + subject.Id;
                     btn.Content = subject.Name + " (" + gList[0].Name + ")";
                 }
                 else // jezeli przedmiot jest przypisany do wiecej niz jednej grupy
                 {
-                    btn.Tag = subject.Id;
+                    btn.Tag = counter + " " + subject.Id;
                     string tmp = subject.Name + " ( ";
                     foreach(Models.Group g in gList)
                     {
@@ -129,15 +128,39 @@ namespace SBD.Pages.Subject
                 SubjectPanel.Children.Add(btn);
             }
         }
+        private void FindGroupSubject()
+        {
+            GroupSubjectList = new List<GroupSubject>();
+            // przejscie po groupstudent i wyciaganie obiektow ktore maja powiazanie z przedmiotami
+            foreach (GroupSubject gs in _context.GroupSubject)
+            {
+                if (SubjectList.Any(s => s.Id == gs.SubjectId))
+                {
+                    GroupSubjectList.Add(gs);
+                }
+            }
+        }
+        private void FindGroup()
+        {
+            GroupList = new List<Models.Group>();
+            // przejscie po group i wyciaganie tych grup ktore maja powiazanie z przedmiotami
+            foreach (Models.Group g in _context.Group)
+            {
+                if (GroupSubjectList.Any(gs => gs.GroupId == g.Id))
+                {
+                    GroupList.Add(g);
+                }
+            }
+        }
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
-            // wyciągamy id przedmiotu
-            string id = (e.Source as Button).Tag.ToString();
+            string Tag = (e.Source as Button).Tag.ToString();       // wyciągamy Tag z przycisku
+            string[] data = Tag.Split(' ');
 
             // znajdowanie przedmiotu po jego Id
-            Models.Subject subject = SubjectList.First(s => s.Id.ToString() == id);
-
-            this.NavigationService.Navigate(new ConcreteSubjectPage(subject,gList));
+            Models.Subject subject = SubjectList.First(s => s.Id.ToString() == data[1]);
+            var x = GroupsForSubjects;
+            this.NavigationService.Navigate(new ConcreteSubjectPage(subject,GroupsForSubjects[int.Parse(data[0])]));
         }
     }
 }

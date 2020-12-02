@@ -23,11 +23,7 @@ namespace SBD.Pages.Subject
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-<<<<<<< HEAD
-            this.fetchData();
-=======
-            this.fetchData();              // wczytanie przedmiotów z bazy danych
->>>>>>> bcc2c097588e0fbb2398324e8ba1f2c4de6a0369
+            this.fetchData();   // wczytanie przedmiotów z bazy danych
         }
         private void fetchData()
         {
