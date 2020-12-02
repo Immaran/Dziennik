@@ -16,9 +16,9 @@ namespace SBD.Models
         {
             if(Description != null)
             {
-                return Name + "\n" + Description + "\n" + Date.ToString();
+                return Name + "\n" + Description + "\n" + Date.ToShortDateString() + " " + Date.ToShortTimeString();
             }
-            else return Name + "\n" + Date.ToString();
+            else return Name + "\n" + Date.ToShortDateString() + " " + Date.ToShortTimeString();
         }
     }
 }

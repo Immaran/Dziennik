@@ -23,14 +23,13 @@ namespace SBD.Pages.Subject
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            SubjectList = _context.Subject.ToList();    // wczytanie przedmiotów z bazy danych
-            SubjectListBox.ItemsSource = SubjectList;          // przypisanie listy przedmiotów do listboxa
+            this.fetchData();
         }
         private void fetchData()
         {
             _context.Teacher.Load();                    // wczytanie nauczycieli, aby wyświetlać całe nazwy przedmiotów
             SubjectList = _context.Subject.ToList();    // wczytanie przedmiotów z bazy danych
-            SubjectListBox.ItemsSource = SubjectList;          // przypisanie listy przedmiotów do listboxa
+            SubjectListBox.ItemsSource = SubjectList;   // przypisanie listy przedmiotów do listboxa
         }
         private void ClickAdd(object sender, RoutedEventArgs e)
         {

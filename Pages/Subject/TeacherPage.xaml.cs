@@ -16,11 +16,11 @@ namespace SBD.Pages.Subject
         private readonly ModelContext _context;
         private IList<Models.Subject> SubjectList { get; set; } // lista przedmiotów, które uczy dany nauczyciel
         
-        private List<Models.GroupSubject> GroupSubjectList; // lista groupstudent do ktorej naleza przedmioty, ktore uczy nauczyciel
-        private List<Models.Group> GroupList; // lista grup w ktorych sa nauczane przedmioty przez danego nauczyciela
+        private List<Models.GroupSubject> GroupSubjectList;     // lista groupstudent do ktorej naleza przedmioty, ktore uczy nauczyciel
+        private List<Models.Group> GroupList;                   // lista grup w ktorych sa nauczane przedmioty przez danego nauczyciela
         
-        private List<GroupSubject> gsList = new List<GroupSubject>(); // lista groupsubject dla konkretnego przedmiotu
-        private List<Models.Group> gList = new List<Models.Group>(); // lista grup dla konkretnego przedmiotu
+        private List<GroupSubject> gsList = new List<GroupSubject>();   // lista groupsubject dla konkretnego przedmiotu
+        private List<Models.Group> gList = new List<Models.Group>();    // lista grup dla konkretnego przedmiotu
 
         // obecnie zalogowany nauczyciel
         private readonly Models.Teacher Teacher = (Models.Teacher)((MainWindow)Application.Current.MainWindow).loggedUser;
@@ -62,11 +62,10 @@ namespace SBD.Pages.Subject
 
             // czyszczenie StackPanela, aby nie dublowały się przyciski, gdy klika się powrót
             SubjectPanel.Children.Clear();
-
             // przejscie po liscie przedmiotow
             foreach (Models.Subject subject in SubjectList)
             {
-                gsList.Clear();
+                gsList.Clear(); // czyszcenie listy groupsubject
                 // znajdujemy odpowiednie obiekty groupsubject dla przedmiotu
                 foreach(GroupSubject gs in GroupSubjectList)
                 {
@@ -76,10 +75,10 @@ namespace SBD.Pages.Subject
                     }
                 }
 
+                gList.Clear(); // czyszczenie listy grup
                 // jezeli znalezlismy chociaz jeden groupsubject tzn do przedmiotu jest przypisana co najmniej jedna grupa
                 if (gsList.Count > 0)
                 {
-                    gList.Clear();
                     // znajdujemy okreslona grupe przypisana do przedmiotu
                     foreach (Models.Group g in GroupList)
                     {
@@ -97,6 +96,7 @@ namespace SBD.Pages.Subject
 
                 if(gList.Count == 0) // jezeli przedmiot nie jest przypisany do żadnej grupy
                 {
+                    //continue;
                     //btn.Tag = subject.Id;
                     btn.Content = subject.Name;
                     btn.IsEnabled = false;
@@ -133,7 +133,7 @@ namespace SBD.Pages.Subject
             // znajdowanie przedmiotu po jego Id
             Models.Subject subject = SubjectList.First(s => s.Id.ToString() == id);
 
-            this.NavigationService.Navigate(new ConcreteSubjectPage(subject));
+            this.NavigationService.Navigate(new ConcreteSubjectPage(subject,gList));
         }
     }
 }

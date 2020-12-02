@@ -11,9 +11,9 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Name="SubjectName" HorizontalAlignment="Center" Grid.Row="0" Margin="5" Padding="5" FontSize="20"/>
-        <ListBox Name="GradesListBox" Grid.Row="1"/>
+        <!--<ListBox Name="GradesListBox" Grid.Row="1"/>-->
     </Grid>
 </Page>
