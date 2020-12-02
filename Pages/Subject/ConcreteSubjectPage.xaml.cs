@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
 using SBD.Models;
+using SBD.Windows;
 
 namespace SBD.Pages.Subject
 {
@@ -62,6 +63,20 @@ namespace SBD.Pages.Subject
                     {
                         Students.Add(student);
                     }
+                }
+            }
+        }
+        private void AddClick(object sender, RoutedEventArgs e)
+        {
+            if(StudentsListBox.SelectedItem != null)
+            {
+                GradeWindow gradeWindow = new GradeWindow(Subject, (Models.Student)StudentsListBox.SelectedItem)
+                {
+                    Owner = ((MainWindow)Application.Current.MainWindow)
+                };
+                if (true == gradeWindow.ShowDialog())
+                {
+                    //_context.SaveChanges();
                 }
             }
         }

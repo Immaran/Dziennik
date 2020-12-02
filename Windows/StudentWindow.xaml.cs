@@ -4,7 +4,6 @@ using System.Windows;
 using Microsoft.EntityFrameworkCore;
 using SBD.Models;
 using System;
-using System.Windows.Documents;
 using System.Security.Cryptography;
 
 namespace SBD.Windows

@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
         <Label Name="SubjectName" HorizontalAlignment="Center" Grid.Row="0" Margin="5" Padding="5" FontSize="20"/>
         <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button Margin="5" Padding="5">Dodaj ocenę</Button>
+            <Button Margin="5" Padding="5" Click="AddClick">Dodaj ocenę</Button>
             <Button Margin="5" Padding="5">Wyświetl oceny</Button>
         </StackPanel>
         <ListBox Name="StudentsListBox" Grid.Row="2"/>
