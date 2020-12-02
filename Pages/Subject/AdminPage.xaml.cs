@@ -23,8 +23,7 @@ namespace SBD.Pages.Subject
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            SubjectList = _context.Subject.ToList();    // wczytanie przedmiotów z bazy danych
-            SubjectListBox.ItemsSource = SubjectList;          // przypisanie listy przedmiotów do listboxa
+            this.fetchData();              // wczytanie przedmiotów z bazy danych
         }
         private void fetchData()
         {

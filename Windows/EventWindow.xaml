@@ -1,11 +1,11 @@
 ﻿<Window x:Class="SBD.Windows.EventWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SBD.Windows"
         mc:Ignorable="d"
-        Title="EventWindow" SizeToContent="Height" Width="300" Loaded="Window_Loaded">
+        Title="Nowe wydarzenie" SizeToContent="Height" Width="300" Loaded="Window_Loaded">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -19,14 +19,15 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0" Margin="5" Padding="5">Nazwa</Label>
+        <Label                      Grid.Row="0" Grid.Column="0"                     Margin="5" Padding="5">Nazwa</Label>
         <TextBox Name="NameOfEvent" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" Padding="5"/>
 
-        <Label Grid.Row="1" Grid.Column="0" Margin="5" Padding="5">Opis</Label>
+        <Label                             Grid.Row="1" Grid.Column="0"                     Margin="5" Padding="5">Opis</Label>
         <TextBox Name="DescriptionOfEvent" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" Padding="5" MinHeight="80"/>
 
-        <Label Grid.Row="2" Grid.Column="0" Margin="5" Padding="5">Data</Label>
+        <Label                         Grid.Row="2" Grid.Column="0" Margin="5" Padding="5">Data</Label>
         <DatePicker Name="DateOfEvent" Grid.Row="2" Grid.Column="1" Margin="5" Padding="5"/>
+        
         <WrapPanel Grid.Row="2" Grid.Column="2" VerticalAlignment="Center">
             <TextBox Name="HourOfEvent"  Margin="5" Padding="5" MaxLength="2" Width="29" PreviewTextInput="PreviewInput"
                      MouseDoubleClick="SelectAddress" GotKeyboardFocus="SelectAddress" PreviewMouseLeftButtonDown="SelectivelyIgnoreMouseButton">00</TextBox>

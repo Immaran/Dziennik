@@ -95,7 +95,11 @@ namespace SBD.Pages.Subject
                 
                 Button btn = new Button(); // przycisk z nawami przedmiotow
 
-                if(gList.Count == 0) // jezeli przedmiot nie jest przypisany do żadnej grupy
+                btn.Margin = new Thickness(5, 5, 5, 5);
+                btn.Padding = new Thickness(5, 5, 5, 5);
+                btn.HorizontalContentAlignment = HorizontalAlignment.Center;
+
+                if (gList.Count == 0) // jezeli przedmiot nie jest przypisany do żadnej grupy
                 {
                     //btn.Tag = subject.Id;
                     btn.Content = subject.Name;
