@@ -1,11 +1,11 @@
 ﻿<Window x:Class="SBD.Windows.SubjectWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SBD.Windows"
         mc:Ignorable="d"
         Title="Uczeń" SizeToContent="Height" Width="300" Loaded="Window_Loaded">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -16,13 +16,16 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Margin="5" Padding="5">Nazwa</Label>
+        
+        <Label               Grid.Row="0" Grid.Column="0" Margin="5" Padding="5">Nazwa</Label>
         <TextBox Name="name" Grid.Row="0" Grid.Column="1" Margin="5" Padding="5"/>
-        <Label Grid.Row="1" Grid.Column="0" Margin="5" Padding="5">Nauczyciel</Label>
+        
+        <Label                   Grid.Row="1" Grid.Column="0" Margin="5" Padding="5">Nauczyciel</Label>
         <ComboBox Name="teacher" Grid.Row="1" Grid.Column="1" Margin="5" Padding="5"/>
+        
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button IsDefault="True" Click="OkClick" Margin="5" Padding="15,3">OK</Button>
-            <Button IsCancel="True" Margin="5" Padding="15,3">Anuluj</Button>
+            <Button IsCancel="True"                  Margin="5" Padding="15,3">Anuluj</Button>
         </StackPanel>
     </Grid>
 </Window>

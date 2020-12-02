@@ -15,7 +15,7 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Menu>
-            <MenuItem Header=" ... " BorderBrush="Black">
+            <MenuItem Header=" ... " BorderBrush="Black" Margin="5">
                 <MenuItem Header="Przedmioty" Click="ClickSubject"/>
                 <MenuItem Header="Wydarzenia" Click="ClickEvent"/>
                 <MenuItem Header="Wiadomości">

@@ -26,7 +26,12 @@
         </Grid.RowDefinitions>
         <Label Grid.Row="0" FontSize="30" HorizontalAlignment="Center">Wydarzenia</Label>
 
-        <ListBox Name="EventListBox" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" VirtualizingPanel.ScrollUnit="Pixel" ItemTemplate="{StaticResource myTemplate}"/>
-    
+        <ListBox Name="EventListBox" Grid.Row="2" Padding="5"
+                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                ScrollViewer.CanContentScroll="True" 
+                VirtualizingPanel.ScrollUnit="Pixel" 
+                ItemTemplate="{StaticResource myTemplate}"/>
+                 
     </Grid>
 </Page>
