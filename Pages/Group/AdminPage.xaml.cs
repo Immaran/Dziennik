@@ -23,12 +23,12 @@ namespace SBD.Pages.Group
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             GroupList = _context.Group.ToList();    // wczytanie grup z bazy danych
-            listbox.ItemsSource = GroupList;        // przypisanie listy grup do listboxa
+            GroupListBox.ItemsSource = GroupList;        // przypisanie listy grup do listboxa
         }
         private void Refresh()
         {
             GroupList = _context.Group.ToList();    // wczytanie grup z bazy danych
-            listbox.ItemsSource = GroupList;        // przypisanie listy grup do listboxa
+            GroupListBox.ItemsSource = GroupList;        // przypisanie listy grup do listboxa
         }
         private void ClickAdd(object sender, RoutedEventArgs e)
         {
@@ -43,9 +43,9 @@ namespace SBD.Pages.Group
         }
         private void ClickEdit(object sender, RoutedEventArgs e)
         {
-            if(listbox.SelectedItem != null)
+            if(GroupListBox.SelectedItem != null)
             {
-                GroupWindow groupWindow = new GroupWindow((Models.Group)listbox.SelectedItem)
+                GroupWindow groupWindow = new GroupWindow((Models.Group)GroupListBox.SelectedItem)
                 {
                     Owner = ((MainWindow)Application.Current.MainWindow)
                 };
@@ -57,16 +57,29 @@ namespace SBD.Pages.Group
         }
         private void ClickRemove(object sender, RoutedEventArgs e)
         {
-            if (listbox.SelectedItem != null)
+            if (GroupListBox.SelectedItem != null)
             {
-                _context.Group.Remove((Models.Group)listbox.SelectedItem);
+                _context.Group.Remove((Models.Group)GroupListBox.SelectedItem);
                 _context.SaveChanges();
                 this.Refresh();
             }
         }
-        private void ClickCancel(object sender, RoutedEventArgs e)
+        private void ClickGoBack(object sender, RoutedEventArgs e)
         {
             this.NavigationService.GoBack();
+        }
+        private void LB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (GroupListBox.SelectedItem != null)
+            {
+                Edit.IsEnabled = true;
+                Remove.IsEnabled = true;
+            }
+            else
+            {
+                Edit.IsEnabled = false;
+                Remove.IsEnabled = false;
+            }
         }
     }
 }

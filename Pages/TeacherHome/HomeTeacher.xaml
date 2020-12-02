@@ -16,7 +16,6 @@
         </Grid.RowDefinitions>
         <Menu>
             <MenuItem Header=" ... " BorderBrush="Black">
-                <MenuItem Header="Grupy" Click="ClickGroup"/>
                 <MenuItem Header="Przedmioty" Click="ClickSubject"/>
                 <MenuItem Header="Wydarzenia" Click="ClickEvent"/>
                 <MenuItem Header="Wiadomości">

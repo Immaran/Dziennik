@@ -15,10 +15,10 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Vertical">
-            <Button Padding="5" Click="CLickGroup">Zarządzanie grupami</Button>
-            <Button Padding="5" Click="ClickSubject">Zarządzanie przedmiotami</Button>
-            <Button Padding="5" Click="ClickStudent">Zarządzanie uczniami</Button>
-            <Button Padding="5" Click="ClickTeacher">Zarządzanie nauczycielami</Button>
+            <Button Padding="5" Margin="5" Click="CLickGroup">Zarządzanie grupami</Button>
+            <Button Padding="5" Margin="5" Click="ClickSubject">Zarządzanie przedmiotami</Button>
+            <Button Padding="5" Margin="5" Click="ClickStudent">Zarządzanie uczniami</Button>
+            <Button Padding="5" Margin="5" Click="ClickTeacher">Zarządzanie nauczycielami</Button>
         </StackPanel>
         <Label Grid.Row="1" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center">Welcome in Home Admin</Label>
         <Button Grid.Row="2" Margin="5" Padding="5" HorizontalAlignment="Right" Click="ClickLogOut">Wyloguj</Button>

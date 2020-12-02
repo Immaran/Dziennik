@@ -41,9 +41,9 @@ namespace SBD.Pages.Teacher
         }
         private void ClickEdit(object sender, RoutedEventArgs e)
         {
-            if(listbox.SelectedItem != null)
+            if(TeacherListBox.SelectedItem != null)
             {
-                TeacherWindow teacherWindow = new TeacherWindow((Models.Teacher)listbox.SelectedItem)
+                TeacherWindow teacherWindow = new TeacherWindow((Models.Teacher)TeacherListBox.SelectedItem)
                 {
                     Owner = ((MainWindow)Application.Current.MainWindow)
                 };
@@ -57,9 +57,9 @@ namespace SBD.Pages.Teacher
         }
         private void ClickRemove(object sender, RoutedEventArgs e)
         {
-            if(listbox.SelectedItem != null)
+            if(TeacherListBox.SelectedItem != null)
             {
-                dynamic teacher = listbox.SelectedItem;
+                dynamic teacher = TeacherListBox.SelectedItem;
                 int teacher_id = teacher.Id;
                 _context.LoginData.Remove(_context.LoginData.Single(t => t.Id == teacher_id));
                 _context.SaveChanges();
@@ -67,7 +67,7 @@ namespace SBD.Pages.Teacher
             }
         }
 
-        private void ClickCancel(object sender, RoutedEventArgs e)
+        private void ClickGoBack(object sender, RoutedEventArgs e)
         {
             //_context.SaveChanges();
             this.NavigationService.GoBack();
@@ -76,7 +76,20 @@ namespace SBD.Pages.Teacher
         private void Load()
         {
             TeacherList = _context.Teacher.ToList();  // wczytanie nauczycieli z bazy danych
-            listbox.ItemsSource = TeacherList;          // przypisanie listy nauczycieli do listboxa
+            TeacherListBox.ItemsSource = TeacherList;          // przypisanie listy nauczycieli do listboxa
+        }
+        private void LB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TeacherListBox.SelectedItem != null)
+            {
+                Edit.IsEnabled = true;
+                Remove.IsEnabled = true;
+            }
+            else
+            {
+                Edit.IsEnabled = false;
+                Remove.IsEnabled = false;
+            }
         }
     }
 }

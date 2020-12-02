@@ -23,12 +23,12 @@ namespace SBD.Pages.Subject
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             SubjectList = _context.Subject.ToList();    // wczytanie przedmiotów z bazy danych
-            listbox.ItemsSource = SubjectList;          // przypisanie listy przedmiotów do listboxa
+            SubjectListBox.ItemsSource = SubjectList;          // przypisanie listy przedmiotów do listboxa
         }
         private void Refresh()
         {
             SubjectList = _context.Subject.ToList();    // wczytanie przedmiotów z bazy danych
-            listbox.ItemsSource = SubjectList;          // przypisanie listy przedmiotów do listboxa
+            SubjectListBox.ItemsSource = SubjectList;          // przypisanie listy przedmiotów do listboxa
         }
         private void ClickAdd(object sender, RoutedEventArgs e)
         {
@@ -43,9 +43,9 @@ namespace SBD.Pages.Subject
         }
         private void ClickEdit(object sender, RoutedEventArgs e)
         {
-            if (listbox.SelectedItem != null)
+            if (SubjectListBox.SelectedItem != null)
             {
-                SubjectWindow subjectWindow = new SubjectWindow((Models.Subject)listbox.SelectedItem)
+                SubjectWindow subjectWindow = new SubjectWindow((Models.Subject)SubjectListBox.SelectedItem)
                 {
                     Owner = ((MainWindow)Application.Current.MainWindow)
                 };
@@ -57,17 +57,30 @@ namespace SBD.Pages.Subject
         }
         private void ClickRemove(object sender, RoutedEventArgs e)
         {
-            if(listbox.SelectedItem != null)
+            if(SubjectListBox.SelectedItem != null)
             {
-                _context.Subject.Remove((Models.Subject)listbox.SelectedItem);
+                _context.Subject.Remove((Models.Subject)SubjectListBox.SelectedItem);
                 _context.SaveChanges();
                 this.Refresh();
             }
         }
-        private void ClickCancel(object sender, RoutedEventArgs e)
+        private void ClickGoBack(object sender, RoutedEventArgs e)
         {
             //_context.SaveChanges();
             this.NavigationService.GoBack();
+        }
+        private void LB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (SubjectListBox.SelectedItem != null)
+            {
+                Edit.IsEnabled = true;
+                Remove.IsEnabled = true;
+            }
+            else
+            {
+                Edit.IsEnabled = false;
+                Remove.IsEnabled = false;
+            }
         }
     }
 }

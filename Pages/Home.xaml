@@ -11,7 +11,7 @@
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label FontSize="15">Witaj w E-dzienniku</Label>
-            <Button Click="onClick">Zaloguj</Button>
+            <Button Click="onClick" IsDefault="True">Zaloguj</Button>
         </StackPanel>
     </Grid>
 </Page>

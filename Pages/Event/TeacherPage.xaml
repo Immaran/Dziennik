@@ -22,7 +22,10 @@
             <Button Name="Remove" Click="RemoveEvent" Margin="3" Padding="5" IsEnabled="False">Usuń wydarzenie</Button>
         </WrapPanel>
 
-        <ListBox Name="EventListBox" Grid.Row="2" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" VirtualizingPanel.ScrollUnit="Pixel" SelectionChanged="EventListBox_SelectionChanged"/>
-
+        <ListBox Name="EventListBox" Grid.Row="2"   ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                                    ScrollViewer.CanContentScroll="True" 
+                                                    VirtualizingPanel.ScrollUnit="Pixel" 
+                                                    SelectionChanged="EventListBox_SelectionChanged"/>
+        
     </Grid>
 </Page>

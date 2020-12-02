@@ -40,10 +40,6 @@ namespace SBD.Pages.TeacherHome
         {
             navigator.Navigate(new Event.TeacherPage());
         }
-        private void ClickGroup(object sender, RoutedEventArgs e)
-        {
-            navigator.Navigate(new Group.TeacherPage());
-        }
         private void ClickMessageSent(object sender, RoutedEventArgs e)
         {
             navigator.Navigate(new Message.TeacherPage("sent"));

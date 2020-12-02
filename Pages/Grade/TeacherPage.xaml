@@ -9,6 +9,12 @@
       Title="TeacherPage">
 
     <Grid>
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center">Oceny</Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" FontSize="30" HorizontalAlignment="Center">Oceny</Label>
+
+        <ListBox Name="GradeListBox" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" VirtualizingPanel.ScrollUnit="Pixel"/>
     </Grid>
 </Page>
