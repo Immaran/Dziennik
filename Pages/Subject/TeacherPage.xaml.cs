@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.EntityFrameworkCore;
 using SBD.Models;
 
 namespace SBD.Pages.Subject
@@ -14,8 +15,12 @@ namespace SBD.Pages.Subject
     {
         private readonly ModelContext _context;
         private IList<Models.Subject> SubjectList { get; set; } // lista przedmiotów, które uczy dany nauczyciel
-        private List<Models.GroupSubject> GroupSubjectList { get; set; } // lista groupstudent do ktorej naleza przedmioty, ktore uczy nauczyciel
-        private List<Models.Group> GroupList { get; set; } // lista grup w ktorych sa nauczane przedmioty przez danego nauczyciela
+        
+        private List<Models.GroupSubject> GroupSubjectList; // lista groupstudent do ktorej naleza przedmioty, ktore uczy nauczyciel
+        private List<Models.Group> GroupList; // lista grup w ktorych sa nauczane przedmioty przez danego nauczyciela
+        
+        private List<GroupSubject> gsList = new List<GroupSubject>(); // lista groupsubject dla konkretnego przedmiotu
+        private List<Models.Group> gList = new List<Models.Group>(); // lista grup dla konkretnego przedmiotu
 
         // obecnie zalogowany nauczyciel
         private readonly Models.Teacher Teacher = (Models.Teacher)((MainWindow)Application.Current.MainWindow).loggedUser;
@@ -28,14 +33,18 @@ namespace SBD.Pages.Subject
         {
             // wczytanie danych
 
+            _context.Subject.Load(); // wczytanie tabeli z przedmiotami
+
             // przypisanie listy tylko tych przedmiotów, które uczy dany nauczyciel
-            SubjectList = _context.Subject.Where(x => x.Teacher == Teacher).ToList();
+            SubjectList = Teacher.Subject.ToList();
+
+            //SubjectList = _context.Subject.Where(x => x.Teacher == Teacher).ToList();
 
             GroupSubjectList = new List<GroupSubject>();
             // przejscie po groupstudent i wyciaganie obiektow ktore maja powiazanie z przedmiotami
-            foreach(GroupSubject gs in _context.GroupSubject)
+            foreach (GroupSubject gs in _context.GroupSubject)
             {
-                if ( SubjectList.Any(s => s.Id == gs.SubjectId) )
+                if (SubjectList.Any(s => s.Id == gs.SubjectId))
                 {
                     GroupSubjectList.Add(gs);
                 }
@@ -57,39 +66,56 @@ namespace SBD.Pages.Subject
             // przejscie po liscie przedmiotow
             foreach (Models.Subject subject in SubjectList)
             {
-                GroupSubject groupSubject = null;
-                // znajdujemy odpowiedni groupsubject dla przedmiotu
+                gsList.Clear();
+                // znajdujemy odpowiednie obiekty groupsubject dla przedmiotu
                 foreach(GroupSubject gs in GroupSubjectList)
                 {
                     if(gs.SubjectId == subject.Id)
                     {
-                        groupSubject = gs;
+                        gsList.Add(gs);
                     }
                 }
 
-                Models.Group group = null;
-                // jezeli znalezlismy groupsubject tzn przedmiot ma przypisana jakas grupe
-                if(groupSubject != null)
+                // jezeli znalezlismy chociaz jeden groupsubject tzn do przedmiotu jest przypisana co najmniej jedna grupa
+                if (gsList.Count > 0)
                 {
+                    gList.Clear();
                     // znajdujemy okreslona grupe przypisana do przedmiotu
                     foreach (Models.Group g in GroupList)
                     {
-                        if (g.Id == groupSubject.GroupId)
+                        foreach(GroupSubject gs in gsList)
                         {
-                            group = g;
+                            if (g.Id == gs.GroupId)
+                            {
+                                gList.Add(g);
+                            }
                         }
                     }
                 }
                 
                 Button btn = new Button(); // przycisk z nawami przedmiotow
 
-                if(group != null) // jezeli przedmiot jest przypisany do jakiejs grupy
+                if(gList.Count == 0) // jezeli przedmiot nie jest przypisany do żadnej grupy
                 {
-                    btn.Content = subject.Id + " - " +  subject.Name + " (" + group.Name + ")";
+                    //btn.Tag = subject.Id;
+                    btn.Content = subject.Name;
+                    btn.IsEnabled = false;
                 }
-                else // jezeli przedmiot nie ma przypisanej grupy
+                else if(gList.Count == 1) // jezeli przedmiot jest przypisany do jednej grupy
                 {
-                    btn.Content = subject.Id + " - " +  subject.Name;
+                    btn.Tag = subject.Id;
+                    btn.Content = subject.Name + " (" + gList[0].Name + ")";
+                }
+                else // jezeli przedmiot jest przypisany do wiecej niz jednej grupy
+                {
+                    btn.Tag = subject.Id;
+                    string tmp = subject.Name + " ( ";
+                    foreach(Models.Group g in gList)
+                    {
+                        tmp += g.Name + " , ";
+                    }
+                    tmp = tmp.Remove(tmp.Length - 2);
+                    btn.Content = tmp + ")";
                 }
 
                 // podpiecie zdarzenia na klikniecie przycisku
@@ -101,14 +127,11 @@ namespace SBD.Pages.Subject
         }
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
-            // wyciągamy napis na przycisku
-            string ButtonContent = (e.Source as Button).Content.ToString();
-            
-            // wyciagamy id wybranego przedmiotu, ktore jest pierwsze w napisie
-            string[] IdOfSubject = ButtonContent.Split(' ');
+            // wyciągamy id przedmiotu
+            string id = (e.Source as Button).Tag.ToString();
 
             // znajdowanie przedmiotu po jego Id
-            Models.Subject subject = SubjectList.First(s => s.Id.ToString() == IdOfSubject[0]);
+            Models.Subject subject = SubjectList.First(s => s.Id.ToString() == id);
 
             this.NavigationService.Navigate(new ConcreteSubjectPage(subject));
         }

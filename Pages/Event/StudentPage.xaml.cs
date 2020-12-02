@@ -21,7 +21,7 @@ namespace SBD.Pages.Event
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             // wczytanie danych
-            EventList = _context.Event.ToList();
+            EventList = _context.Event.OrderByDescending(e=>e.Date).ToList();
             EventListBox.ItemsSource = EventList;
         }
     }

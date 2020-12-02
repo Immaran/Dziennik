@@ -35,14 +35,28 @@ namespace SBD.Windows
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            CalendarDateRange rangeOfBlackoutDates;
             // if to edit
-            if(Event != null)
+            if (Event != null)
             {
+                if (Event.Date < DateTime.Today) //if event have date from past
+                    rangeOfBlackoutDates = new CalendarDateRange(DateTime.MinValue, Event.Date.AddDays(-1));
+                else
+                    rangeOfBlackoutDates = new CalendarDateRange(DateTime.MinValue, DateTime.Today.AddDays(-1));
                 NameOfEvent.Text = Event.Name;
                 if (Event.Description.Length > 0)
                     DescriptionOfEvent.Text = Event.Description;
                 DateOfEvent.SelectedDate = Event.Date;
+                HourOfEvent.Text = Event.Date.Hour.ToString();
+                MinuteOfEvent.Text = Event.Date.Minute.ToString();
+
             }
+            else
+            {
+                //DateOfEvent.DisplayDateStart = DateTime.Today;
+                rangeOfBlackoutDates = new CalendarDateRange(DateTime.MinValue, DateTime.Today.AddDays(-1));
+            }
+            DateOfEvent.BlackoutDates.Add(rangeOfBlackoutDates);
         }
         private void OkClick(object sender, RoutedEventArgs e)
         {
@@ -51,14 +65,19 @@ namespace SBD.Windows
 
             if(NameOfEvent.Text.Length > 0 && DateOfEvent.SelectedDate != null && hh >= 0 && hh <= 23 && mm >= 0 && mm <= 59)
             {
+                DateTime dt = DateOfEvent.SelectedDate.Value; //object to hold date from datepicker and time from boxes
+                TimeSpan ts = new TimeSpan(hh, mm, 0);
+                dt = dt.Date + ts;
                 // if add new event
-                if(Event == null)
+                if (Event == null)
                 {
                     Event = new Event();
                     Event.Name = NameOfEvent.Text;
                     if( DescriptionOfEvent.Text.Length > 0 )
                         Event.Description = DescriptionOfEvent.Text;
-                    Event.Date = (DateTime)DateOfEvent.SelectedDate;
+
+                    Event.Date = dt;
+                    //Event.Date = (DateTime)DateOfEvent.SelectedDate;
                     Event.TeacherId = Teacher.Id;
                     Event.Teacher = Teacher;
                     _context.Event.Add(Event);
@@ -68,7 +87,7 @@ namespace SBD.Windows
                     Event.Name = NameOfEvent.Text;
                     if (DescriptionOfEvent.Text.Length > 0)
                         Event.Description = DescriptionOfEvent.Text;
-                    Event.Date = (DateTime)DateOfEvent.SelectedDate;
+                    Event.Date = dt;
                     Event.TeacherId = Teacher.Id;
                     Event.Teacher = Teacher;
                     _context.Attach(Event).State = EntityState.Modified;
