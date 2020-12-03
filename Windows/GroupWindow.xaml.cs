@@ -13,10 +13,11 @@ namespace SBD.Windows
     {
         private readonly ModelContext _context;
         private Group Group { get; set; }
-        private IList<Models.Student> StudentList { get; set; }
-        private IList<Models.Subject> SubjectList { get; set; }
-        private IList<Models.GroupSubject> GroupSubjectList { get; set; }
-        private IList<Models.GroupStudent> GroupStudentList { get; set; }
+        private IList<Student> StudentList { get; set; }            // lista uczniow dla danej grupy
+        private IList<Subject> SubjectList { get; set; }            // lista przedmiotow dla danej grupy
+        private IList<GroupSubject> GroupSubjectList { get; set; }  // lista GroupSubject dla danej grupy
+        private IList<GroupStudent> GroupStudentList { get; set; }  // lista GroupStudent dla danej grupy
+        private string OldGroupName = "";   // stara nazwa grupy (jesli edytujemy grupe mozemy jej dac taka nazwe jaka miala)
         public GroupWindow()    // konstruktor, gdy tworzymy nowa grupe
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
@@ -47,6 +48,7 @@ namespace SBD.Windows
 
                 // przypisanie nazwy grupy
                 name.Text = Group.Name;
+                OldGroupName = Group.Name;
 
                 // przypisanie listy uczniów
                 foreach(GroupStudent gs in GroupStudentList)
@@ -78,6 +80,11 @@ namespace SBD.Windows
         {
             if (name.Text.Length > 0 && studentList.Items != null && subjectList.Items != null)
             {
+                if (this.GroupNameExist() == true)   // jezeli w bazie istnieje juz grupa o takiej nazwie
+                {
+                    MessageBox.Show("Grupa o takiej nazwie już istnieje!!", "Grupa", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
                 if (Group == null) // gdy tworzymy nową grupę
                 {
                     Group = new Group();
@@ -86,10 +93,10 @@ namespace SBD.Windows
                     this.SaveDB();
 
                     // pobranie dodanej grupy z serwera, aby określić jego ID
-                    Group =  _context.Group.Last(g => g.Name == Group.Name); 
+                    Group =  _context.Group.First(g => g.Name == Group.Name);
 
                     // przypisanie listy uczniów
-                    foreach(Student student in studentList.Items)
+                    foreach (Student student in studentList.Items)
                     {
                         GroupStudent gs = new GroupStudent
                         {
@@ -215,7 +222,21 @@ namespace SBD.Windows
                 MessageBox.Show("Brak wszystkich danych", "Grupa", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
-
+        private bool GroupNameExist()
+        {
+            bool found = false;
+            foreach(Group group in _context.Group)
+            {
+                if(group.Name == name.Text)
+                {
+                    if (name.Text == OldGroupName) // jezeli edytujemy mozemy nadac taka sama nazwe jak miala wczesniej
+                        continue;
+                    found = true;
+                    break;
+                }
+            }
+            return found;
+        }
         private void AddStudent(object sender, RoutedEventArgs e)
         {
             if(studentBox.SelectedItem != null)
