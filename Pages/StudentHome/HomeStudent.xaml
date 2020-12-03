@@ -25,7 +25,6 @@
                     <MenuItem Header="Wyślij nową wiadomość" Click="ClickNewMessage"/>
                 </MenuItem>
                 <MenuItem Header="Grupy" Click="ClickGroup"/>
-                <MenuItem Header="Przedmioty" Click="ClickSubject"/>
                 <MenuItem Header="Konto">
                     <MenuItem Header="Zmień hasło" Click="ClickLoginData"/>
                 </MenuItem>

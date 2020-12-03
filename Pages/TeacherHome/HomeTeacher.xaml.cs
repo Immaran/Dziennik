@@ -32,10 +32,6 @@ namespace SBD.Pages.TeacherHome
             }
             navigator.Navigate(new HomeForTeacher()); 
         }
-        private void ClickGrade(object sender, RoutedEventArgs e)
-        {
-            navigator.Navigate(new Grade.TeacherPage());
-        }
         private void ClickEvent(object sender, RoutedEventArgs e)
         {
             navigator.Navigate(new Event.TeacherPage());

@@ -63,10 +63,6 @@ namespace SBD.Pages.StudentHome
 
             }
         }
-        private void ClickSubject(object sender, RoutedEventArgs e)
-        {
-            navigator.Navigate(new Subject.StudentPage());
-        }
         private void ClickLoginData(object sender, RoutedEventArgs e)
         {
             LoginDataWindow logindataWindow = new LoginDataWindow
