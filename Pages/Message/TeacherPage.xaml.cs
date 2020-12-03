@@ -12,13 +12,17 @@ namespace SBD.Pages.Message
     public partial class TeacherPage : Page
     {
         private readonly ModelContext _context;
-        private List<Models.Message> MessagesList { get; set; }
+        private List<Models.Message> MessagesList = new List<Models.Message>();
         private readonly string type;
         public TeacherPage(string type)
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
             this.type = type;
             InitializeComponent();
+        }
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.fetchData();
         }
         private void fetchData() // wczytanie wiadomości z serwera
         {
@@ -28,7 +32,7 @@ namespace SBD.Pages.Message
             // jeśli odebrane
             if (type == "received")
             {
-                MessagesList = new List<Models.Message>();
+                MessagesList.Clear();
                 foreach (Models.Message message in _context.Message)
                 {
                     if (message.Teacher == teacher)
@@ -45,7 +49,7 @@ namespace SBD.Pages.Message
             // jeśli wysłane
             else if (type == "sent")
             {
-                MessagesList = new List<Models.Message>();
+                MessagesList.Clear();
                 foreach (Models.Message message in _context.Message)
                 {
                     if (message.Teacher == teacher)
@@ -60,7 +64,7 @@ namespace SBD.Pages.Message
                 MainLabel.Content = "Wysłane";
             }
         }
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private void RefreshClick(object sender, RoutedEventArgs e)
         {
             this.fetchData();
         }
