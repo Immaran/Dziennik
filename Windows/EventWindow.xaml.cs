@@ -17,27 +17,26 @@ namespace SBD.Windows
         private readonly ModelContext _context;
         private Event Event { get; set; }
 
+        // obecnie zalogowany nauczyciel
         private readonly Teacher Teacher = (Teacher)((MainWindow)Application.Current.MainWindow).loggedUser;
-        public EventWindow()
+        public EventWindow()    // konstruktor gdy dodajemy nowe wydarzenie
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
             InitializeComponent();
-
             NameOfEvent.Focus();
         }
-        public EventWindow(Event ev)
+        public EventWindow(Event ev)    // konstruktor gdy edytujemy wydarzenie
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
             Event = ev;
             InitializeComponent();
-
             NameOfEvent.Focus();
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             CalendarDateRange rangeOfBlackoutDates;
-            // if to edit
-            if (Event != null)
+
+            if (Event != null)  // jezeli edytujemy wydarzenie
             {
                 if (Event.Date < DateTime.Today) //if event have date from past
                     rangeOfBlackoutDates = new CalendarDateRange(DateTime.MinValue, Event.Date.AddDays(-1));
@@ -68,8 +67,8 @@ namespace SBD.Windows
                 DateTime dt = DateOfEvent.SelectedDate.Value; //object to hold date from datepicker and time from boxes
                 TimeSpan ts = new TimeSpan(hh, mm, 0);
                 dt = dt.Date + ts;
-                // if add new event
-                if (Event == null)
+
+                if (Event == null)  // jezeli dodajemy nowe wydarzenie
                 {
                     Event = new Event();
                     Event.Name = NameOfEvent.Text;
@@ -82,7 +81,7 @@ namespace SBD.Windows
                     Event.Teacher = Teacher;
                     _context.Event.Add(Event);
                 }
-                else // if to edit
+                else // jezeli edytujemy wydarzenie
                 {
                     Event.Name = NameOfEvent.Text;
                     if (DescriptionOfEvent.Text.Length > 0)

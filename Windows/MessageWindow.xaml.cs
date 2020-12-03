@@ -13,9 +13,10 @@ namespace SBD.Windows
     public partial class MessageWindow : Window
     {
         private readonly ModelContext _context;
-        private IList<Models.Student> StudentList { get; set; }
-        private IList<Models.Teacher> TeacherList { get; set; }
+        private IList<Student> StudentList { get; set; }    // lista odbiorcow dla nauczyciela (uczniowie)
+        private IList<Teacher> TeacherList { get; set; }    // lista odbiorcow dla ucznia (nauczyciele)
 
+        // obecnie zalogowany uzytkownik
         private readonly object User = ((MainWindow)Application.Current.MainWindow).loggedUser;
 
         public MessageWindow()
@@ -25,15 +26,15 @@ namespace SBD.Windows
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            if(User.GetType() == typeof(Teacher))
+            if(User.GetType() == typeof(Teacher))   // jezeli zalogowany jest nauczyciel
             {
                 StudentList = _context.Student.ToList();
-                RecipientBox.ItemsSource = StudentList;
+                RecipientBox.ItemsSource = StudentList; // przypisanie listy odbiorcow
             }
-            else if (User.GetType() == typeof(Student))
+            else if (User.GetType() == typeof(Student)) // jezeli zalogowany jest uczen
             {
                 TeacherList = _context.Teacher.ToList();
-                RecipientBox.ItemsSource = TeacherList;
+                RecipientBox.ItemsSource = TeacherList; // przypisanie listy odbiorcow
             }
         }
         private void SaveDB()
@@ -55,7 +56,7 @@ namespace SBD.Windows
                 {
                     Date = DateTime.Now
                 };
-                // jeżeli wiadomośc wysyła nauczyciel
+                // jezeli wiadomosc wysyla nauczyciel
                 if (User.GetType() == typeof(Teacher))
                 {
                     Teacher teacher = (Teacher)User;
@@ -67,7 +68,6 @@ namespace SBD.Windows
                     message.Student = student;
                     message.StudentId = student.Id;
                     _context.Message.Add(message);
-                    this.SaveDB();
                 }
                 // jeżeli wiadomość wysyła uczeń
                 else if (User.GetType() == typeof(Student))
@@ -81,8 +81,10 @@ namespace SBD.Windows
                     message.Teacher = teacher;
                     message.TeacherId = teacher.Id;
                     _context.Message.Add(message);
-                    this.SaveDB();
                 }
+
+                this.SaveDB();
+
                 DialogResult = true;
             }
             else

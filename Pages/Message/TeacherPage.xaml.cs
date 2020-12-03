@@ -13,7 +13,7 @@ namespace SBD.Pages.Message
     {
         private readonly ModelContext _context;
         private List<Models.Message> MessagesList = new List<Models.Message>();
-        private readonly string type;
+        private readonly string type;       // okresla czy wyswietlic wiadomosci wyslane czy odebrane
         public TeacherPage(string type)
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;

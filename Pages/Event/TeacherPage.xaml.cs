@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.EntityFrameworkCore;
 using SBD.Models;
 using SBD.Windows;
 
@@ -21,13 +22,23 @@ namespace SBD.Pages.Event
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            // wczytanie danych 
-            this.fetchData();
+            this.fetchData();   // pobranie danych z serwera
         }
         private void fetchData()
         {
             EventList = _context.Event.OrderByDescending(e => e.Date).ToList();
             EventListBox.ItemsSource = EventList;
+        }
+        private void SaveDB()
+        {
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+            }
         }
         private void CreateEvent(object sender, RoutedEventArgs e)
         {
@@ -59,7 +70,7 @@ namespace SBD.Pages.Event
             if(EventListBox.SelectedItem != null)
             {
                 _context.Event.Remove((Models.Event)EventListBox.SelectedItem);
-                _context.SaveChanges();
+                this.SaveDB();
                 this.fetchData();
             }
         }
@@ -76,7 +87,6 @@ namespace SBD.Pages.Event
                 Edit.IsEnabled = false;
                 Remove.IsEnabled = false;
             }
-
         }
     }
 }

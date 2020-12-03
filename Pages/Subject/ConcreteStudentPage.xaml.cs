@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.EntityFrameworkCore;
 using SBD.Models;
 using SBD.Windows;
 
@@ -14,9 +15,9 @@ namespace SBD.Pages.Subject
     public partial class ConcreteStudentPage : Page
     {
         private readonly ModelContext _context;
-        private readonly Models.Student Student;
-        private readonly Models.Subject Subject;
-        private IList<Models.Grade> Grades;
+        private readonly Models.Student Student;    // uczen dla ktorego wyswietlamy oceny
+        private readonly Models.Subject Subject;    // przedmiot dla ktorego wyswietlamy oceny
+        private IList<Models.Grade> Grades;         // lista ocen ucznia z przedmiotu
         public ConcreteStudentPage(Models.Student student, Models.Subject subject)
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
@@ -35,6 +36,17 @@ namespace SBD.Pages.Subject
             Grades = _context.Grade.Where(g => g.SubjectId == Subject.Id && g.StudentId == Student.Id).ToList();
 
             GradesListBox.ItemsSource = Grades; // przypisanie ocen do listboxa
+        }
+        private void SaveDB()
+        {
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+            }
         }
         private void AddClick(object sender, RoutedEventArgs e)
         {
@@ -66,7 +78,7 @@ namespace SBD.Pages.Subject
             if (GradesListBox.SelectedItem != null)
             {
                 _context.Grade.Remove((Models.Grade)GradesListBox.SelectedItem);
-                _context.SaveChanges();
+                this.SaveDB();
                 this.fetchData();
             }
         }

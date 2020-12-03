@@ -1,12 +1,9 @@
-﻿using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using Microsoft.EntityFrameworkCore;
 using SBD.Models;
 using System;
 using System.Windows.Controls;
 using System.Windows.Data;
-using Microsoft.EntityFrameworkCore.Internal;
 
 namespace SBD.Windows
 {
@@ -17,9 +14,9 @@ namespace SBD.Windows
     {
         private readonly ModelContext _context;
         private Grade Grade;
-        private Student Student;
-        private Subject Subject;
-        public GradeWindow(Subject subject, Student student)
+        private readonly Student Student;    // uczen dla ktorego ocena jest wystawiana
+        private readonly Subject Subject;    // przedmiot ktorego ocena dotyczy
+        public GradeWindow(Subject subject, Student student)    // konstruktor gdy dodajemy nowa ocene
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
             Subject = subject;
@@ -29,8 +26,6 @@ namespace SBD.Windows
         public GradeWindow(Grade grade) // konstrukor gdy dane są do modyfikacji
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
-            //Subject = subject;
-            //Student = student;
             Grade = grade;
             InitializeComponent();
         }
@@ -41,8 +36,8 @@ namespace SBD.Windows
             DescriptionCBox.DisplayMemberPath = "Name";
             DescriptionCBox.SelectedValuePath = "Id";
             Binding binding = new Binding();
-            //if to edit
-            if (Grade != null)
+
+            if (Grade != null)  // jezeli edytujemy ocene
             {
 
                 binding.FallbackValue = Grade.Description; //start value of textbox
@@ -57,14 +52,11 @@ namespace SBD.Windows
 
                 this.descryptGrade();
             }
-           
-               
 
             binding.Source = DescriptionCBox;
             binding.Path = new PropertyPath("SelectedItem.Name");
             binding.Mode = BindingMode.OneWay;
             Descritpion.SetBinding(TextBox.TextProperty, binding);
-            
         }
         private void SaveDB()
         {
@@ -98,14 +90,11 @@ namespace SBD.Windows
                     Grade.Value = ((ComboBoxItem)GradesComboBox.SelectedItem).Content.ToString();
                     Grade.Description = Descritpion.Text;
                     Grade.Date = DateTime.Now;
-                    //Grade.Student = Student;
-                    //Grade.StudentId = Student.Id;
-                    //Grade.Subject = Subject;
-                    //Grade.SubjectId = Subject.Id;
                     _context.Attach(Grade).State = EntityState.Modified;
                 }
 
                 this.SaveDB();
+
                 DialogResult = true;
             }
             else
