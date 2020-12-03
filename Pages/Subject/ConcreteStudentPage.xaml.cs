@@ -82,5 +82,18 @@ namespace SBD.Pages.Subject
                 this.fetchData();
             }
         }
+        private void LB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (GradesListBox.SelectedItem != null)
+            {
+                Edit.IsEnabled = true;
+                Remove.IsEnabled = true;
+            }
+            else
+            {
+                Edit.IsEnabled = false;
+                Remove.IsEnabled = false;
+            }
+        }
     }
 }

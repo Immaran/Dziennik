@@ -109,6 +109,9 @@ namespace SBD.Windows
                 case "1":
                     GradesComboBox.SelectedIndex = 0;
                     break;
+                case "1+":
+                    GradesComboBox.SelectedIndex = 0;
+                    break;
                 case "2-":
                     GradesComboBox.SelectedIndex = 1;
                     break;
@@ -145,10 +148,10 @@ namespace SBD.Windows
                 case "5+":
                     GradesComboBox.SelectedIndex = 12;
                     break;
-                case "6-":
-                    GradesComboBox.SelectedIndex = 13;
-                    break;
                 case "6":
+                    GradesComboBox.SelectedIndex = 14;
+                    break;
+                case "6-":
                     GradesComboBox.SelectedIndex = 14;
                     break;
             }

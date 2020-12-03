@@ -83,5 +83,18 @@ namespace SBD.Pages.Subject
                 this.NavigationService.Navigate(new ConcreteStudentPage((Models.Student)StudentsListBox.SelectedItem,Subject));
             }
         }
+        private void LB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (StudentsListBox.SelectedItem != null)
+            {
+                Add.IsEnabled = true;
+                More.IsEnabled = true;
+            }
+            else
+            {
+                Add.IsEnabled = false;
+                More.IsEnabled = false;
+            }
+        }
     }
 }
