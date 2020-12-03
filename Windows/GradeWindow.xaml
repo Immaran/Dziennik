@@ -15,6 +15,8 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Grid.Column="0" Margin="5" Padding="5">Wartość</Label>
         <ComboBox Name="GradesComboBox"  Grid.Row="0" Grid.Column="1" Margin="5" Padding="5">
@@ -34,9 +36,12 @@
             <ComboBoxItem>6-</ComboBoxItem>
             <ComboBoxItem>6</ComboBoxItem>
         </ComboBox>
-        <Label Grid.Row="1" Grid.Column="0" Margin="5" Padding="5">Opis</Label>
-        <TextBox Name="Descritpion"  Grid.Row="1" Grid.Column="1" Margin="5" Padding="5"/>
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+        <Label Grid.Row="1" Grid.Column="0" Margin="5" Padding="5">Opis (z wydarzenia)</Label>
+        <ComboBox Name="DescriptionCBox"  Grid.Row="1" Grid.Column="1" Margin="5" Padding="5">
+        </ComboBox>
+        <Label x:Name="DescriptionLabel" Grid.Row="2" Grid.Column="0" Margin="5" Padding="5">Opis</Label>
+        <TextBox Name="Descritpion"  Grid.Row="2" Grid.Column="1" Margin="5" Padding="5" />
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button IsDefault="True" Click="OkClick"    Margin="5" Padding="15,3">OK</Button>
             <Button IsCancel="True"                     Margin="5" Padding="15,3">Anuluj</Button>
         </StackPanel>

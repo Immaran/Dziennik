@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using SBD.Models;
 using System;
 using System.Windows.Controls;
+using System.Windows.Data;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace SBD.Windows
 {
@@ -34,12 +36,35 @@ namespace SBD.Windows
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            _context.Event.Load();
+            DescriptionCBox.ItemsSource = ((MainWindow)Application.Current.MainWindow).loggedUser.Event;
+            DescriptionCBox.DisplayMemberPath = "Name";
+            DescriptionCBox.SelectedValuePath = "Id";
+            Binding binding = new Binding();
             //if to edit
-            if(Grade != null)
+            if (Grade != null)
             {
-                Descritpion.Text = Grade.Description;
+
+                binding.FallbackValue = Grade.Description; //start value of textbox
+                int index = -1;
+                foreach (dynamic ev in DescriptionCBox.Items)
+                {
+                    if (ev.Name == Grade.Description)
+                    { index = ev.Id; break; }
+                }
+                if (index > -1)
+                    DescriptionCBox.SelectedValue = index;
+
                 this.descryptGrade();
             }
+           
+               
+
+            binding.Source = DescriptionCBox;
+            binding.Path = new PropertyPath("SelectedItem.Name");
+            binding.Mode = BindingMode.OneWay;
+            Descritpion.SetBinding(TextBox.TextProperty, binding);
+            
         }
         private void SaveDB()
         {
