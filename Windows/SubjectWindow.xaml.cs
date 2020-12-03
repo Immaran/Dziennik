@@ -14,7 +14,7 @@ namespace SBD.Windows
         private readonly ModelContext _context;
         private Subject Subject { get; set; }
         private IList<Teacher> TeacherList { get; set; }
-        public SubjectWindow()
+        public SubjectWindow()  // konstrukor gdy dodajemy nowy przedmiot
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
             InitializeComponent();
@@ -24,6 +24,28 @@ namespace SBD.Windows
             _context = ((MainWindow)Application.Current.MainWindow).context;
             this.Subject = subject;
             InitializeComponent();
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            TeacherList = _context.Teacher.ToList();    // wczytanie nauczycieli z bazy danych
+            teacher.ItemsSource = TeacherList;          // przypisanie listy nauczycieli do comboboxa
+            
+            if (Subject != null)        // jezeli dane sa do edycji
+            {
+                name.Text = Subject.Name;               // przypisanie nazwy przedmiotu
+                teacher.SelectedItem = Subject.Teacher; // przypisanie nauczyciela
+            }
+        }
+        private void SaveDB()
+        {
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+            }
         }
         private void OkClick(object sender, RoutedEventArgs e)
         {
@@ -51,33 +73,13 @@ namespace SBD.Windows
                     _context.Attach(Subject).State = EntityState.Modified;
                 }
 
-                try
-                {
-                    _context.SaveChanges();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    throw;
-                }
+                this.SaveDB();
 
                 DialogResult = true;
             }
             else
             {
                 MessageBox.Show("Brak wszystkich danych", "Przedmiot", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            TeacherList = _context.Teacher.ToList();    // wczytanie nauczycieli z bazy danych
-            teacher.ItemsSource = TeacherList;          // przypisanie listy nauczycieli do comboboxa
-            //if to edit 
-            if (Subject != null)
-            {
-                name.Text = Subject.Name;
-
-                // przypisanie nauczyciela
-                teacher.SelectedItem = Subject.Teacher;
             }
         }
     }

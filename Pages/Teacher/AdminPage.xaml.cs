@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using SBD.Models;
 using SBD.Windows;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System.Collections.ObjectModel;
-using System.Collections.Immutable;
 
 namespace SBD.Pages.Teacher
 {
@@ -22,9 +19,14 @@ namespace SBD.Pages.Teacher
             _context = ((MainWindow)Application.Current.MainWindow).context;
             InitializeComponent();
         }
+        private void fetchData()
+        {
+            TeacherList = _context.Teacher.ToList();        // wczytanie nauczycieli z bazy danych
+            TeacherListBox.ItemsSource = TeacherList;       // przypisanie listy nauczycieli do listboxa
+        }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            Load();
+            this.fetchData();   // pobranie danych z serwera
         }
         private void ClickAdd(object sender, RoutedEventArgs e)
         {
@@ -34,9 +36,8 @@ namespace SBD.Pages.Teacher
             };
             if (true == teacherWindow.ShowDialog())
             {
-                //_context.SaveChanges();
+                this.fetchData();
             }
-            Load();
 
         }
         private void ClickEdit(object sender, RoutedEventArgs e)
@@ -49,9 +50,8 @@ namespace SBD.Pages.Teacher
                 };
                 if (true == teacherWindow.ShowDialog())
                 {
-                    //_context.SaveChanges();
+                    this.fetchData();
                 }
-                Load();
             }
             
         }
@@ -63,21 +63,15 @@ namespace SBD.Pages.Teacher
                 int teacher_id = teacher.Id;
                 _context.LoginData.Remove(_context.LoginData.Single(t => t.Id == teacher_id));
                 _context.SaveChanges();
-                Load();
+                this.fetchData();
             }
         }
 
         private void ClickGoBack(object sender, RoutedEventArgs e)
         {
-            //_context.SaveChanges();
             this.NavigationService.GoBack();
         }
 
-        private void Load()
-        {
-            TeacherList = _context.Teacher.ToList();  // wczytanie nauczycieli z bazy danych
-            TeacherListBox.ItemsSource = TeacherList;          // przypisanie listy nauczycieli do listboxa
-        }
         private void LB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (TeacherListBox.SelectedItem != null)

@@ -15,14 +15,14 @@ namespace SBD.Windows
         private Group Group { get; set; }
         private IList<Models.Student> StudentList { get; set; }
         private IList<Models.Subject> SubjectList { get; set; }
-        private List<Models.GroupSubject> GroupSubjectList { get; set; }
-        private List<Models.GroupStudent> GroupStudentList { get; set; }
-        public GroupWindow()
+        private IList<Models.GroupSubject> GroupSubjectList { get; set; }
+        private IList<Models.GroupStudent> GroupStudentList { get; set; }
+        public GroupWindow()    // konstruktor, gdy tworzymy nowa grupe
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
             InitializeComponent();
         }
-        public GroupWindow(Group group) // konstrukor gdy dane są do modyfikacji
+        public GroupWindow(Group group) // konstrukor, gdy dane są do modyfikacji
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
             this.Group = group;
@@ -30,45 +30,32 @@ namespace SBD.Windows
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _context.Teacher.Load(); // wczytanie nauczycieli, aby wyświetlać całe nazwy przedmiotów
-            SubjectList = _context.Subject.ToList();
-            StudentList = _context.Student.ToList();
-            studentBox.ItemsSource = StudentList;
-            subjectBox.ItemsSource = SubjectList;
-            //if to edit 
-            if (Group != null)
+            _context.Teacher.Load(); // wczytanie nauczycieli, aby wyswietlac całe nazwy przedmiotow
+
+            SubjectList = _context.Subject.ToList();    // wczytanie przedmiotow
+            subjectBox.ItemsSource = SubjectList;       // przypisanie przedmiotow do listboxa
+            StudentList = _context.Student.ToList();    // wczytanie uczniow
+            studentBox.ItemsSource = StudentList;       // przypisanie uczniow do listboxa
+            
+            if (Group != null) // jezeli dane sa do edycji
             {
-                //wczytanie danych z GroupStudent tylko dla danej grupy
-                GroupStudentList = new List<Models.GroupStudent>();
-                foreach (GroupStudent gs in _context.GroupStudent)
-                {
-                    if (gs.GroupId == Group.Id)
-                    {
-                        GroupStudentList.Add(gs);
-                    }
-                }
+                // wczytanie danych z GroupStudent tylko dla danej grupy
+                GroupStudentList = _context.GroupStudent.Where(gs => gs.GroupId == Group.Id).ToList();
 
-                //wczytanie danych z GroupSubject tylko dla danej grupy
-                GroupSubjectList = new List<Models.GroupSubject>();
-                foreach (GroupSubject gs in _context.GroupSubject)
-                {
-                    if (gs.GroupId == Group.Id)
-                    {
-                        GroupSubjectList.Add(gs);
-                    }
-                }
+                // wczytanie danych z GroupSubject tylko dla danej grupy
+                GroupSubjectList = _context.GroupSubject.Where(gs => gs.GroupId == Group.Id).ToList();
 
-                //przypisanie nazwy grupy
+                // przypisanie nazwy grupy
                 name.Text = Group.Name;
 
-                /// tu należy przypisać listę uczniów
+                // przypisanie listy uczniów
                 foreach(GroupStudent gs in GroupStudentList)
                 {
                     Student student = StudentList.First(s => s.Id == gs.StudentId);
                     studentList.Items.Add(student);
                 }
 
-                /// tu należy przypisać listę przedmiotów 
+                // przypisanie listy przedmiotów 
                 foreach (GroupSubject gs in GroupSubjectList)
                 {
                     Subject subject = SubjectList.First(s => s.Id == gs.SubjectId);
@@ -99,9 +86,9 @@ namespace SBD.Windows
                     this.SaveDB();
 
                     // pobranie dodanej grupy z serwera, aby określić jego ID
-                    Group =  _context.Group.FirstOrDefault(g => g.Name == Group.Name); 
+                    Group =  _context.Group.Last(g => g.Name == Group.Name); 
 
-                    // tu należy przypisać listę uczniów
+                    // przypisanie listy uczniów
                     foreach(Student student in studentList.Items)
                     {
                         GroupStudent gs = new GroupStudent
@@ -115,7 +102,7 @@ namespace SBD.Windows
                         this.SaveDB();
                     }
 
-                    // tu należy przypisać listę przedmiotów 
+                    // przypisanie listy przedmiotów 
                     foreach (Subject subject in subjectList.Items)
                     {
                         GroupSubject gs = new GroupSubject
@@ -138,7 +125,7 @@ namespace SBD.Windows
                     // pomocnicza zmienna do flagowania znajdowania obiektów
                     bool found = false;
 
-                    /// tu należy edytować listę uczniów
+                    /// edycja listy uczniów
                     // iteracja po liście studentów
                     foreach (Student student in studentList.Items)
                     {
@@ -146,7 +133,7 @@ namespace SBD.Windows
                         // iteracja po rekordach w bazie
                         foreach(GroupStudent gr in GroupStudentList)
                         {
-                            if(gr.Student == student)
+                            if(gr.Student.Id == student.Id)
                             {
                                 found = true;
                                 break;
@@ -178,7 +165,7 @@ namespace SBD.Windows
                         }
                     }
 
-                    /// tu należy edytować listę przedmiotów 
+                    /// edycja listy przedmiotów 
                     // iteracja po liście przedmiotów
                     foreach (Subject subject in subjectList.Items)
                     {
@@ -186,7 +173,7 @@ namespace SBD.Windows
                         // iteracja po rekordach w bazie
                         foreach (GroupSubject gr in GroupSubjectList)
                         {
-                            if (gr.Subject == subject)
+                            if (gr.Subject.Id == subject.Id)
                             {
                                 found = true;
                                 break;
@@ -233,7 +220,8 @@ namespace SBD.Windows
         {
             if(studentBox.SelectedItem != null)
             {
-                if( !studentList.Items.Contains(studentBox.SelectedItem) )
+                // jesli juz jest na liscie to nie dodajemy drugi raz
+                if ( !studentList.Items.Contains(studentBox.SelectedItem) ) 
                     studentList.Items.Add(studentBox.SelectedItem);
             }
         }
@@ -248,7 +236,8 @@ namespace SBD.Windows
         {
             if(subjectBox.SelectedItem != null)
             {
-                if( !subjectList.Items.Contains(subjectBox.SelectedItem) )
+                // jesli juz jest na liscie to nie dodajemy drugi raz
+                if ( !subjectList.Items.Contains(subjectBox.SelectedItem) )
                     subjectList.Items.Add(subjectBox.SelectedItem);
             }
         }

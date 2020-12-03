@@ -20,9 +20,14 @@ namespace SBD.Pages.Student
             _context = ((MainWindow)Application.Current.MainWindow).context;
             InitializeComponent();
         }
+        private void fetchData()
+        {
+            StudentList = _context.Student.ToList();        // wczytanie uczniow z bazy danych
+            StudentListBox.ItemsSource = StudentList;       // przypisanie listy uczniow do listboxa
+        }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            Load();
+            this.fetchData();
         }
         private void ClickAdd(object sender, RoutedEventArgs e)
         {
@@ -32,9 +37,8 @@ namespace SBD.Pages.Student
             };
             if (true == studentWindow.ShowDialog())
             {
-                //_context.SaveChanges();
+                this.fetchData();
             }
-            Load();
         }
         private void ClickEdit(object sender, RoutedEventArgs e)
         {
@@ -46,9 +50,8 @@ namespace SBD.Pages.Student
                 };
                 if (true == studentWindow.ShowDialog())
                 {
-                    //_context.SaveChanges();
+                    this.fetchData();
                 }
-                Load();
             }
             
         }
@@ -60,18 +63,16 @@ namespace SBD.Pages.Student
                 int student_id = student.Id;
                 _context.LoginData.Remove(_context.LoginData.Single(t => t.Id == student_id));
                 _context.SaveChanges();
-                Load();
+                this.fetchData();
             }
             
         }
         private void ClickGoBack(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.GoBack();
-        }
-        private void Load()
-        {
-            StudentList = _context.Student.ToList();  // wczytanie nauczycieli z bazy danych
-            StudentListBox.ItemsSource = StudentList;          // przypisanie listy nauczycieli do listboxa
+            if (this.NavigationService.CanGoBack)
+            {
+                this.NavigationService.GoBack();
+            }
         }
         private void LB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

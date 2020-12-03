@@ -18,7 +18,7 @@ namespace SBD.Windows
         private LoginData LoginData { get; set; }
 
         private readonly Random _rand = new Random(); //static
-        public StudentWindow()
+        public StudentWindow() // konstrukor gdy dodajemy nowego ucznia
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
             InitializeComponent();
@@ -31,15 +31,25 @@ namespace SBD.Windows
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //if to edit 
-            if (Student != null)
+            if (Student != null)    // jezeli dane sa do edycji
             {
                 name.Text = Student.FirstName;
                 if (Student.SecondName != null)
                     secondName.Text = Student.SecondName;
                 surname.Text = Student.Surname;
-                Student.IdNavigation = _context.LoginData.FirstOrDefault(x => x.Id == Student.Id);
+                Student.IdNavigation = _context.LoginData.First(x => x.Id == Student.Id);
                 
+            }
+        }
+        private void SaveDB()
+        {
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
             }
         }
         private void OkClick(object sender, RoutedEventArgs e)
@@ -65,8 +75,8 @@ namespace SBD.Windows
                         Role = "student"
                     };
                     _context.LoginData.Add(LoginData);
-                    _context.SaveChanges();
-                    LoginData = _context.LoginData.FirstOrDefault(x => x.Login == LoginData.Login);
+                    this.SaveDB();
+                    LoginData = _context.LoginData.First(x => x.Login == LoginData.Login);
                     Student.Id = LoginData.Id;
                     Student.IdNavigation = LoginData;
                     _context.Student.Add(Student);
@@ -80,16 +90,8 @@ namespace SBD.Windows
                     _context.Attach(Student).State = EntityState.Modified;
                 }
 
-                try
-                {
-                    _context.SaveChanges();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    throw;
-                }
+                this.SaveDB();
 
-                //_context.SaveChanges();
                 DialogResult = true;
             }
             else

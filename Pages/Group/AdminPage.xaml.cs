@@ -23,14 +23,13 @@ namespace SBD.Pages.Group
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            GroupList = _context.Group.ToList();    // wczytanie grup z bazy danych
-            GroupListBox.ItemsSource = GroupList;        // przypisanie listy grup do listboxa
+            this.fetchData();   // pobranie danych z serwera
         }
         private void fetchData()
         {
-            _context.Teacher.Load(); // wczytanie nauczycieli, aby wyświetlać całe nazwy przedmiotów
+            _context.Teacher.Load();                // wczytanie nauczycieli, aby wyświetlać całe nazwy przedmiotów
             GroupList = _context.Group.ToList();    // wczytanie grup z bazy danych
-            GroupListBox.ItemsSource = GroupList;        // przypisanie listy grup do listboxa
+            GroupListBox.ItemsSource = GroupList;   // przypisanie listy grup do listboxa
         }
         private void ClickAdd(object sender, RoutedEventArgs e)
         {
@@ -68,7 +67,10 @@ namespace SBD.Pages.Group
         }
         private void ClickGoBack(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.GoBack();
+            if(this.NavigationService.CanGoBack)
+            {
+                this.NavigationService.GoBack();
+            }
         }
         private void LB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

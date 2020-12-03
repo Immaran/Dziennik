@@ -18,7 +18,7 @@ namespace SBD.Windows
         private LoginData LoginData { get; set; }
 
         private readonly Random _rand = new Random(); //static
-        public TeacherWindow()
+        public TeacherWindow() // konstrukor gdy dodajemy nowego nauczyciela
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
             InitializeComponent();
@@ -30,15 +30,25 @@ namespace SBD.Windows
             InitializeComponent();
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            //if to edit 
-            if (Teacher != null)
+        { 
+            if (Teacher != null)        // jezeli dane sa do edycji
             {
                 name.Text = Teacher.FirstName;
                 if (Teacher.SecondName != null)
                     secondName.Text = Teacher.SecondName;
                 surname.Text = Teacher.Surname;
-                Teacher.IdNavigation = _context.LoginData.FirstOrDefault(x => x.Id == Teacher.Id);
+                Teacher.IdNavigation = _context.LoginData.First(x => x.Id == Teacher.Id);
+            }
+        }
+        private void SaveDB()
+        {
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
             }
         }
         private void OkClick(object sender, RoutedEventArgs e)
@@ -64,8 +74,8 @@ namespace SBD.Windows
                         Role = "teacher"
                     };
                     _context.LoginData.Add(LoginData);
-                    _context.SaveChanges();
-                    LoginData = _context.LoginData.FirstOrDefault(x => x.Login == LoginData.Login);
+                    this.SaveDB();
+                    LoginData = _context.LoginData.First(x => x.Login == LoginData.Login);
                     Teacher.Id = LoginData.Id;
                     Teacher.IdNavigation = LoginData;
                     _context.Teacher.Add(Teacher);
@@ -79,16 +89,8 @@ namespace SBD.Windows
                     _context.Attach(Teacher).State = EntityState.Modified;
                 }
 
-                try
-                {
-                    _context.SaveChanges();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    throw;
-                }
+                this.SaveDB();
 
-                //_context.SaveChanges();
                 DialogResult = true;
             }
             else
