@@ -14,6 +14,15 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Label x:Name="StartLabel" FontSize="40">Lista uczniów w grupie</Label>
-        <ListView x:Name="GroupLBox" Grid.Row="1" FontSize="25"></ListView>
+        <ListView x:Name="GroupLBox" Grid.Row="1" FontSize="25">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Imię" DisplayMemberBinding="{Binding FirstName}" />
+                    <GridViewColumn Header="Nazwisko" DisplayMemberBinding="{Binding Surname}" />
+                    
+                    
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Page>
