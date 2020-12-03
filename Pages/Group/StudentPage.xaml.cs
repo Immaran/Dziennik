@@ -33,8 +33,9 @@ namespace SBD.Pages.Group
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
             //loading data
+            sPage.DataContext = null;
             _context.GroupStudent.Load();
             groupstudentList = Student.GroupStudent.ToList();
 
