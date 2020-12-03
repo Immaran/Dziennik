@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:SBD.Pages.Grade"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="StudentPage">
+      Title="StudentPage" Loaded="Page_Loaded">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -14,7 +14,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" FontSize="30" HorizontalAlignment="Center">Oceny</Label>
-
-        <ListBox Name="GradeListBox" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" VirtualizingPanel.ScrollUnit="Pixel"/>
+        <StackPanel Grid.Row="1" Name="StackPanel" HorizontalAlignment="Stretch"/>
+        <!--<ListBox Name="GradeListBox" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" VirtualizingPanel.ScrollUnit="Pixel"/>-->
     </Grid>
 </Page>
