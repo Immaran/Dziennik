@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Media;
 using SBD.Models;
 using SBD.Windows;
 
@@ -80,16 +76,12 @@ namespace SBD.Pages.Subject
                 }
             }
         }
-        //private void FindGrades()
-        //{
-        //    Grades = new List<Models.Grade>();
-        //    foreach (Models.Grade grade in _context.Grade)
-        //    {
-        //        if (grade.SubjectId == Subject.Id)
-        //        {
-        //            Grades.Add(grade);
-        //        }
-        //    }
-        //}
+        private void ViewGradesClick(object sender, RoutedEventArgs e)
+        {
+            if (StudentsListBox.SelectedItem != null)
+            {
+                this.NavigationService.Navigate(new ConcreteStudentPage((Models.Student)StudentsListBox.SelectedItem,Subject));
+            }
+        }
     }
 }

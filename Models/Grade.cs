@@ -16,7 +16,10 @@ namespace SBD.Models
         public virtual Subject Subject { get; set; }
         public override string ToString()
         {
-            return Value + " " + Description + " " + Student.FirstName + " " + Student.SecondName + " " + Date.ToString();
+            // wersja bez godzin
+            return Value + " ( " + Date.ToShortDateString() + " - " + Description +" )";
+            // wersja z godzinami
+            //return Value + " ( " + Date.ToShortDateString() + " " + Date.ToShortTimeString() + " " + Description + " )";
         }
     }
 }
