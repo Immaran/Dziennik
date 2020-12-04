@@ -53,6 +53,11 @@ namespace SBD.Windows
         {
             if (name.Text.Length > 0 && teacher.SelectedItem != null)
             {
+                if(name.Text.Length > 20)
+                {
+                    MessageBox.Show("Zbyt długa nazwa", "Przedmiot", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
                 if (Subject == null) // gdy tworzymy nową grupę
                 {
                     Subject = new Subject();

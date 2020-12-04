@@ -64,6 +64,11 @@ namespace SBD.Windows
 
             if(NameOfEvent.Text.Length > 0 && DateOfEvent.SelectedDate != null && hh >= 0 && hh <= 23 && mm >= 0 && mm <= 59)
             {
+                if (NameOfEvent.Text.Length > 20 || DescriptionOfEvent.Text.Length >100)
+                {
+                    MessageBox.Show("Nazwa może mieć maksymalnie 20 znaków, a opis 100", "Wydarzenie", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
                 DateTime dt = DateOfEvent.SelectedDate.Value; //object to hold date from datepicker and time from boxes
                 TimeSpan ts = new TimeSpan(hh, mm, 0);
                 dt = dt.Date + ts;
