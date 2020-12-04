@@ -23,6 +23,7 @@ namespace SBD.Windows
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
             InitializeComponent();
+            Message.Focus();
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {

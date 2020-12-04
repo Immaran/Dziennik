@@ -43,7 +43,7 @@
         <ComboBox Name="DescriptionCBox"  Grid.Row="1" Grid.Column="1" Margin="5" Padding="5"/>
 
         <Label x:Name="DescriptionLabel" Grid.Row="2" Grid.Column="0" Margin="5" Padding="5">Opis</Label>
-        <TextBox Name="Descritpion"      Grid.Row="2" Grid.Column="1" Margin="5" Padding="5" />
+        <TextBox Name="Descritpion"      Grid.Row="2" Grid.Column="1" Margin="5" Padding="5" MinHeight="80"/>
         
         <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button IsDefault="True" Click="OkClick"    Margin="5" Padding="15,3">OK</Button>

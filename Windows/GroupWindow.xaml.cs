@@ -22,12 +22,14 @@ namespace SBD.Windows
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
             InitializeComponent();
+            name.Focus();
         }
         public GroupWindow(Group group) // konstrukor, gdy dane są do modyfikacji
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
             this.Group = group;
             InitializeComponent();
+            name.Focus();
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {

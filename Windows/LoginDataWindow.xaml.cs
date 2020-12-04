@@ -26,6 +26,7 @@ namespace SBD.Windows
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
             InitializeComponent();
+            actualPassword.Focus();
         }
 
         private void OkClick(object sender, RoutedEventArgs e)

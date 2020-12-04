@@ -22,12 +22,14 @@ namespace SBD.Windows
             Subject = subject;
             Student = student;
             InitializeComponent();
+            Descritpion.Focus();
         }
         public GradeWindow(Grade grade) // konstrukor gdy dane są do modyfikacji
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
             Grade = grade;
             InitializeComponent();
+            Descritpion.Focus();
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
