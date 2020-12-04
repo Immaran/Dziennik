@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using SBD.Models;
@@ -43,6 +44,8 @@ namespace SBD.Pages.Message
                         }
                     }
                 }
+                MessagesList = MessagesList.OrderByDescending(m => m.Date).ToList();
+                MessageBox.ItemsSource = null;
                 MessageBox.ItemsSource = MessagesList;
                 MainLabel.Content = "Odebrane";
             }
@@ -60,6 +63,8 @@ namespace SBD.Pages.Message
                         }
                     }
                 }
+                MessagesList = MessagesList.OrderByDescending(m => m.Date).ToList();
+                MessageBox.ItemsSource = null;
                 MessageBox.ItemsSource = MessagesList;
                 MainLabel.Content = "Wysłane";
             }
