@@ -17,7 +17,7 @@ namespace SBD.Pages.Group
         {
             InitializeComponent();
             StartLabel.Content += " " + groupName;
-            GroupLBox.ItemsSource = studentList.OrderBy(s=>s.Surname).ThenBy(s=>s.FirstName).ToList();
+            GroupLBox.ItemsSource = studentList.GroupBy(s=>s.Id).Select(g=>g.First()).OrderBy(s=>s.Surname).ThenBy(s=>s.FirstName).ToList();
         }
     }
 }
