@@ -78,11 +78,16 @@ namespace SBD.Windows
         }
         private void OkClick(object sender, RoutedEventArgs e)
         {
-            if (name.Text.Length > 0 && studentList.Items != null && subjectList.Items != null)
+            if (name.Text.Length > 0 && studentList.Items.Count > 0 && subjectList.Items.Count > 0)
             {
                 if (this.GroupNameExist() == true)   // jezeli w bazie istnieje juz grupa o takiej nazwie
                 {
                     MessageBox.Show("Grupa o takiej nazwie już istnieje!!", "Grupa", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+                if(name.Text.Length > 20)
+                {
+                    MessageBox.Show("Zbyt długa nazwa", "Grupa", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
                 if (Group == null) // gdy tworzymy nową grupę

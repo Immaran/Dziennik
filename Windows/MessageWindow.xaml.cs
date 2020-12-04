@@ -52,6 +52,11 @@ namespace SBD.Windows
         {
             if(Message.Text.Length > 0 && RecipientBox.SelectedItem != null)
             {
+                if(Message.Text.Length > 500 )
+                {
+                    MessageBox.Show("Zbyt długa wiadomość", "Wiadomość", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
                 Message message = new Message
                 {
                     Date = DateTime.Now

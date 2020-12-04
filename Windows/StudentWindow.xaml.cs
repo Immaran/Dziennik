@@ -56,6 +56,11 @@ namespace SBD.Windows
         {
             if (name.Text.Length > 0 && surname.Text.Length > 0)
             {
+                if (name.Text.Length > 20 || surname.Text.Length > 20 || secondName.Text.Length > 20)
+                {
+                    MessageBox.Show("Maksymalnie można wprowadzić 20 znaków w jednym polu", "Uczeń", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
                 if (Student == null && LoginData == null) // gdy tworzymy nowego ucznia
                 {
                     Student = new Student();

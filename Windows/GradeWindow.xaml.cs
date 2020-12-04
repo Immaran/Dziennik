@@ -73,7 +73,12 @@ namespace SBD.Windows
         {
             if(GradesComboBox.SelectedItem != null && Descritpion.Text.Length > 0)
             {
-                if(Grade == null) // jezeli dodajemy nowa ocena
+                if(Descritpion.Text.Length > 50)
+                {
+                    MessageBox.Show("Zbyt długi opis (maksymalnie 50 znaków)", "Ocena", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+                if (Grade == null) // jezeli dodajemy nowa ocena
                 {
                     Grade = new Grade();
                     Grade.Value = ((ComboBoxItem)GradesComboBox.SelectedItem).Content.ToString();
