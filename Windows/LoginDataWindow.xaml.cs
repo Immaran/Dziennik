@@ -42,6 +42,11 @@ namespace SBD.Windows
                 return;
             }
 
+            if (newPassword.Password == actualPassword.Password)
+            {
+                MessageBox.Show("Nowe hasło nie może być takie samo jak stare. Spróbuj ponownie.");
+                return;
+            }
             //int userId = ((MainWindow)Application.Current.MainWindow).loggedUser.Id;
             //LoginData userLoginData = _context.LoginData.First(l => l.Id == userId);
             LoginData userLoginData = ((MainWindow)Application.Current.MainWindow).loggedUser.IdNavigation;
