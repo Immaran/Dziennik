@@ -39,7 +39,7 @@ namespace SBD.Pages.Group
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             //sPage.DataContext = null;
-
+            Panel.Children.Clear();
             //loading data
             _context.GroupStudent.Load();
             groupstudentList = Student.GroupStudent.ToList();
@@ -118,13 +118,14 @@ namespace SBD.Pages.Group
                 }
             }
 
-            _context.GroupSubject.Load();//
+            _context.GroupSubject.Load();
             List<Models.Subject> subjectListUpdated = subjectList.ToList();
             foreach (Models.Subject subject in subjectList)
             {
                 if (subject.GroupSubject.Count<2)
                 {
-                    subjectListUpdated.RemoveAll(s => s.Id == subject.Id); //lub od razu remove subject jak się da lub subjectList.Remove(subject);
+                    //subjectListUpdated.RemoveAll(s => s.Id == subject.Id); //lub od razu remove subject jak się da lub subjectList.Remove(subject);
+                    subjectListUpdated.Remove(subject);
                 }
 
             }
