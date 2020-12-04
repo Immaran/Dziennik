@@ -24,7 +24,10 @@ namespace SBD.Models
 
         public override string ToString()
         {
+            if (SecondName!=null)
+                return FirstName + " " + SecondName+ " " + Surname;
             return FirstName + " " + Surname;
+
         }
     }
 }

@@ -21,7 +21,7 @@ namespace SBD
             {
                 context.Database.EnsureCreated();
             }
-            catch (Exception e) //Oracle.ManagedDataAccess.Client.OracleException
+            catch (Exception e)
             {
                 MessageBox.Show("Wystąpił problem z połączeniem z bazą danych: " + e.Message, "Wyjątek", MessageBoxButton.OK, MessageBoxImage.Warning);
                 this.Close();

@@ -22,8 +22,8 @@ namespace SBD.Pages.Student
         }
         private void fetchData()
         {
-            StudentList = _context.Student.ToList();        // wczytanie uczniow z bazy danych
-            StudentListBox.ItemsSource = StudentList;       // przypisanie listy uczniow do listboxa
+            StudentList = _context.Student.ToList();        // loading students from database
+            StudentListBox.ItemsSource = StudentList;       // assigning a student list to a listbox
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {

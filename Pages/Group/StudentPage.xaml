@@ -12,7 +12,7 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <Label      Grid.Row="0" FontSize="30"  HorizontalAlignment="Center">Grupy</Label>
+        <Label      Grid.Row="0" FontSize="45"  HorizontalAlignment="Center">Grupy</Label>
         <StackPanel Grid.Row="1" x:Name="Panel" HorizontalAlignment="Stretch"/>
     </Grid>
 </Page>

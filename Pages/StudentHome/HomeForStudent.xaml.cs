@@ -26,7 +26,8 @@ namespace SBD.Pages.StudentHome
         private void Page_Loaded(object sendet, RoutedEventArgs e)
         {
             Models.Student student = ((MainWindow)Application.Current.MainWindow).loggedUser;
-            mainLabel.Content = "Strona główna studenta " + student.FirstName + " " + student.Surname;
+            mainLabel.Content = "Strona główna studenta";
+            studentLabel.Content = student.ToString();
         }
     }
 }

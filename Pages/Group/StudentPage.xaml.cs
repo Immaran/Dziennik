@@ -38,7 +38,7 @@ namespace SBD.Pages.Group
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            //sPage.DataContext = null;
+            
             Panel.Children.Clear();
             //loading data
             _context.GroupStudent.Load();
@@ -56,7 +56,7 @@ namespace SBD.Pages.Group
             foreach (Models.Group group in groupList)
             {
                 string groupName = group.Name;
-                _context.GroupStudent.Load();//
+                _context.GroupStudent.Load();
 
                 foreach (Models.Student student in _context.Student)
                 {
@@ -124,7 +124,6 @@ namespace SBD.Pages.Group
             {
                 if (subject.GroupSubject.Count<2)
                 {
-                    //subjectListUpdated.RemoveAll(s => s.Id == subject.Id); //lub od razu remove subject jak się da lub subjectList.Remove(subject);
                     subjectListUpdated.Remove(subject);
                 }
 
@@ -152,7 +151,7 @@ namespace SBD.Pages.Group
                              if (groupsubject.GroupId == group.Id)
                             {
                                 groupForSubject.Add(group);
-                                break;///
+                                break;
                             }
                                 
                         }
@@ -225,7 +224,7 @@ namespace SBD.Pages.Group
         {
             Label lbl = new Label();
             lbl.Content = content;
-            lbl.VerticalAlignment = VerticalAlignment.Center; //można te linijki w funkcję złożyć
+            lbl.VerticalAlignment = VerticalAlignment.Center;
             lbl.HorizontalAlignment = HorizontalAlignment.Center;
             lbl.FontSize = 30;
             return lbl;
