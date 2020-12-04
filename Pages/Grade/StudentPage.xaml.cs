@@ -42,6 +42,8 @@ namespace SBD.Pages.Grade
 
             this.FindSubjects(); // znalezienie przedmiotow ktorych uczy sie uczen
 
+            StackPanel.Children.Clear(); // czyszczenie StackPanela, aby przycisk powrot dzialal
+
             bool found; // zmienna pomocnicza okreslajaca czy uczen ma jakies oceny z obecnie przetwarzanego przedmiotu w petli
             foreach (Models.Subject subject in SubjectList)
             {
