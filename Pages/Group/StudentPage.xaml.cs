@@ -69,9 +69,12 @@ namespace SBD.Pages.Group
                 lbl.Content = groupName;
                 lbl.VerticalAlignment = VerticalAlignment.Center;
                 lbl.HorizontalAlignment = HorizontalAlignment.Center;
-                lbl.FontSize = 30;
+                lbl.FontSize = 20;
                 Panel.Children.Add(lbl);
                 Button btn = new Button();
+                btn.Margin = new Thickness(5, 5, 5, 5);
+                btn.Padding = new Thickness(5, 5, 5, 5);
+                btn.HorizontalContentAlignment = HorizontalAlignment.Center;
                 btn.Content = "Przejdź";
 
                 List<Models.Student> st = studentList.ToList();

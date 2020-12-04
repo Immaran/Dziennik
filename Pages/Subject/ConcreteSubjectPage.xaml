@@ -17,8 +17,8 @@
         <Label Name="SubjectName" HorizontalAlignment="Center" Grid.Row="0" Margin="5" Padding="5" FontSize="30"/>
         
         <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button Margin="5" Padding="5" Click="AddClick" Name="Add">Dodaj ocenę</Button>
-            <Button Margin="5" Padding="5" Click="ViewGradesClick" Name="More">Wyświetl oceny</Button>
+            <Button Margin="5" Padding="5" Click="AddClick"         Name="Add"  IsEnabled="False">Dodaj ocenę</Button>
+            <Button Margin="5" Padding="5" Click="ViewGradesClick"  Name="More" IsEnabled="False">Wyświetl oceny</Button>
         </StackPanel>
         
         <ListBox Name="StudentsListBox" Grid.Row="2" SelectionChanged="LB_SelectionChanged"/>
