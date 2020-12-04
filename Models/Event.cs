@@ -12,13 +12,13 @@ namespace SBD.Models
         public int TeacherId { get; set; }
 
         public virtual Teacher Teacher { get; set; }
-        public override string ToString()
-        {
-            if(Description != null)
-            {
-                return Name + "\n" + Description + "\n" + Date.ToShortDateString() + " " + Date.ToShortTimeString();
-            }
-            else return Name + "\n" + Date.ToShortDateString() + " " + Date.ToShortTimeString();
-        }
+        //public override string ToString()
+        //{
+        //    if(Description != null)
+        //    {
+        //        return Name + "\n" + Description + "\n\nDodano przez: " + Teacher + "\n" + Date.ToShortDateString() + " " + Date.ToShortTimeString();
+        //    }
+        //    else return Name + "\n\nDodano przez: " + Teacher + "\n" + Date.ToShortDateString() + " " + Date.ToShortTimeString();
+        //}
     }
 }

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.EntityFrameworkCore;
 using SBD.Models;
 
 namespace SBD.Pages.Event
@@ -21,6 +22,7 @@ namespace SBD.Pages.Event
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             // wczytanie danych
+            _context.Teacher.Load();
             EventList = _context.Event.OrderByDescending(e=>e.Date).ToList();
             EventListBox.ItemsSource = EventList;
         }

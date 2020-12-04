@@ -26,6 +26,7 @@ namespace SBD.Pages.Event
         }
         private void fetchData()
         {
+            _context.Teacher.Load();
             EventList = _context.Event.OrderByDescending(e => e.Date).ToList();
             EventListBox.ItemsSource = EventList;
         }
