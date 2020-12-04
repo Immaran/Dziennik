@@ -15,8 +15,8 @@
         </Grid.RowDefinitions>
         
         <Label x:Name="StartLabel" FontSize="30" HorizontalAlignment="Center">Lista uczniów w grupie</Label>
-        
-        <ListView x:Name="GroupLBox" Grid.Row="1" FontSize="20">
+
+        <ListView x:Name="GroupLView" Grid.Row="1" FontSize="20">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Imię" Width="120" DisplayMemberBinding="{Binding FirstName}"/>
