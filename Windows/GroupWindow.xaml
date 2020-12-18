@@ -4,14 +4,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Grupa" SizeToContent="WidthAndHeight" MinWidth="400" MinHeight="300" Loaded="Window_Loaded">
+        Title="Grupa" SizeToContent="WidthAndHeight" MinWidth="400" MinHeight="420" Loaded="Window_Loaded">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Window.Resources>
     
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
@@ -23,22 +30,47 @@
         
         <Label                  Grid.Row="0" Grid.Column="0" Margin="5" Padding="5">Nazwa</Label>
         <TextBox Name="name"    Grid.Row="0" Grid.Column="1" Margin="5" Padding="5" Grid.ColumnSpan="2"/>
-        
-        <Label                      Grid.Row="2" Grid.Column="0" Margin="5" Padding="5">Lista uczniów</Label>
-        <ListBox Name="studentList" Grid.Row="2" Grid.Column="1" Margin="5" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" MinHeight="20"/>
 
         <Button Click="AddStudent"      Grid.Row="1" Grid.Column="0" Margin="5" Padding="5">Dodaj ucznia</Button>
         <Button Click="RemoveStudent"   Grid.Row="1" Grid.Column="1" Margin="5" Padding="5">Usuń ucznia</Button>
-        <ComboBox Name="studentBox"     Grid.Row="1" Grid.Column="2" Margin="5" MinWidth="150"/>
-        
-        <Label                      Grid.Row="4" Grid.Column="0" Margin="5" Padding="5">Lista przedmiotów</Label>
-        <ListBox Name="subjectList" Grid.Row="4" Grid.Column="1" Margin="5" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" MinHeight="20"/>
+        <ComboBox Name="studentBox"     Grid.Row="1" Grid.Column="2" Margin="5" MinWidth="150" SelectedValue="{Binding ElementName=SearchStudentListBox, Path=SelectedItem}"/>
 
-        <Button Click="AddSubject"      Grid.Row="3" Grid.Column="0" Margin="5" Padding="5">Dodaj przedmiot</Button>
-        <Button Click="RemoveSubject"   Grid.Row="3" Grid.Column="1" Margin="5" Padding="5">Usuń przedmiot</Button>
-        <ComboBox Name="subjectBox"     Grid.Row="3" Grid.Column="2" Margin="5" MinWidth="150"/>
+        <Button Click="SearchStudentClick" Grid.Row="2" Grid.Column="0" Margin="5" Padding="5">Szukaj</Button>
+        <Grid Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Margin="5" Padding="5" Text=" Nazwisko..." Visibility="{Binding ElementName=SearchStudentTextBox, Path=Text.IsEmpty,
+                        Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <TextBox Grid.Row="0" Name="SearchStudentTextBox" Margin="5" Padding="5" Background="Transparent"/>
+            <ListBox Grid.Row="1" Name="SearchStudentListBox" Margin="5" Padding="5" MinHeight="20"/>
+        </Grid>
         
-        <StackPanel Grid.Row="5" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right">
+
+        <Label                      Grid.Row="4" Grid.Column="0" Margin="5" Padding="5">Lista uczniów</Label>
+        <ListBox Name="studentList" Grid.Row="4" Grid.Column="1" Margin="5" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" MinHeight="20"/>
+
+        <Button Click="AddSubject"      Grid.Row="5" Grid.Column="0" Margin="5" Padding="5">Dodaj przedmiot</Button>
+        <Button Click="RemoveSubject"   Grid.Row="5" Grid.Column="1" Margin="5" Padding="5">Usuń przedmiot</Button>
+        <ComboBox Name="subjectBox"     Grid.Row="5" Grid.Column="2" Margin="5" MinWidth="150" SelectedValue="{Binding ElementName=SearchSubjectListBox, Path=SelectedItem}"/>
+
+        <Button Click="SearchSubjectClick" Grid.Row="6" Grid.Column="0" Margin="5" Padding="5">Szukaj</Button>
+        <Grid Grid.Row="6" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Margin="5" Padding="5" Text=" Nazwa..." Visibility="{Binding ElementName=SearchSubjectTextBox, Path=Text.IsEmpty,
+                        Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <TextBox Grid.Row="0" Name="SearchSubjectTextBox" Margin="5" Padding="5" Background="Transparent"/>
+            <ListBox Grid.Row="1" Name="SearchSubjectListBox" Margin="5" Padding="5" MinHeight="20"/>
+        </Grid>
+
+        <Label                      Grid.Row="8" Grid.Column="0" Margin="5" Padding="5">Lista przedmiotów</Label>
+        <ListBox Name="subjectList" Grid.Row="8" Grid.Column="1" Margin="5" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" MinHeight="20"/>
+
+        <StackPanel Grid.Row="9" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button IsDefault="True" Click="OkClick"    Margin="5" Padding="15,3">OK</Button>
             <Button IsCancel="True"                     Margin="5" Padding="15,3">Anuluj</Button>
         </StackPanel>

@@ -229,6 +229,36 @@ namespace SBD.Windows
                 MessageBox.Show("Brak wszystkich danych", "Grupa", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+        private void SearchStudentClick(object sender, RoutedEventArgs e)
+        {
+            string surnameToSearch = SearchStudentTextBox.Text;
+            SearchStudentListBox.Items.Clear();
+            if (surnameToSearch.Length != 0)
+            {
+                foreach (Student student in _context.Student)
+                {
+                    if (student.Surname.Contains(surnameToSearch))
+                    {
+                        SearchStudentListBox.Items.Add(student);
+                    }
+                }
+            }
+        }
+        private void SearchSubjectClick(object sender, RoutedEventArgs e)
+        {
+            string nameToSearch = SearchSubjectTextBox.Text;
+            SearchSubjectListBox.Items.Clear();
+            if (nameToSearch.Length != 0)
+            {
+                foreach (Subject subject in _context.Subject)
+                {
+                    if (subject.Name.Contains(nameToSearch))
+                    {
+                        SearchSubjectListBox.Items.Add(subject);
+                    }
+                }
+            }
+        }
         private bool GroupNameExist()
         {
             bool found = false;
