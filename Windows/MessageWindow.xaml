@@ -4,12 +4,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Nowa wiadomość" SizeToContent="Height" Width="300" Loaded="Window_Loaded">
+        Title="Nowa wiadomość" SizeToContent="Height" Width="300" MinWidth="200" MinHeight="200" Loaded="Window_Loaded">
     
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -20,8 +21,9 @@
         <Label                        Grid.Row="0" Grid.Column="0" Margin="5" Padding="5">Odbiorca:</Label>
         <ComboBox Name="RecipientBox" Grid.Row="0" Grid.Column="1" Margin="5" Padding="5"/>
         
-        <TextBox Name="Message"     Grid.Row="1" Grid.ColumnSpan="2" Margin="5" Padding="5" MinHeight="80" AcceptsReturn="True" AcceptsTab="True"/>
+        <TextBox Name="Message"     Grid.Row="1" Grid.ColumnSpan="2" Margin="5" Padding="5" MinHeight="40" AcceptsReturn="True" AcceptsTab="True"/>
         
-        <Button Click="SendClick"   Grid.Row="2" Grid.ColumnSpan="2" Margin="5" Padding="5">Wyślij</Button>
+        <Button Click="SendClick"   Grid.Row="2" Grid.ColumnSpan="2" Margin="5,0" Padding="5">Wyślij</Button>
+        <Button IsCancel="True"     Grid.Row="3" Grid.ColumnSpan="2" Margin="5" Padding="5">Anuluj</Button>
     </Grid>
 </Window>

@@ -4,7 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Ocena" SizeToContent="Height" Width="300" Loaded="Window_Loaded">
+        Title="Ocena" SizeToContent="Height" Width="300" MinWidth="225" MinHeight="182" Loaded="Window_Loaded">
     
     <Grid>
         <Grid.ColumnDefinitions>
@@ -14,8 +14,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         
@@ -43,9 +42,9 @@
         <ComboBox Name="DescriptionCBox"  Grid.Row="1" Grid.Column="1" Margin="5" Padding="5"/>
 
         <Label x:Name="DescriptionLabel" Grid.Row="2" Grid.Column="0" Margin="5" Padding="5">Opis</Label>
-        <TextBox Name="Descritpion"      Grid.Row="2" Grid.Column="1" Margin="5" Padding="5" MinHeight="80"/>
+        <TextBox Name="Descritpion"      Grid.Row="2" Grid.Column="1" Margin="5" Padding="5" MinHeight="10"/>
         
-        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button IsDefault="True" Click="OkClick"    Margin="5" Padding="15,3">OK</Button>
             <Button IsCancel="True"                     Margin="5" Padding="15,3">Anuluj</Button>
         </StackPanel>

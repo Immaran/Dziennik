@@ -4,15 +4,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Nauczyciel" SizeToContent="Height" Width="300" Loaded="Window_Loaded">
+        Title="Nauczyciel" SizeToContent="Height" Width="300" MinWidth="200" MinHeight="185" Loaded="Window_Loaded">
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -29,7 +27,7 @@
         <Label                  Grid.Row="2" Grid.Column="0" Margin="5" Padding="5">Nazwisko</Label>
         <TextBox Name="surname" Grid.Row="2" Grid.Column="1" Margin="5" Padding="5"/>
         
-        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button IsDefault="True" Click="OkClick" Margin="5" Padding="15,3">OK</Button>
             <Button IsCancel="True"                  Margin="5" Padding="15,3">Anuluj</Button>
         </StackPanel>

@@ -4,7 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="E-dziennik" Height="600" Width="800" MaxWidth="800">
+        Title="E-dziennik" Height="600" Width="800">
 
     <Frame Name="frame" NavigationUIVisibility="Hidden" />
     

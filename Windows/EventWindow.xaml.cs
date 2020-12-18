@@ -47,8 +47,14 @@ namespace SBD.Windows
                     DescriptionOfEvent.Text = Event.Description;
                 DateOfEvent.SelectedDate = Event.Date;
                 HourOfEvent.Text = Event.Date.Hour.ToString();
-                MinuteOfEvent.Text = Event.Date.Minute.ToString();
-
+                if (Event.Date.Minute == 0)
+                {
+                    MinuteOfEvent.Text = Event.Date.Minute.ToString() + "0";
+                }
+                else
+                {
+                    MinuteOfEvent.Text = Event.Date.Minute.ToString();
+                }
             }
             else
             {

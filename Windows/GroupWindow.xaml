@@ -4,7 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Grupa" SizeToContent="WidthAndHeight" Loaded="Window_Loaded">
+        Title="Grupa" SizeToContent="WidthAndHeight" MinWidth="400" MinHeight="300" Loaded="Window_Loaded">
     
     <Grid>
         <Grid.RowDefinitions>
@@ -18,27 +18,27 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         
         <Label                  Grid.Row="0" Grid.Column="0" Margin="5" Padding="5">Nazwa</Label>
         <TextBox Name="name"    Grid.Row="0" Grid.Column="1" Margin="5" Padding="5" Grid.ColumnSpan="2"/>
         
         <Label                      Grid.Row="2" Grid.Column="0" Margin="5" Padding="5">Lista uczniów</Label>
-        <ListBox Name="studentList" Grid.Row="2" Grid.Column="1" Margin="5" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" MinHeight="80"/>
+        <ListBox Name="studentList" Grid.Row="2" Grid.Column="1" Margin="5" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" MinHeight="20"/>
 
         <Button Click="AddStudent"      Grid.Row="1" Grid.Column="0" Margin="5" Padding="5">Dodaj ucznia</Button>
         <Button Click="RemoveStudent"   Grid.Row="1" Grid.Column="1" Margin="5" Padding="5">Usuń ucznia</Button>
-        <ComboBox Name="studentBox"     Grid.Row="1" Grid.Column="2" Margin="5"/>
+        <ComboBox Name="studentBox"     Grid.Row="1" Grid.Column="2" Margin="5" MinWidth="150"/>
         
         <Label                      Grid.Row="4" Grid.Column="0" Margin="5" Padding="5">Lista przedmiotów</Label>
-        <ListBox Name="subjectList" Grid.Row="4" Grid.Column="1" Margin="5" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" MinHeight="80"/>
+        <ListBox Name="subjectList" Grid.Row="4" Grid.Column="1" Margin="5" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" MinHeight="20"/>
 
         <Button Click="AddSubject"      Grid.Row="3" Grid.Column="0" Margin="5" Padding="5">Dodaj przedmiot</Button>
         <Button Click="RemoveSubject"   Grid.Row="3" Grid.Column="1" Margin="5" Padding="5">Usuń przedmiot</Button>
-        <ComboBox Name="subjectBox"     Grid.Row="3" Grid.Column="2" Margin="5"/>
+        <ComboBox Name="subjectBox"     Grid.Row="3" Grid.Column="2" Margin="5" MinWidth="150"/>
         
-        <StackPanel Grid.Row="5" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="5" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button IsDefault="True" Click="OkClick"    Margin="5" Padding="15,3">OK</Button>
             <Button IsCancel="True"                     Margin="5" Padding="15,3">Anuluj</Button>
         </StackPanel>

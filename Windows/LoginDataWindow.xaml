@@ -4,7 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Zmiana hasła" SizeToContent="Height" Width="350">
+        Title="Zmiana hasła" SizeToContent="Height" Width="325" MinWidth="250" MinHeight="185">
     
     <Grid>
         <Grid.ColumnDefinitions>
@@ -12,9 +12,9 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
         
@@ -27,7 +27,7 @@
         <Label                               Margin="5" Padding="5" Grid.Row="2">Powtórz nowe hasło:</Label>
         <PasswordBox Name="repeatedPassword" Margin="5" Padding="5" Grid.Column="1" Grid.Row="2"/>
 
-        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button IsDefault="True" Click="OkClick" Margin="5" Padding="15,3">OK</Button>
             <Button IsCancel="True"                  Margin="5" Padding="15,3">Anuluj</Button>
         </StackPanel>
