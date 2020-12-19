@@ -4,26 +4,13 @@ namespace SBD.Commands
 {
     class CustomCommands
     {
-        //private static RoutedUICommand piecz;
-        //static CustomCommands()
-        //{
-        //    piecz = new RoutedUICommand(
-        //    "Upiecz Pizzę", "Piecz",
-        //    typeof(CustomCommands));
-        //    // dobrym pomysłem jest dodanie tutaj
-        //    // skrótów klawiatury:
-        //    piecz.InputGestures.Add(new KeyGesture(Key.P,
-        //    ModifierKeys.Control));
-        //}
-        //public static RoutedUICommand Piecz
-        //{
-        //    get { return piecz; }
-        //}
         public static readonly RoutedUICommand Export = new RoutedUICommand
         (
-            "Export",
-            "Export",
-            typeof(CustomCommands),
+            "Export",   // ewentualny text do buttona
+            "Export",   // nazwa polecenia
+            typeof(CustomCommands), // wlasciciel polecenia
+
+            // skrot klawiszowy ctrl + e
             new InputGestureCollection() { new KeyGesture(Key.E, ModifierKeys.Control) }
         );
     }

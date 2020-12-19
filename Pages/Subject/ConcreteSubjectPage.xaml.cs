@@ -102,24 +102,38 @@ namespace SBD.Pages.Subject
         }
         private void MyExport(object sender, ExecutedRoutedEventArgs e)
         {
-            //isDirty[e.Source] = false;
             try
             {
+                // tworzenie nowego dokumentu do pisania w nim
                 Document document = new Document(PageSize.LETTER, 10, 10, 42, 35);
-                string PathName = "/Lista Uczniów "+Subject.Name+".pdf";
-                string currentPath = Directory.GetCurrentDirectory();
+
+                // nazwa pliku pdf
+                string PathName = "/Lista Uczniów " + Subject.Name + ".pdf";
+
+                // zmienna pomocnicza do przechodzenia wyzej po katalogach
+                string currentPath = Directory.GetCurrentDirectory(); 
+
+                // dopóki nie dojdziemy do folderu Dziennik
                 while (!currentPath.EndsWith("Dziennik"))
                 {
                     currentPath = Directory.GetParent(currentPath).FullName;
                 }
+                // przechodzimy jeszcze raz wyzej, wiec pdf znajdzie sie w tym samym pliku co katalog Dziennik
                 currentPath = Directory.GetParent(currentPath).FullName;
+
+                // miejsce gdzie zapisujemy pdfa
                 PathName = currentPath + PathName;
+
+                // tworzymy go
                 PdfWriter pdfWriter = PdfWriter.GetInstance(document, new FileStream(PathName, FileMode.Create));
                 document.Open();
+
+                // dodajemy po kolei uczniow z grupy do pdfa
                 foreach (Models.Student student in Students)
                 {
                     document.Add(new Paragraph(student.ToString()));
                 }
+
                 document.Close();
                 MessageBox.Show("Eksport udany", "Powodzenie", MessageBoxButton.OK, MessageBoxImage.Information);
             }
