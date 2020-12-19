@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
 using SBD.Models;
 using SBD.Windows;
 
@@ -94,6 +98,45 @@ namespace SBD.Pages.Subject
             {
                 Add.IsEnabled = false;
                 More.IsEnabled = false;
+            }
+        }
+        private void MyExport(object sender, ExecutedRoutedEventArgs e)
+        {
+            //isDirty[e.Source] = false;
+            try
+            {
+                Document document = new Document(PageSize.LETTER, 10, 10, 42, 35);
+                string PathName = "/Lista Uczniów "+Subject.Name+".pdf";
+                string currentPath = Directory.GetCurrentDirectory();
+                while (!currentPath.EndsWith("Dziennik"))
+                {
+                    currentPath = Directory.GetParent(currentPath).FullName;
+                }
+                currentPath = Directory.GetParent(currentPath).FullName;
+                PathName = currentPath + PathName;
+                PdfWriter pdfWriter = PdfWriter.GetInstance(document, new FileStream(PathName, FileMode.Create));
+                document.Open();
+                foreach (Models.Student student in Students)
+                {
+                    document.Add(new Paragraph(student.ToString()));
+                }
+                document.Close();
+                MessageBox.Show("Eksport udany", "Powodzenie", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Błąd przy eksportowaniu", "Wyjątek", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
+        }
+        private void MyExportCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if(Students != null)
+            {
+                if (Students.Count > 0)
+                    e.CanExecute = true;
+                else
+                    e.CanExecute = false;
             }
         }
     }
