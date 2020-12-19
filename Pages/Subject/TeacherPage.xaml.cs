@@ -97,6 +97,7 @@ namespace SBD.Pages.Subject
                 btn.Margin = new Thickness(5, 5, 5, 5);
                 btn.Padding = new Thickness(5, 5, 5, 5);
                 btn.HorizontalContentAlignment = HorizontalAlignment.Center;
+                btn.ToolTip = "Przejdź do listy uczniów.";
 
                 if (gList.Count == 0) // jezeli przedmiot nie jest przypisany do żadnej grupy
                 {

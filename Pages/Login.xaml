@@ -17,7 +17,7 @@
                 <Label Margin="5" Padding="5">Hasło:</Label>
                 <PasswordBox Name="password" Margin="5" Padding="5" MinWidth="100"></PasswordBox>
             </StackPanel>
-            <Button Margin="5" Padding="5" Click="onLogin" IsDefault="True">Zaloguj</Button>
+            <Button Margin="5" Padding="5" Click="onLogin" IsDefault="True" ToolTip="Wciśnij jeśli dane są poprawne">Zaloguj</Button>
         </StackPanel>
     </Grid>
 </Page>

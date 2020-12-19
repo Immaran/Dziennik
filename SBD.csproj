@@ -8,18 +8,10 @@
 
   <ItemGroup>
     <None Remove="applications_education.ico" />
-    <None Remove="Icon.ico" />
-    <None Remove="school.ico" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="applications_education.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Icon.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="school.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

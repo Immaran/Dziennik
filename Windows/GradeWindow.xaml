@@ -39,7 +39,7 @@
         </ComboBox>
         
         <Label                            Grid.Row="1" Grid.Column="0" Margin="5" Padding="5">Opis (z wydarzenia)</Label>
-        <ComboBox Name="DescriptionCBox"  Grid.Row="1" Grid.Column="1" Margin="5" Padding="5"/>
+        <ComboBox Name="DescriptionCBox"  Grid.Row="1" Grid.Column="1" Margin="5" Padding="5" ToolTip="Opcjonalny wybór gotowego opisu na podstawie opisu jednego z wydarzeń."/>
 
         <Label x:Name="DescriptionLabel" Grid.Row="2" Grid.Column="0" Margin="5" Padding="5">Opis</Label>
         <TextBox Name="Descritpion"      Grid.Row="2" Grid.Column="1" Margin="5" Padding="5" MinHeight="10"/>
