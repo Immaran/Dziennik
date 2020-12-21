@@ -8,6 +8,7 @@ using iTextSharp.text.pdf;
 using System.IO;
 using SBD.Models;
 using SBD.Windows;
+using System.Text;
 
 namespace SBD.Pages.Subject
 {
@@ -105,13 +106,13 @@ namespace SBD.Pages.Subject
             try
             {
                 // tworzenie nowego dokumentu do pisania w nim
-                Document document = new Document(PageSize.LETTER, 10, 10, 42, 35);
+                Document document = new Document(PageSize.A4, 10, 10, 20, 40);
 
                 // nazwa pliku pdf
                 string PathName = "/Lista Uczniów " + Subject.Name + ".pdf";
 
                 // zmienna pomocnicza do przechodzenia wyzej po katalogach
-                string currentPath = Directory.GetCurrentDirectory(); 
+                string currentPath = Directory.GetCurrentDirectory();
 
                 // dopóki nie dojdziemy do folderu Dziennik
                 while (!currentPath.EndsWith("Dziennik"))
@@ -128,20 +129,37 @@ namespace SBD.Pages.Subject
                 PdfWriter pdfWriter = PdfWriter.GetInstance(document, new FileStream(PathName, FileMode.Create));
                 document.Open();
 
+                // stworzenie tabeli do ktorej bedziemy wpisywac dane uczniow
+                PdfPTable table = new PdfPTable(3); // parametr konstruktora to liczba kolumn
+
+                // dodanie pierwszego wiersza z nazwą przedmiotu
+                PdfPCell cell = new PdfPCell(new Phrase(Subject.Name));
+                cell.Colspan = 3;
+                cell.HorizontalAlignment = 1; // 0=Left, 1=Centre, 2=Right
+                table.AddCell(cell);
+
+                // dodanie naglowkow tabeli
+                table.AddCell("Nr");                        // kolumna 1
+                table.AddCell(RemoveDiacritics("Imię"));    // kolumna 2
+                table.AddCell("Nazwisko");                  // kolumna 3
+
+                int counter = 1;    // zmienna pomocnicza do okreslania numeru danego ucznia w tabeli
                 // dodajemy po kolei uczniow z grupy do pdfa
                 foreach (Models.Student student in Students)
                 {
-                    document.Add(new Paragraph(student.ToString()));
+                    table.AddCell(counter++.ToString());
+                    // jezeli uczen ma drugie imie to do kolumny imie dodajemy tez drugie imie
+                    table.AddCell(RemoveDiacritics(student.FirstName + " " + student.SecondName));
+                    table.AddCell(RemoveDiacritics(student.Surname));
                 }
-
-                document.Close();
+                document.Add(table);    // dodanie skonstruowanej tabeli do dokumentu
+                document.Close();       // wymagane zamkniecie dokumentu
                 MessageBox.Show("Eksport udany", "Powodzenie", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            catch(Exception)
+            catch (Exception)
             {
                 MessageBox.Show("Błąd przy eksportowaniu", "Wyjątek", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
         }
         private void MyExportCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
@@ -152,6 +170,69 @@ namespace SBD.Pages.Subject
                 else
                     e.CanExecute = false;
             }
+        }
+        private string RemoveDiacritics(string text)
+        {
+            StringBuilder textCopy = new StringBuilder(text);
+            for(int i = 0; i < text.Length; i++)
+            {
+                switch(text[i])
+                {
+                    case 'ę':
+                        textCopy[i] = 'e';
+                        break;
+                    case 'ó':
+                        textCopy[i] = 'o';
+                        break;
+                    case 'ą':
+                        textCopy[i] = 'a';
+                        break;
+                    case 'ś':
+                        textCopy[i] = 's';
+                        break;
+                    case 'ł':
+                        textCopy[i] = 'l';
+                        break;
+                    case 'ć':
+                        textCopy[i] = 'c';
+                        break;
+                    case 'ń':
+                        textCopy[i] = 'n';
+                        break;
+                    case 'ż':
+                    case 'ź':
+                        textCopy[i] = 'z';
+                        break;
+                    case 'Ę':
+                        textCopy[i] = 'E';
+                        break;
+                    case 'Ó':
+                        textCopy[i] = 'O';
+                        break;
+                    case 'Ą':
+                        textCopy[i] = 'A';
+                        break;
+                    case 'Ś':
+                        textCopy[i] = 'S';
+                        break;
+                    case 'Ł':
+                        textCopy[i] = 'L';
+                        break;
+                    case 'C':
+                        textCopy[i] = 'C';
+                        break;
+                    case 'N':
+                        textCopy[i] = 'N';
+                        break;
+                    case 'Ż':
+                    case 'Ź':
+                        textCopy[i] = 'Z';
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return textCopy.ToString();
         }
     }
 }
