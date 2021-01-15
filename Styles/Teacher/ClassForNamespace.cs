@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SBD.Styles.Teacher
 {
-    class EmptyClasscs
+    class ClassForNamespace
     {
     }
 }

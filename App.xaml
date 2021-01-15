@@ -6,8 +6,9 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles/Teacher/TeacherListTemplate.xaml"/>
-                <ResourceDictionary x:Name="TeacherButton" Source="Styles/Teacher/TeacherButtonTemplate.xaml"/>
+                <ResourceDictionary Source="Styles/Teacher/ListBoxTemplate.xaml"/>
+                <ResourceDictionary Source="Styles/Teacher/ButtonTemplate.xaml"/>
+                <ResourceDictionary Source="Styles/Teacher/ComboBoxTemplate.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

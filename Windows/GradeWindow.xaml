@@ -19,7 +19,12 @@
         </Grid.RowDefinitions>
         
         <Label                           Grid.Row="0" Grid.Column="0" Margin="5" Padding="5">Wartość</Label>
-        <ComboBox Name="GradesComboBox"  Grid.Row="0" Grid.Column="1" Margin="5" Padding="5">
+        <ComboBox Name="GradesComboBox"  Grid.Row="0" Grid.Column="1" Margin="5" Padding="5" 
+                  Style="{StaticResource TeacherComboBox}">
+            <ComboBox.Resources>
+                <Style TargetType="ScrollBar" BasedOn="{StaticResource TeacherScrollBar}"/>
+                <Style TargetType="ComboBoxItem" BasedOn="{StaticResource TeacherComboBoxItem}"/>
+            </ComboBox.Resources>
             <ComboBoxItem>1</ComboBoxItem>
             <ComboBoxItem>1+</ComboBoxItem>
             <ComboBoxItem>2-</ComboBoxItem>
@@ -39,7 +44,13 @@
         </ComboBox>
         
         <Label                            Grid.Row="1" Grid.Column="0" Margin="5" Padding="5">Opis (z wydarzenia)</Label>
-        <ComboBox Name="DescriptionCBox"  Grid.Row="1" Grid.Column="1" Margin="5" Padding="5" ToolTip="Opcjonalny wybór gotowego opisu na podstawie opisu jednego z wydarzeń."/>
+        <ComboBox Name="DescriptionCBox"  Grid.Row="1" Grid.Column="1" Margin="5" Padding="5" 
+                  ToolTip="Opcjonalny wybór gotowego opisu na podstawie opisu jednego z wydarzeń."
+                  Style="{StaticResource TeacherComboBox}">
+            <ComboBox.Resources>
+                <Style TargetType="ScrollBar" BasedOn="{StaticResource TeacherScrollBar}"/>
+            </ComboBox.Resources>
+        </ComboBox>
 
         <Label x:Name="DescriptionLabel" Grid.Row="2" Grid.Column="0" Margin="5" Padding="5">Opis</Label>
         <TextBox Name="Descritpion"      Grid.Row="2" Grid.Column="1" Margin="5" Padding="5" MinHeight="10"/>
