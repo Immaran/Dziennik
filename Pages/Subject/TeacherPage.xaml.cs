@@ -94,6 +94,7 @@ namespace SBD.Pages.Subject
 
                 Button btn = new Button(); // przycisk z nawami przedmiotow
 
+                btn.Style = (Style)Application.Current.FindResource("TeacherButton");
                 btn.Margin = new Thickness(5, 5, 5, 5);
                 btn.Padding = new Thickness(5, 5, 5, 5);
                 btn.HorizontalContentAlignment = HorizontalAlignment.Center;

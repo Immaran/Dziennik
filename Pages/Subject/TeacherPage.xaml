@@ -15,6 +15,5 @@
         </Grid.RowDefinitions>
         <Label Grid.Row="0" FontSize="30" HorizontalAlignment="Center">Przedmioty</Label>
         <StackPanel Name="SubjectPanel" Grid.Row="1"/>
-        <!--<ListBox Name="SubjectListBox" Grid.Row="1"/>-->
     </Grid>
 </Page>

@@ -31,9 +31,9 @@
         <Label Grid.Row="0" FontSize="30" HorizontalAlignment="Center">Wydarzenia</Label>
 
         <WrapPanel Grid.Row="1" Margin="5" HorizontalAlignment="Right">
-            <Button Click="CreateEvent" Margin="3" Padding="5">Stwórz wydarzenie</Button>
-            <Button Name="Edit" Click="EditEvent" Margin="3" Padding="5" IsEnabled="False">Edytuj wydarzenie</Button>
-            <Button Name="Remove" Click="RemoveEvent" Margin="3" Padding="5" IsEnabled="False">Usuń wydarzenie</Button>
+            <Button Click="CreateEvent" Margin="3" Padding="5" Style="{StaticResource TeacherButton}">Stwórz wydarzenie</Button>
+            <Button Name="Edit" Click="EditEvent" Margin="3" Padding="5" IsEnabled="False" Style="{StaticResource TeacherButton}">Edytuj wydarzenie</Button>
+            <Button Name="Remove" Click="RemoveEvent" Margin="3" Padding="5" IsEnabled="False" Style="{StaticResource TeacherButton}">Usuń wydarzenie</Button>
         </WrapPanel>
 
         <ListBox Name="EventListBox" Grid.Row="2" Padding="5"
@@ -42,7 +42,13 @@
                 ScrollViewer.CanContentScroll="True" 
                 VirtualizingPanel.ScrollUnit="Pixel" 
                 SelectionChanged="EventListBox_SelectionChanged"
-                ItemTemplate="{StaticResource myTemplate}"/>
+                ItemTemplate="{StaticResource myTemplate}"
+                Style="{StaticResource TeacherListBox}">
+            <ListBox.Resources>
+                <Style TargetType="ScrollBar" BasedOn="{StaticResource TeacherScrollBar}"/>
+                <Style TargetType="ListBoxItem" BasedOn="{StaticResource TeacherListBoxItem}"/>
+            </ListBox.Resources>
+        </ListBox>
         
     </Grid>
 </Page>

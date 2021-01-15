@@ -25,12 +25,18 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Name="MainLabel" Grid.Row="0" FontSize="30" HorizontalAlignment="Center"/>
-        <Button Grid.Row="1" Click="RefreshClick" HorizontalAlignment="Right" Margin="5" Padding="5">Odśwież</Button>
+        <Button Grid.Row="1" Click="RefreshClick" HorizontalAlignment="Right" Margin="5" Padding="5" Style="{StaticResource TeacherButton}">Odśwież</Button>
         <ListBox Name="MessageBox" Grid.Row="2" Padding="5"
                 ScrollViewer.VerticalScrollBarVisibility="Auto"
                 ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                 ScrollViewer.CanContentScroll="True" 
                 VirtualizingPanel.ScrollUnit="Pixel" 
-                ItemTemplate="{StaticResource myTemplate}"/>
+                ItemTemplate="{StaticResource myTemplate}"
+                Style="{StaticResource TeacherListBox}">
+            <ListBox.Resources>
+                <Style TargetType="ScrollBar" BasedOn="{StaticResource TeacherScrollBar}"/>
+                <Style TargetType="ListBoxItem" BasedOn="{StaticResource TeacherListBoxItem}"/>
+            </ListBox.Resources>
+        </ListBox>
     </Grid>
 </Page>

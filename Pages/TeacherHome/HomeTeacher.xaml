@@ -33,8 +33,8 @@
         </Menu>
         <Frame Name="navigator" Grid.Row="1" NavigationUIVisibility="Hidden"/>
         <WrapPanel Grid.Row="2">
-            <Button Name="goBackButton" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5" Padding="5" Click="ClickGoBack">Wróć</Button>
-            <Button Name="goForwardButton" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5" Padding="5" Click="ClickGoForward">Naprzód</Button>
+            <Button Name="goBackButton" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5" Padding="5" Click="ClickGoBack" Style="{StaticResource TeacherButton}">Wróć</Button>
+            <Button Name="goForwardButton" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5" Padding="5" Click="ClickGoForward" Style="{StaticResource TeacherButton}">Naprzód</Button>
         </WrapPanel>
     </Grid>
 </Page>

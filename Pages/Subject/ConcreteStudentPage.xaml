@@ -18,11 +18,17 @@
         <Label Name="StudentData" Grid.Row="0" HorizontalAlignment="Center" Margin="5" Padding="5" FontSize="30"/>
         
         <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button Margin="5" Padding="5" Click="AddClick"     Name="Add">Dodaj ocenę</Button>
-            <Button Margin="5" Padding="5" Click="EditClick"    Name="Edit"     IsEnabled="False">Edytuj ocenę</Button>
-            <Button Margin="5" Padding="5" Click="RemoveClick"  Name="Remove"   IsEnabled="False">Usuń ocenę</Button>
+            <Button Margin="5" Padding="5" Click="AddClick"     Name="Add" Style="{StaticResource TeacherButton}">Dodaj ocenę</Button>
+            <Button Margin="5" Padding="5" Click="EditClick"    Name="Edit"     IsEnabled="False" Style="{StaticResource TeacherButton}">Edytuj ocenę</Button>
+            <Button Margin="5" Padding="5" Click="RemoveClick"  Name="Remove"   IsEnabled="False" Style="{StaticResource TeacherButton}">Usuń ocenę</Button>
         </StackPanel>
         
-        <ListBox Name="GradesListBox" Grid.Row="2" SelectionChanged="LB_SelectionChanged"/>
+        <ListBox Name="GradesListBox" Grid.Row="2" SelectionChanged="LB_SelectionChanged"
+                 Style="{StaticResource TeacherListBox}">
+            <ListBox.Resources>
+                <Style TargetType="ScrollBar" BasedOn="{StaticResource TeacherScrollBar}"/>
+                <Style TargetType="ListBoxItem" BasedOn="{StaticResource TeacherListBoxItem}"/>
+            </ListBox.Resources>
+        </ListBox>
     </Grid>
 </Page>

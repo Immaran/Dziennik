@@ -45,8 +45,8 @@
         <TextBox Name="Descritpion"      Grid.Row="2" Grid.Column="1" Margin="5" Padding="5" MinHeight="10"/>
         
         <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button IsDefault="True" Click="OkClick"    Margin="5" Padding="15,3">OK</Button>
-            <Button IsCancel="True"                     Margin="5" Padding="15,3">Anuluj</Button>
+            <Button IsDefault="True" Click="OkClick"    Margin="5" Padding="15,3" Style="{StaticResource TeacherButton}">OK</Button>
+            <Button IsCancel="True"                     Margin="5" Padding="15,3" Style="{StaticResource TeacherButton}">Anuluj</Button>
         </StackPanel>
     </Grid>
 </Window>
