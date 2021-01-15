@@ -1,26 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:SBD.Styles.Teacher">
-    <!--#region kolory-->
-    
-        <!--Control colors.-->
-
-        <Color x:Key="SelectedBackgroundColor">CornflowerBlue</Color>
-
-        <Color x:Key="ControlLightColor">LightGreen</Color>
-        <Color x:Key="ControlMediumColor">LightBlue</Color>
-
-        <Color x:Key="ControlMouseOverColor">SpringGreen</Color>
-        <Color x:Key="ControlPressedColor">LightBlue</Color>
-
-        <Color x:Key="GlyphColor">Black</Color>
-
-        <!--Border colors-->
-        <Color x:Key="BorderLightColor">#FFCCCCCC</Color>
-        <Color x:Key="BorderMediumColor">#FF888888</Color>
-        <Color x:Key="BorderDarkColor">#FF444444</Color>
-    
-    <!--#endregion kolory-->
 
     <!--#region ComboBoxToggleButton-->
     <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">

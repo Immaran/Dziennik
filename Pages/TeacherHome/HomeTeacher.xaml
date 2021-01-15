@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:SBD.Pages.TeacherHome"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="HomeTeacher" Loaded="Page_Loaded">
+      Title="HomeTeacher" Loaded="Page_Loaded" Background="{StaticResource PageBackground}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -14,7 +14,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Menu>
+        <Menu Background="Transparent">
             <MenuItem Header=" ... " BorderBrush="Black" Margin="5">
                 <MenuItem Header="Przedmioty" Click="ClickSubject"/>
                 <MenuItem Header="Wydarzenia" Click="ClickEvent"/>

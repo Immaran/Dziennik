@@ -2,7 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:SBD.Styles.Teacher">
 
-    <!--#region przycisk-->
     <Style x:Key="TeacherButton" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
@@ -33,9 +32,9 @@
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="Border"
                                     Property="TextBlock.Foreground"
-                                    Value="LightGray" />
+                                    Value="WhiteSmoke" />
                             <Setter TargetName="Border" Property="Background"
-                                    Value="SlateGray" />
+                                    Value="LightSteelBlue" />
                         </Trigger>
                         <Trigger Property ="IsKeyboardFocused" Value ="True">
                             <Setter TargetName ="FocusCue" Property ="Visibility"
@@ -46,6 +45,5 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <!--#endregion przycisk-->
-    
+
 </ResourceDictionary>
