@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Wydarzenie" SizeToContent="Height" Width="300" MinWidth="285" MinHeight="230" 
-        Loaded="Window_Loaded" Background="{StaticResource PageBackground}">
+        Loaded="Window_Loaded" Background="{StaticResource TeacherPageBackground}">
     
     <Grid>
         <Grid.RowDefinitions>
@@ -39,7 +39,7 @@
                         Background="Transparent" TextBlock.FontSize="15">
                 <DatePicker.Resources>
                     <Style TargetType="DatePickerTextBox">
-                        <Setter Property="Background" Value="{StaticResource BackgroundBrush}"/>
+                        <Setter Property="Background" Value="{StaticResource TeacherBackgroundBrush}"/>
                     </Style>
                 </DatePicker.Resources>
             </DatePicker>

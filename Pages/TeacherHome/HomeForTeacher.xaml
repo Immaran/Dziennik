@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:SBD.Pages.TeacherHome"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="HomeForTeacher" Loaded="Page_Loaded" Background="{StaticResource PageBackground}">
+      Title="HomeForTeacher" Loaded="Page_Loaded" Background="{StaticResource TeacherPageBackground}">
 
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">

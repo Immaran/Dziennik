@@ -7,7 +7,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border Name="Border" BorderBrush="CornflowerBlue" BorderThickness="2"
-                            CornerRadius="3 3 3 3" Background="{StaticResource BackgroundBrush}"
+                            CornerRadius="3 3 3 3" Background="{StaticResource TeacherBackgroundBrush}"
                             TextBlock.Foreground="Black">
                         <Grid >
                             <Rectangle Name="FocusCue" Visibility =" Hidden"
@@ -21,11 +21,11 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="Border" Property="Background"
-                                    Value="{StaticResource MouseOver}" />
+                                    Value="{StaticResource TeacherMouseOver}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="Border" Property="Background"
-                                    Value="{StaticResource PressedBrush}" />
+                                    Value="{StaticResource TeacherPressedBrush}" />
                             <Setter TargetName="Border" Property="BorderBrush"
                                     Value="DodgerBlue" />
                         </Trigger>

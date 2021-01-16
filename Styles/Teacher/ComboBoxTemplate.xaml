@@ -2,6 +2,27 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:SBD.Styles.Teacher">
 
+    <!--#region kolory combobox-->
+
+    <!--Control colors.-->
+
+    <Color x:Key="SelectedBackgroundColor">CornflowerBlue</Color>
+
+    <Color x:Key="ControlLightColor">LightGreen</Color>
+    <Color x:Key="ControlMediumColor">LightBlue</Color>
+
+    <Color x:Key="ControlMouseOverColor">SpringGreen</Color>
+    <Color x:Key="ControlPressedColor">LightBlue</Color>
+
+    <Color x:Key="GlyphColor">Black</Color>
+
+    <!--Border colors-->
+    <Color x:Key="BorderLightColor">#FFCCCCCC</Color>
+    <Color x:Key="BorderMediumColor">#FF888888</Color>
+    <Color x:Key="BorderDarkColor">#FF444444</Color>
+
+    <!--#endregion kolory combobox-->
+    
     <!--#region ComboBoxToggleButton-->
     <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
         <Grid>
@@ -77,7 +98,7 @@
 
     <!--#region ComboBoxTextBox-->
     <ControlTemplate x:Key="ComboBoxTextBox" TargetType="{x:Type TextBox}">
-        <Border x:Name="PART_ContentHost" Focusable="False" Background="{StaticResource BackgroundBrush}" />
+        <Border x:Name="PART_ContentHost" Focusable="False" Background="{StaticResource TeacherBackgroundBrush}" />
     </ControlTemplate>
     <!--#endregion ComboBoxTextBox-->
 
@@ -161,7 +182,7 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="Border" Property="Background"
-                                    Value="{StaticResource MouseOver}" />
+                                    Value="{StaticResource TeacherMouseOver}" />
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter TargetName="Border" Property="Background"

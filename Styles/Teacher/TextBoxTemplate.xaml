@@ -2,6 +2,13 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:SBD.Styles.Teacher">
 
+    <!--#region kolory TextBox-->
+    <Color x:Key="TextBoxBackgroundColor">White</Color>
+    <Color x:Key="TextBoxBorderColor">Gray</Color>
+    <SolidColorBrush x:Key="TextBoxMouseOver">Green</SolidColorBrush>
+    <SolidColorBrush x:Key="TextBoxFocused">#e6ffe6</SolidColorBrush>
+    <!--#endregion kolory TextBox-->
+    
     <Style x:Key="TeacherTextBox" TargetType="{x:Type TextBox}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />

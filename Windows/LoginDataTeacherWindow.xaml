@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SBD.Windows"
         mc:Ignorable="d"
         Title="Zmiana hasła" SizeToContent="Height" Width="325" MinWidth="250" MinHeight="185" 
-        Background="{StaticResource PageBackground}">
+        Background="{StaticResource TeacherPageBackground}">
     
     <Grid>
         <Grid.ColumnDefinitions>

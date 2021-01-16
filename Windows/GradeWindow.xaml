@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Ocena" SizeToContent="Height" Width="300" MinWidth="225" MinHeight="182" 
-        Loaded="Window_Loaded" Background="{StaticResource PageBackground}">
+        Loaded="Window_Loaded" Background="{StaticResource TeacherPageBackground}">
     
     <Grid>
         <Grid.ColumnDefinitions>

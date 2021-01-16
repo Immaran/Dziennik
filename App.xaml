@@ -6,7 +6,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles/Teacher/Colors.xaml"/>
+                <ResourceDictionary Source="Styles/Global/Colors.xaml"/>
                 <ResourceDictionary Source="Styles/Teacher/ListBoxTemplate.xaml"/>
                 <ResourceDictionary Source="Styles/Teacher/ButtonTemplate.xaml"/>
                 <ResourceDictionary Source="Styles/Teacher/ComboBoxTemplate.xaml"/>
