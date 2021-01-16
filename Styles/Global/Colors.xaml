@@ -12,4 +12,14 @@
     
     <!--#endregion teacher-->
 
+    <!--#region student-->
+
+    <LinearGradientBrush x:Key="StudentPageBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#ffddcc" Offset="0"/>
+        <GradientStop Color="#ffe6e6" Offset="0.5"/>
+        <GradientStop Color="#e6e6e6" Offset="1"/>
+    </LinearGradientBrush >
+
+    <!--#endregion student-->
+
 </ResourceDictionary>

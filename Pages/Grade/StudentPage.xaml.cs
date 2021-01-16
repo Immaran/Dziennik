@@ -67,7 +67,18 @@ namespace SBD.Pages.Grade
                     label.FontSize = 20;
                     label.Content = subject.Name;
                     StackPanel.Children.Add(label);
+
                     ListBox listBox = new ListBox();
+                    listBox.Style = (Style)Application.Current.FindResource("StudentListBox");
+
+                    //listBox.Resources.Add(subject.Name, (Style)Application.Current.FindResource("StudentScrollBar"));
+                    //Style style = new Style();
+                    //style.TargetType = typeof(ListBoxItem);
+                    //style.BasedOn = (Style)Application.Current.FindResource("StudentListBoxItem");
+                    //listBox.Resources.Add(subject.Name, style);
+                    //listBox.Resources
+                    //listBox.Resources.Add(subject.Name, (Style)Application.Current.FindResource("StudentListBoxItem"));
+
                     listBox.ItemsSource = GradesForSubject.Last();
                     StackPanel.Children.Add(listBox);
                 }

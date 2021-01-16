@@ -4,7 +4,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Nowa wiadomość" SizeToContent="Height" Width="300" MinWidth="200" MinHeight="200" Loaded="Window_Loaded">
+        Title="Nowa wiadomość" SizeToContent="Height" Width="300" 
+        MinWidth="200" MinHeight="200" Loaded="Window_Loaded" Background="{StaticResource StudentPageBackground}">
     
     <Grid>
         <Grid.RowDefinitions>
@@ -19,11 +20,18 @@
         </Grid.ColumnDefinitions>
         
         <Label                        Grid.Row="0" Grid.Column="0" Margin="5" Padding="5">Odbiorca:</Label>
-        <ComboBox Name="RecipientBox" Grid.Row="0" Grid.Column="1" Margin="5" Padding="5"/>
+        <ComboBox Name="RecipientBox" Grid.Row="0" Grid.Column="1" Margin="5" Padding="5"
+                  Style="{StaticResource StudentComboBox}">
+            <ComboBox.Resources>
+                <Style TargetType="ScrollBar" BasedOn="{StaticResource StudentScrollBar}"/>
+                <Style TargetType="ComboBoxItem" BasedOn="{StaticResource StudentComboBoxItem}"/>
+            </ComboBox.Resources>
+        </ComboBox>
         
-        <TextBox Name="Message"     Grid.Row="1" Grid.ColumnSpan="2" Margin="5" Padding="5" MinHeight="40" AcceptsReturn="True" AcceptsTab="True"/>
-        
-        <Button Click="SendClick"   Grid.Row="2" Grid.ColumnSpan="2" Margin="5,0" Padding="5">Wyślij</Button>
-        <Button IsCancel="True"     Grid.Row="3" Grid.ColumnSpan="2" Margin="5" Padding="5">Anuluj</Button>
+        <TextBox Name="Message"     Grid.Row="1" Grid.ColumnSpan="2" Margin="5" Padding="5" MinHeight="40" 
+                 AcceptsReturn="True" AcceptsTab="True" Style="{StaticResource StudentTextBox}"/>
+
+        <Button Click="SendClick"   Grid.Row="2" Grid.ColumnSpan="2" Margin="5,0" Padding="5" Style="{StaticResource StudentButton}">Wyślij</Button>
+        <Button IsCancel="True"     Grid.Row="3" Grid.ColumnSpan="2" Margin="5" Padding="5" Style="{StaticResource StudentButton}">Anuluj</Button>
     </Grid>
 </Window>

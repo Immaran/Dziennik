@@ -60,7 +60,7 @@ namespace SBD.Pages.Group
 
                 foreach (Models.Student student in _context.Student)
                 {
-                    foreach (Models.GroupStudent groupstudent in student.GroupStudent)
+                    foreach (GroupStudent groupstudent in student.GroupStudent)
                     {
                         if (group.Id == groupstudent.GroupId)
                         {
@@ -73,6 +73,9 @@ namespace SBD.Pages.Group
                 Label lbl = initializeLabel(groupName);
                 Panel.Children.Add(lbl);
                 Button btn = new Button();
+
+                btn.Style = (Style)Application.Current.FindResource("StudentButton");
+
                 btn.Margin = new Thickness(5, 5, 5, 5);
                 btn.Padding = new Thickness(5, 5, 5, 5);
                 btn.HorizontalContentAlignment = HorizontalAlignment.Center;
@@ -190,6 +193,7 @@ namespace SBD.Pages.Group
                     Label lbl = initializeLabel(subjectName);
                     Panel.Children.Add(lbl);
                     Button btn = new Button();
+                    btn.Style = (Style)Application.Current.FindResource("StudentButton");
                     btn.Margin = new Thickness(5, 5, 5, 5);
                     btn.Padding = new Thickness(5, 5, 5, 5);
                     btn.Content = "Przejdź";

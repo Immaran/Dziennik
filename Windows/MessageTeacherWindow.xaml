@@ -28,7 +28,8 @@
             </ComboBox.Resources>
         </ComboBox>
 
-        <TextBox Name="Message"     Grid.Row="1" Grid.ColumnSpan="2" Margin="5" Padding="5" MinHeight="40" AcceptsReturn="True" AcceptsTab="True" Style="{StaticResource TeacherTextBox}"/>
+        <TextBox Name="Message"     Grid.Row="1" Grid.ColumnSpan="2" Margin="5" Padding="5" MinHeight="40" 
+                 AcceptsReturn="True" AcceptsTab="True" Style="{StaticResource TeacherTextBox}"/>
 
         <Button Click="SendClick"   Grid.Row="2" Grid.ColumnSpan="2" Margin="5,0" Padding="5" Style="{StaticResource TeacherButton}">Wyślij</Button>
         <Button IsCancel="True"     Grid.Row="3" Grid.ColumnSpan="2" Margin="5" Padding="5" Style="{StaticResource TeacherButton}">Anuluj</Button>

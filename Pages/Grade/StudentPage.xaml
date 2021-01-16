@@ -7,6 +7,31 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="StudentPage" Loaded="Page_Loaded">
 
+    <Page.Resources>
+        <Style x:Key="{x:Type ListBoxItem}" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border Name="Border">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background"
+                                    Value="{Binding RelativeSource={RelativeSource Self}, Path=BorderBrush}"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="Background"
+                                    Value="{Binding RelativeSource={RelativeSource Self}, Path=BorderBrush}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="{x:Type ScrollBar}"  TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource StudentScrollBar}"/>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -14,6 +39,5 @@
         </Grid.RowDefinitions>
         <Label Grid.Row="0" FontSize="30" HorizontalAlignment="Center">Oceny</Label>
         <StackPanel Grid.Row="1" Name="StackPanel" HorizontalAlignment="Stretch"/>
-        <!--<ListBox Name="GradeListBox" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" VirtualizingPanel.ScrollUnit="Pixel"/>-->
     </Grid>
 </Page>

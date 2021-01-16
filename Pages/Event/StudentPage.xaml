@@ -34,7 +34,13 @@
                 ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                 ScrollViewer.CanContentScroll="True" 
                 VirtualizingPanel.ScrollUnit="Pixel" 
-                ItemTemplate="{StaticResource myTemplate}"/>
+                ItemTemplate="{StaticResource myTemplate}"
+                Style="{StaticResource StudentListBox}">
+            <ListBox.Resources>
+                <Style TargetType="ScrollBar" BasedOn="{StaticResource StudentScrollBar}"/>
+                <Style TargetType="ListBoxItem" BasedOn="{StaticResource StudentListBoxItem}"/>
+            </ListBox.Resources>
+        </ListBox>
                  
     </Grid>
 </Page>

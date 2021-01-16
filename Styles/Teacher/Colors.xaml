@@ -13,8 +13,9 @@
     <!--#endregion kolory ogolne-->
     
     <!--#region kolory button-->
+    <SolidColorBrush x:Key="ButtonBorderBrush" Color="CornflowerBlue"/>
     <SolidColorBrush x:Key="ButtonForeground" Color="Black"/>
-    <SolidColorBrush x:Key="ButtonBorderBrush" Color="DodgerBlue"/>
+    <SolidColorBrush x:Key="ButtonPressedBorderBrush" Color="DodgerBlue"/>
     <SolidColorBrush x:Key="ButtonDisabledForeground" Color="WhiteSmoke"/>
     <SolidColorBrush x:Key="ButtonDisabledBackground" Color="LightSteelBlue"/>
     <!--#endregion kolory button-->

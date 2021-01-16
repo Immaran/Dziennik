@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:SBD.Pages.StudentHome"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="HomeStudent" Loaded="Page_Loaded">
+      Title="HomeStudent" Loaded="Page_Loaded" Background="{StaticResource StudentPageBackground}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -14,7 +14,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Menu>
+        <Menu Background="Transparent">
             <MenuItem Header=" ... " BorderBrush="Black" Margin="5">
                 <MenuItem Header="Oceny" Click="ClickGrade"/>
                 <MenuItem Header="Wydarzenia" Click="ClickEvent"/>
@@ -34,8 +34,8 @@
         </Menu>
         <Frame Name="navigator" Grid.Row="1" NavigationUIVisibility="Hidden"/>
         <WrapPanel Grid.Row="2">
-            <Button Name="goBackButton" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5" Padding="5" Click="ClickGoBack">Wróć</Button>
-            <Button Name="goForwardButton" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5" Padding="5" Click="ClickGoForward">Naprzód</Button>
+            <Button Name="goBackButton" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5" Padding="5" Click="ClickGoBack" Style="{StaticResource StudentButton}">Wróć</Button>
+            <Button Name="goForwardButton" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5" Padding="5" Click="ClickGoForward" Style="{StaticResource StudentButton}">Naprzód</Button>
         </WrapPanel>
     </Grid>
 </Page>

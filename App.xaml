@@ -12,6 +12,11 @@
                 <ResourceDictionary Source="Styles/Teacher/ComboBoxTemplate.xaml"/>
                 <ResourceDictionary Source="Styles/Teacher/TextBoxTemplate.xaml"/>
                 <ResourceDictionary Source="Styles/Teacher/PasswordBoxTemplate.xaml"/>
+                <ResourceDictionary Source="Styles/Student/ListBoxTemplate.xaml"/>
+                <ResourceDictionary Source="Styles/Student/ButtonTemplate.xaml"/>
+                <ResourceDictionary Source="Styles/Student/ComboBoxTemplate.xaml"/>
+                <ResourceDictionary Source="Styles/Student/TextBoxTemplate.xaml"/>
+                <ResourceDictionary Source="Styles/Student/PasswordBoxTemplate.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
