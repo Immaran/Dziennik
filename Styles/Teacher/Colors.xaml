@@ -9,34 +9,20 @@
     </LinearGradientBrush >
     <SolidColorBrush x:Key="MouseOver" Color="SpringGreen"/>
     <SolidColorBrush x:Key="PressedBrush" Color="LightBlue"/>
+    <SolidColorBrush x:Key="GlyphBrush" Color="Black"/>
     <!--#endregion kolory ogolne-->
     
-    <!--#region kolory combobox-->
-
-    <!--Control colors.-->
-
-    <Color x:Key="SelectedBackgroundColor">CornflowerBlue</Color>
-
-    <Color x:Key="ControlLightColor">LightGreen</Color>
-    <Color x:Key="ControlMediumColor">LightBlue</Color>
-
-    <Color x:Key="ControlMouseOverColor">SpringGreen</Color>
-    <Color x:Key="ControlPressedColor">LightBlue</Color>
-
-    <Color x:Key="GlyphColor">Black</Color>
-
-    <!--Border colors-->
-    <Color x:Key="BorderLightColor">#FFCCCCCC</Color>
-    <Color x:Key="BorderMediumColor">#FF888888</Color>
-    <Color x:Key="BorderDarkColor">#FF444444</Color>
-
-    <!--#endregion kolory combobox-->
+    <!--#region kolory button-->
+    <SolidColorBrush x:Key="ButtonForeground" Color="Black"/>
+    <SolidColorBrush x:Key="ButtonBorderBrush" Color="DodgerBlue"/>
+    <SolidColorBrush x:Key="ButtonDisabledForeground" Color="WhiteSmoke"/>
+    <SolidColorBrush x:Key="ButtonDisabledBackground" Color="LightSteelBlue"/>
+    <!--#endregion kolory button-->
 
     <!--#region kolory listbox-->
-    <SolidColorBrush x:Key="ListBoxSelected" Color="CornflowerBlue"/>
-    <SolidColorBrush x:Key="StandardBorderBrush" Color="Green"/>
-    <SolidColorBrush x:Key="StandardBrush" Color="LightGreen"/>
-    <SolidColorBrush x:Key="GlyphBrush" Color="Black"/>
+        <SolidColorBrush x:Key="ListBoxSelected" Color="CornflowerBlue"/>
+        <SolidColorBrush x:Key="StandardBorderBrush" Color="Green"/>
+        <SolidColorBrush x:Key="StandardBrush" Color="LightGreen"/>
     <!--#endregion kolory listbox-->
 
     <!--#region kolory TextBox-->

@@ -12,69 +12,27 @@
                 <ColumnDefinition />
                 <ColumnDefinition Width="15" />
             </Grid.ColumnDefinitions>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroup x:Name="CommonStates">
-                    <VisualState x:Name="Normal" />
-                    <VisualState x:Name="MouseOver">
-                        <Storyboard>
-                            <ColorAnimationUsingKeyFrames 
-                                    Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)"
-                                    Storyboard.TargetName="Border">
-                                <EasingColorKeyFrame KeyTime="0" Value="{StaticResource ControlMouseOverColor}" />
-                            </ColorAnimationUsingKeyFrames>
-                        </Storyboard>
-                    </VisualState>
-                    <VisualState x:Name="Pressed" />
-                </VisualStateGroup>
-                <VisualStateGroup x:Name="CheckStates">
-                    <VisualState x:Name="Checked">
-                        <Storyboard>
-                            <ColorAnimationUsingKeyFrames 
-                                    Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)"
-                                    Storyboard.TargetName="Border">
-                                <EasingColorKeyFrame KeyTime="0" Value="{StaticResource ControlPressedColor}" />
-                            </ColorAnimationUsingKeyFrames>
-                        </Storyboard>
-                    </VisualState>
-                    <VisualState x:Name="Unchecked" />
-                    <VisualState x:Name="Indeterminate" />
-                </VisualStateGroup>
-            </VisualStateManager.VisualStateGroups>
-            <Border x:Name="Border" Grid.ColumnSpan="2" CornerRadius="1" BorderThickness="1">
-                <Border.BorderBrush>
-                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                        <GradientStop Color="{DynamicResource BorderLightColor}" Offset="0" />
-                        <GradientStop Color="{DynamicResource BorderDarkColor}" Offset="1" />
-                    </LinearGradientBrush>
-                </Border.BorderBrush>
-                <Border.Background>
-
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <LinearGradientBrush.GradientStops>
-                            <GradientStopCollection>
-                                <GradientStop Color="{DynamicResource ControlLightColor}" />
-                                <GradientStop Color="{DynamicResource ControlMediumColor}" Offset="1.0" />
-                            </GradientStopCollection>
-                        </LinearGradientBrush.GradientStops>
-                    </LinearGradientBrush>
-
-                </Border.Background>
-            </Border>
-            <Border Grid.Column="0" CornerRadius="2,0,0,2" Margin="1" >
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="LightGreen" Offset="0"/>
-                        <GradientStop Color="LightBlue" Offset="1"/>
-                    </LinearGradientBrush >
-                </Border.Background>
-            </Border>
+            <Border x:Name="Border" Grid.ColumnSpan="2" CornerRadius="1" BorderThickness="1" 
+                    Background="{StaticResource BackgroundBrush}" 
+                    BorderBrush="{StaticResource StandardBorderBrush}"/>
+            <Border Grid.Column="0" CornerRadius="2,0,0,2" Margin="1" 
+                    Background="{StaticResource BackgroundBrush}"/>
             <Path x:Name="Arrow" Grid.Column="1" HorizontalAlignment="Center"
-                    VerticalAlignment="Center" Data="M 0 0 L 4 4 L 8 0 Z" >
-                <Path.Fill>
-                    <SolidColorBrush Color="{DynamicResource GlyphColor}"/>
-                </Path.Fill>
-            </Path>
+                    VerticalAlignment="Center" Data="M 0 0 L 4 4 L 8 0 Z" 
+                    Fill="{StaticResource GlyphBrush}"/>
         </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="Border" Property="Background"
+                                    Value="{StaticResource MouseOver}" />
+            </Trigger>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter TargetName="Border" Property="Background"
+                                    Value="{StaticResource PressedBrush}" />
+                <Setter TargetName="Border"
+                                    Property="TextBlock.Foreground" Value="White" />
+            </Trigger>
+        </ControlTemplate.Triggers>
     </ControlTemplate>
     <!--#endregion ComboBoxToggleButton-->
 
@@ -116,17 +74,9 @@
                             <Grid x:Name="DropDown" SnapsToDevicePixels="True"
                                     MinWidth="{TemplateBinding ActualWidth}"
                                     MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                                <Border x:Name="DropDownBorder" BorderThickness="1">
-                                    <Border.BorderBrush>
-                                        <SolidColorBrush Color="{StaticResource BorderMediumColor}" />
-                                    </Border.BorderBrush>
-                                    <Border.Background>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                            <GradientStop Color="LightGreen" Offset="0"/>
-                                            <GradientStop Color="LightBlue" Offset="1"/>
-                                        </LinearGradientBrush >
-                                    </Border.Background>
-                                </Border>
+                                <Border x:Name="DropDownBorder" BorderThickness="1" 
+                                        BorderBrush="{StaticResource StandardBorderBrush}"
+                                        Background="{StaticResource BackgroundBrush}"/>
                                 <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
                                     <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
                                 </ScrollViewer>

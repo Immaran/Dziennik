@@ -11,7 +11,7 @@
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border Name="Border" BorderBrush="CornflowerBlue" BorderThickness="2"
                             CornerRadius="3 3 3 3" Background="{StaticResource BackgroundBrush}"
-                            TextBlock.Foreground="Black">
+                            TextBlock.Foreground="{StaticResource ButtonForeground}">
                         <Grid >
                             <Rectangle Name="FocusCue" Visibility =" Hidden"
                                 Stroke ="Black" StrokeThickness ="1"
@@ -30,14 +30,14 @@
                             <Setter TargetName="Border" Property="Background"
                                     Value="{StaticResource PressedBrush}" />
                             <Setter TargetName="Border" Property="BorderBrush"
-                                    Value="DodgerBlue" />
+                                    Value="{StaticResource ButtonBorderBrush}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="Border"
                                     Property="TextBlock.Foreground"
-                                    Value="WhiteSmoke" />
+                                    Value="{StaticResource ButtonDisabledForeground}" />
                             <Setter TargetName="Border" Property="Background"
-                                    Value="LightSteelBlue" />
+                                    Value="{StaticResource ButtonDisabledBackground}" />
                         </Trigger>
                         <Trigger Property ="IsKeyboardFocused" Value ="True">
                             <Setter TargetName ="FocusCue" Property ="Visibility"
