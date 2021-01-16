@@ -21,13 +21,17 @@
         </Grid.RowDefinitions>
 
         <Label                             Margin="5" Padding="5">Aktualne hasło:</Label>
-        <PasswordBox Name="actualPassword" Margin="5" Padding="5" Grid.Column="1"/>
+        <PasswordBox Name="actualPassword" Margin="5" Padding="5" Grid.Column="1" 
+                     PasswordChar="•" Style="{StaticResource TeacherPasswordBox}"/>
 
         <Label                          Margin="5" Padding="5" Grid.Row="1">Nowe hasło:</Label>
-        <PasswordBox Name="newPassword" Margin="5" Padding="5" Grid.Column="1" Grid.Row="1" ToolTip="Musi być długie na co najmniej 5 znaków."/>
+        <PasswordBox Name="newPassword" Margin="5" Padding="5" Grid.Column="1" Grid.Row="1" 
+                     ToolTip="Musi być długie na co najmniej 5 znaków." 
+                     PasswordChar="•" Style="{StaticResource TeacherPasswordBox}"/>
 
         <Label                               Margin="5" Padding="5" Grid.Row="2">Powtórz nowe hasło:</Label>
-        <PasswordBox Name="repeatedPassword" Margin="5" Padding="5" Grid.Column="1" Grid.Row="2"/>
+        <PasswordBox Name="repeatedPassword" Margin="5" Padding="5" Grid.Column="1" Grid.Row="2" 
+                     PasswordChar="•" Style="{StaticResource TeacherPasswordBox}"/>
 
         <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button IsDefault="True" Click="OkClick" Margin="5" Padding="15,3" Style="{StaticResource TeacherButton}">OK</Button>
