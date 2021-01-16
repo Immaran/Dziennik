@@ -46,7 +46,7 @@ namespace SBD.Pages.TeacherHome
         }
         private void ClickNewMessage(object sender, RoutedEventArgs e)
         {
-            MessageWindow messageWindow = new MessageWindow
+            MessageTeacherWindow messageWindow = new MessageTeacherWindow
             {
                 Owner = ((MainWindow)Application.Current.MainWindow)
             };
@@ -61,7 +61,7 @@ namespace SBD.Pages.TeacherHome
         }
         private void ClickLoginData(object sender, RoutedEventArgs e)
         {
-            LoginDataWindow logindataWindow = new LoginDataWindow
+            LoginDataTeacherWindow logindataWindow = new LoginDataTeacherWindow
             {
                 Owner = ((MainWindow)Application.Current.MainWindow)
             };

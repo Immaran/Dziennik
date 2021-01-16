@@ -1,28 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SBD.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using SBD.Models;
 
 namespace SBD.Windows
 {
     /// <summary>
     /// Logika interakcji dla klasy LoginDataWindow.xaml
     /// </summary>
-    public partial class LoginDataWindow : Window
+    public partial class LoginDataStudentWindow : Window
     {
         private readonly ModelContext _context;
-        public LoginDataWindow()
+        public LoginDataStudentWindow()
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
             InitializeComponent();
@@ -48,8 +39,7 @@ namespace SBD.Windows
                 MessageBox.Show("Nowe hasło nie może być takie samo jak stare. Spróbuj ponownie.");
                 return;
             }
-            //int userId = ((MainWindow)Application.Current.MainWindow).loggedUser.Id;
-            //LoginData userLoginData = _context.LoginData.First(l => l.Id == userId);
+            
             LoginData userLoginData = ((MainWindow)Application.Current.MainWindow).loggedUser.IdNavigation;
             string userPassword = userLoginData.Password;
 
@@ -74,11 +64,9 @@ namespace SBD.Windows
             {
                 MessageBox.Show("Dotychczasowe hasło ma inną treść.");
             }
-
-
         }
 
-        public bool decrypt(string hashedPassword, string typedPassword)
+        private bool decrypt(string hashedPassword, string typedPassword)
         {
             byte[] combinedBytes = Convert.FromBase64String(hashedPassword);
             byte[] salt = new byte[16];
@@ -92,7 +80,7 @@ namespace SBD.Windows
             return false;
         }
 
-        public string hashPassword(string password)
+        private string hashPassword(string password)
         {
             byte[] salt = new byte[16];
             using (RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider())

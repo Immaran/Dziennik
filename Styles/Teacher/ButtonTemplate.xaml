@@ -14,7 +14,7 @@
                                 Stroke ="Black" StrokeThickness ="1"
                                 StrokeDashArray ="1 2"
                                 SnapsToDevicePixels ="True" />
-                            <ContentPresenter RecognizesAccessKey="True"
+                            <ContentPresenter RecognizesAccessKey="True" HorizontalAlignment="Center"
                                           Margin="{TemplateBinding Padding}" />
                         </Grid>
                     </Border>
