@@ -15,6 +15,9 @@ namespace SBD.Pages.Event
     {
         private readonly ModelContext _context;
         private IList<Models.Event> EventList { get; set; }
+
+        // obecnie zalogowany nauczyciel
+        private readonly Models.Teacher Teacher = (Models.Teacher)((MainWindow)Application.Current.MainWindow).loggedUser;
         public TeacherPage()
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
@@ -78,7 +81,7 @@ namespace SBD.Pages.Event
 
         private void EventListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(EventListBox.SelectedItem != null)
+            if(EventListBox.SelectedItem != null && VerifyTeacher())
             {
                 Edit.IsEnabled = true;
                 Remove.IsEnabled = true;
@@ -88,6 +91,18 @@ namespace SBD.Pages.Event
                 Edit.IsEnabled = false;
                 Remove.IsEnabled = false;
             }
+        }
+
+        private bool VerifyTeacher()
+        {
+            Models.Event e = EventListBox.SelectedItem as Models.Event;
+            // jezeli obecnie zalogowany nauczyciel to ten, ktory utworzyl wydarzenie
+            if(e.Teacher.Id == Teacher.Id)
+            {
+                return true;
+            }
+            else
+                return false;
         }
     }
 }
