@@ -9,12 +9,7 @@
         <GradientStop Color="#e6ffff" Offset="0.5"/>
         <GradientStop Color="#e6f2ff" Offset="1"/>
     </LinearGradientBrush >
-    <LinearGradientBrush x:Key="TeacherBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="LightGreen" Offset="0"/>
-        <GradientStop Color="LightBlue" Offset="1"/>
-    </LinearGradientBrush >
-    <SolidColorBrush x:Key="TeacherMouseOver" Color="SpringGreen"/>
-    <SolidColorBrush x:Key="TeacherPressedBrush" Color="LightBlue"/>
+    
     <!--#endregion teacher-->
 
 </ResourceDictionary>

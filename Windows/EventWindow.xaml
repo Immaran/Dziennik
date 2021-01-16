@@ -39,7 +39,14 @@
                         Background="Transparent" TextBlock.FontSize="15">
                 <DatePicker.Resources>
                     <Style TargetType="DatePickerTextBox">
-                        <Setter Property="Background" Value="{StaticResource TeacherBackgroundBrush}"/>
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStop Color="LightGreen" Offset="0"/>
+                                    <GradientStop Color="LightBlue" Offset="1"/>
+                                </LinearGradientBrush >
+                            </Setter.Value>
+                        </Setter>
                     </Style>
                 </DatePicker.Resources>
             </DatePicker>
