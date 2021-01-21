@@ -10,7 +10,7 @@
 
     <Border CornerRadius="50" BorderThickness="8" BorderBrush="Black">
 
-        <Border Name="border" CornerRadius="35" BorderThickness="20" BorderBrush="AliceBlue">
+        <Border Name="border" CornerRadius="35" BorderThickness="20" BorderBrush="{StaticResource AdminWindowsBackground}">
             
             <Grid Background="{Binding ElementName=border, Path=BorderBrush}" ShowGridLines="False">
                 <Grid.RowDefinitions>
@@ -33,17 +33,17 @@
                 </Button>
 
                 <Label               Grid.Row="1" Grid.Column="0" Margin="5" Padding="5">Imię</Label>
-                <TextBox Name="name" Grid.Row="1" Grid.Column="1" Margin="5" Padding="5"/>
+                <TextBox Name="name" Grid.Row="1" Grid.Column="1" Margin="5" Padding="5" Style="{StaticResource AdminTextBox}"/>
 
                 <Label                     Grid.Row="2" Grid.Column="0" Margin="5" Padding="5">Drugię imię</Label>
-                <TextBox Name="secondName" Grid.Row="2" Grid.Column="1" Margin="5" Padding="5"/>
+                <TextBox Name="secondName" Grid.Row="2" Grid.Column="1" Margin="5" Padding="5" Style="{StaticResource AdminTextBox}"/>
 
                 <Label                  Grid.Row="3" Grid.Column="0" Margin="5" Padding="5">Nazwisko</Label>
-                <TextBox Name="surname" Grid.Row="3" Grid.Column="1" Margin="5" Padding="5"/>
+                <TextBox Name="surname" Grid.Row="3" Grid.Column="1" Margin="5" Padding="5" Style="{StaticResource AdminTextBox}"/>
 
                 <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button IsDefault="True" Click="OkClick" Margin="5" Padding="15,3">OK</Button>
-                    <Button IsCancel="True"                  Margin="5" Padding="15,3">Anuluj</Button>
+                    <Button IsDefault="True" Click="OkClick" Margin="5" Padding="15,3" Style="{StaticResource AdminButtonTemplate}">OK</Button>
+                    <Button IsCancel="True"                  Margin="5" Padding="15,3" Style="{StaticResource AdminButtonTemplate}">Anuluj</Button>
                 </StackPanel>
             </Grid>
         </Border>

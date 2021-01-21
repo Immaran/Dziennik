@@ -18,6 +18,10 @@
                 <ResourceDictionary Source="Styles/Student/ComboBoxTemplate.xaml"/>
                 <ResourceDictionary Source="Styles/Student/TextBoxTemplate.xaml"/>
                 <ResourceDictionary Source="Styles/Student/PasswordBoxTemplate.xaml"/>
+                <ResourceDictionary Source="Styles/Administrator/ButtonTemplate.xaml"/>
+                <ResourceDictionary Source="Styles/Administrator/TextBoxTemplate.xaml"/>
+                <ResourceDictionary Source="Styles/Administrator/ComboBoxTemplate.xaml"/>
+                <ResourceDictionary Source="Styles/Administrator/ListBoxTemplate.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

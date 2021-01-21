@@ -13,7 +13,7 @@
 
     <Border CornerRadius="50" BorderThickness="5" BorderBrush="Black">
 
-        <Border Name="border" CornerRadius="35" BorderThickness="20" BorderBrush="AliceBlue">
+        <Border Name="border" CornerRadius="35" BorderThickness="20" BorderBrush="{StaticResource AdminWindowsBackground}">
 
             <Grid Background="{Binding ElementName=border, Path=BorderBrush}" ShowGridLines="False">
                 <Grid.RowDefinitions>
@@ -43,13 +43,18 @@
                 </Button>
 
                 <Label                  Grid.Row="1" Grid.Column="0" Margin="5" Padding="5">Nazwa</Label>
-                <TextBox Name="name"    Grid.Row="1" Grid.Column="1" Margin="5" Padding="5" Grid.ColumnSpan="2"/>
+                <TextBox Name="name"    Grid.Row="1" Grid.Column="1" Margin="5" Padding="5" Grid.ColumnSpan="2" Style="{StaticResource AdminTextBox}" ToolTip="Wprowadź nazwę grupy"/>
 
-                <Button Click="AddStudent"      Grid.Row="2" Grid.Column="0" Margin="5" Padding="5">Dodaj ucznia</Button>
-                <Button Click="RemoveStudent"   Grid.Row="2" Grid.Column="1" Margin="5" Padding="5">Usuń ucznia</Button>
-                <ComboBox Name="studentBox"     Grid.Row="2" Grid.Column="2" Margin="5" MinWidth="150" SelectedValue="{Binding ElementName=SearchStudentListBox, Path=SelectedItem}"/>
+                <Button Click="AddStudent"      Grid.Row="2" Grid.Column="0" Margin="5" Padding="5" Style="{StaticResource AdminButtonTemplate}">Dodaj ucznia</Button>
+                <Button Click="RemoveStudent"   Grid.Row="2" Grid.Column="1" Margin="5" Padding="5" Style="{StaticResource AdminButtonTemplate}">Usuń ucznia</Button>
+                <ComboBox Name="studentBox"     Grid.Row="2" Grid.Column="2" Margin="5" MinWidth="150" SelectedValue="{Binding ElementName=SearchStudentListBox, Path=SelectedItem}" Style="{StaticResource AdminComboBox}">
+                    <ComboBox.Resources>
+                        <Style TargetType="ScrollBar" BasedOn="{StaticResource AdminScrollBar}"/>
+                        <Style TargetType="ComboBoxItem" BasedOn="{StaticResource AdminComboBoxItem}"/>
+                    </ComboBox.Resources>
+                </ComboBox>
 
-                <Button Click="SearchStudentClick" Grid.Row="3" Grid.Column="0" Margin="5" Padding="5">Szukaj</Button>
+                <Button Click="SearchStudentClick" Grid.Row="3" Grid.Column="0" Margin="5" Padding="5" Style="{StaticResource AdminButtonTemplate}">Szukaj</Button>
                 <Grid Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -58,18 +63,23 @@
                     <TextBlock Grid.Row="0" Margin="5" Padding="5" Text=" Nazwisko..." Visibility="{Binding ElementName=SearchStudentTextBox, Path=Text.IsEmpty,
                         Converter={StaticResource BooleanToVisibilityConverter}}" />
                     <TextBox Grid.Row="0" Name="SearchStudentTextBox" Margin="5" Padding="5" Background="Transparent"/>
-                    <ListBox Grid.Row="1" Name="SearchStudentListBox" Margin="5" Padding="5" MinHeight="20"/>
+                    <ListBox Grid.Row="1" Name="SearchStudentListBox" Margin="5" Padding="5" MinHeight="20" Style="{StaticResource AdminListBox}"/>
                 </Grid>
 
 
                 <Label                      Grid.Row="5" Grid.Column="0" Margin="5" Padding="5">Lista uczniów</Label>
-                <ListBox Name="studentList" Grid.Row="5" Grid.Column="1" Margin="5" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" MinHeight="20"/>
+                <ListBox Name="studentList" Grid.Row="5" Grid.Column="1" Margin="5" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" MinHeight="20" Style="{StaticResource AdminListBox}"/>
 
-                <Button Click="AddSubject"      Grid.Row="6" Grid.Column="0" Margin="5" Padding="5">Dodaj przedmiot</Button>
-                <Button Click="RemoveSubject"   Grid.Row="6" Grid.Column="1" Margin="5" Padding="5">Usuń przedmiot</Button>
-                <ComboBox Name="subjectBox"     Grid.Row="6" Grid.Column="2" Margin="5" MinWidth="150" SelectedValue="{Binding ElementName=SearchSubjectListBox, Path=SelectedItem}"/>
+                <Button Click="AddSubject"      Grid.Row="6" Grid.Column="0" Margin="5" Padding="5" Style="{StaticResource AdminButtonTemplate}">Dodaj przedmiot</Button>
+                <Button Click="RemoveSubject"   Grid.Row="6" Grid.Column="1" Margin="5" Padding="5" Style="{StaticResource AdminButtonTemplate}">Usuń przedmiot</Button>
+                <ComboBox Name="subjectBox"     Grid.Row="6" Grid.Column="2" Margin="5" MinWidth="150" SelectedValue="{Binding ElementName=SearchSubjectListBox, Path=SelectedItem}" Style="{StaticResource AdminComboBox}">
+                    <ComboBox.Resources>
+                        <Style TargetType="ScrollBar" BasedOn="{StaticResource AdminScrollBar}"/>
+                        <Style TargetType="ComboBoxItem" BasedOn="{StaticResource AdminComboBoxItem}"/>
+                    </ComboBox.Resources>
+                </ComboBox>
 
-                <Button Click="SearchSubjectClick" Grid.Row="7" Grid.Column="0" Margin="5" Padding="5">Szukaj</Button>
+                <Button Click="SearchSubjectClick" Grid.Row="7" Grid.Column="0" Margin="5" Padding="5" Style="{StaticResource AdminButtonTemplate}">Szukaj</Button>
                 <Grid Grid.Row="7" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -78,15 +88,15 @@
                     <TextBlock Grid.Row="0" Margin="5" Padding="5" Text=" Nazwa..." Visibility="{Binding ElementName=SearchSubjectTextBox, Path=Text.IsEmpty,
                         Converter={StaticResource BooleanToVisibilityConverter}}" />
                     <TextBox Grid.Row="0" Name="SearchSubjectTextBox" Margin="5" Padding="5" Background="Transparent"/>
-                    <ListBox Grid.Row="1" Name="SearchSubjectListBox" Margin="5" Padding="5" MinHeight="20"/>
+                    <ListBox Grid.Row="1" Name="SearchSubjectListBox" Margin="5" Padding="5" MinHeight="20" Style="{StaticResource AdminListBox}"/>
                 </Grid>
 
                 <Label                      Grid.Row="9" Grid.Column="0" Margin="5" Padding="5">Lista przedmiotów</Label>
-                <ListBox Name="subjectList" Grid.Row="9" Grid.Column="1" Margin="5" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" MinHeight="20"/>
+                <ListBox Name="subjectList" Grid.Row="9" Grid.Column="1" Margin="5" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" MinHeight="20" Style="{StaticResource AdminListBox}"/>
 
                 <StackPanel Grid.Row="10" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button IsDefault="True" Click="OkClick"    Margin="5" Padding="15,3">OK</Button>
-                    <Button IsCancel="True"                     Margin="5" Padding="15,3">Anuluj</Button>
+                    <Button IsDefault="True" Click="OkClick"    Margin="5" Padding="15,3" Style="{StaticResource AdminButtonTemplate}">OK</Button>
+                    <Button IsCancel="True"                     Margin="5" Padding="15,3" Style="{StaticResource AdminButtonTemplate}">Anuluj</Button>
                 </StackPanel>
             </Grid>
         </Border>
