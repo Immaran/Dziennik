@@ -9,6 +9,7 @@
                 <ResourceDictionary Source="Styles/Global/Colors.xaml"/>
                 <ResourceDictionary Source="Styles/Windows/CloseWindowButtonTemplate.xaml"/>
                 <ResourceDictionary Source="Styles/Teacher/ListBoxTemplate.xaml"/>
+                <ResourceDictionary Source="Styles/Teacher/CheckBoxTemplate.xaml"/>
                 <ResourceDictionary Source="Styles/Teacher/ButtonTemplate.xaml"/>
                 <ResourceDictionary Source="Styles/Teacher/ComboBoxTemplate.xaml"/>
                 <ResourceDictionary Source="Styles/Teacher/TextBoxTemplate.xaml"/>
