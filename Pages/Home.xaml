@@ -9,7 +9,7 @@
     
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
         <Label FontSize="24">Witaj w E-dzienniku</Label>
-        <Button Click="onClick" IsDefault="True">Zaloguj się</Button>
+        <Button Click="onClick" IsDefault="True" Style="{StaticResource HomeButton}">Zaloguj się</Button>
     </StackPanel>
     
 </Page>
