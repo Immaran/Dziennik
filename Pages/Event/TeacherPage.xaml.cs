@@ -31,7 +31,14 @@ namespace SBD.Pages.Event
         {
             _context.Teacher.Load();
             EventList = _context.Event.OrderByDescending(e => e.Date).ToList();
-            EventListBox.ItemsSource = EventList;
+            if (FilterCheckBox.IsChecked == true)
+            {
+                EventListBox.ItemsSource = EventList.Where(e => e.TeacherId == Teacher.Id).ToList();
+            }
+            else
+            {
+                EventListBox.ItemsSource = EventList;
+            }
         }
         private void SaveDB()
         {
@@ -103,6 +110,18 @@ namespace SBD.Pages.Event
             }
             else
                 return false;
+        }
+
+        private void SortClick(object sender, RoutedEventArgs e)
+        {
+            if(FilterCheckBox.IsChecked == true)
+            {
+                EventListBox.ItemsSource = EventList.Where(e => e.TeacherId == Teacher.Id).ToList();
+            }
+            else
+            {
+                EventListBox.ItemsSource = EventList;
+            }
         }
     }
 }
