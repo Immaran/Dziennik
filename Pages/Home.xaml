@@ -3,23 +3,13 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:gif="http://wpfanimatedgif.codeplex.com"
-
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Home">
-
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        
-        <Image gif:ImageBehavior.RepeatBehavior="2x" gif:ImageBehavior.AnimatedSource="/Styles/Global/welcome.gif"  Margin="100, 20, 100, 10" Grid.Row="0"/>
-        
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
-            <Label FontSize="24">Witaj w E-dzienniku</Label>
-            <Button Click="onClick" IsDefault="True">Zaloguj się</Button>
-        </StackPanel>
-    </Grid>
+    
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
+        <Label FontSize="24">Witaj w E-dzienniku</Label>
+        <Button Click="onClick" IsDefault="True">Zaloguj się</Button>
+    </StackPanel>
+    
 </Page>

@@ -4,28 +4,44 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Przedmiot" SizeToContent="Height" MinHeight="145" MinWidth="200" Width="300" Loaded="Window_Loaded">
-    
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        
-        <Label               Grid.Row="0" Grid.Column="0" Margin="5" Padding="5">Nazwa</Label>
-        <TextBox Name="name" Grid.Row="0" Grid.Column="1" Margin="5" Padding="5"/>
-        
-        <Label                   Grid.Row="1" Grid.Column="0" Margin="5" Padding="5">Nauczyciel</Label>
-        <ComboBox Name="teacher" Grid.Row="1" Grid.Column="1" Margin="5" Padding="5"/>
-        
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button IsDefault="True" Click="OkClick" Margin="5" Padding="15,3">OK</Button>
-            <Button IsCancel="True"                  Margin="5" Padding="15,3">Anuluj</Button>
-        </StackPanel>
-    </Grid>
+        Title="Przedmiot" SizeToContent="Height" MinHeight="145" MinWidth="200" Width="300" Loaded="Window_Loaded"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        WindowStartupLocation="CenterOwner" ResizeMode="CanResizeWithGrip" MouseLeftButtonDown="Drag">
+
+    <Border CornerRadius="50" BorderThickness="5" BorderBrush="Black">
+
+        <Border Name="border" CornerRadius="35" BorderThickness="20" BorderBrush="AliceBlue">
+
+            <Grid Background="{Binding ElementName=border, Path=BorderBrush}" ShowGridLines="False">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Content="" BorderThickness="0" BorderBrush="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top"
+                        Height="32"  Width="32" Style="{DynamicResource CloseWindowButton}" Click="Exit_Click" RenderTransformOrigin="5.45,-0.112" Grid.Column="1" Margin="0,-16,0,0">
+                    <Button.Background>
+                        <ImageBrush ImageSource="../Styles/Global/Close_Default.png" Stretch="None"/>
+                    </Button.Background>
+                </Button>
+
+                <Label               Grid.Row="1" Grid.Column="0" Margin="5" Padding="5">Nazwa</Label>
+                <TextBox Name="name" Grid.Row="1" Grid.Column="1" Margin="5" Padding="5"/>
+
+                <Label                   Grid.Row="2" Grid.Column="0" Margin="5" Padding="5">Nauczyciel</Label>
+                <ComboBox Name="teacher" Grid.Row="2" Grid.Column="1" Margin="5" Padding="5"/>
+
+                <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button IsDefault="True" Click="OkClick" Margin="5" Padding="15,3">OK</Button>
+                    <Button IsCancel="True"                  Margin="5" Padding="15,3">Anuluj</Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Border>
 </Window>

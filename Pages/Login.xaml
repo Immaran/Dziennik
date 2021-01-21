@@ -3,28 +3,20 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:gif="http://wpfanimatedgif.codeplex.com"
       mc:Ignorable="d" 
       d:DesignHeight="200" d:DesignWidth="300"
       Title="Login">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-
-        <Image gif:ImageBehavior.RepeatBehavior="2x" gif:ImageBehavior.AnimatedSource="/Styles/Global/welcome.gif"  Margin="100, 20, 100, 10" Grid.Row="0"/>
-        
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
-            <StackPanel Orientation="Horizontal">
-                <Label Margin="5" Padding="5">Login:</Label>
-                <TextBox Name="login" Margin="5" Padding="5" MinWidth="100"></TextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Margin="5" Padding="5">Hasło:</Label>
-                <PasswordBox Name="password" Margin="5" Padding="5" MinWidth="100"></PasswordBox>
-            </StackPanel>
-            <Button Margin="5" Padding="5" Click="onLogin" IsDefault="True" ToolTip="Wciśnij jeśli dane są poprawne">Zaloguj</Button>
+    
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
+        <StackPanel Orientation="Horizontal">
+            <Label Margin="5" Padding="5">Login:</Label>
+            <TextBox Name="login" Margin="5" Padding="5" MinWidth="100"></TextBox>
         </StackPanel>
-    </Grid>
+        <StackPanel Orientation="Horizontal">
+            <Label Margin="5" Padding="5">Hasło:</Label>
+            <PasswordBox Name="password" Margin="5" Padding="5" MinWidth="100"></PasswordBox>
+        </StackPanel>
+        <Button Margin="5" Padding="5" Click="onLogin" IsDefault="True" ToolTip="Wciśnij jeśli dane są poprawne">Zaloguj</Button>
+    </StackPanel>
+    
 </Page>

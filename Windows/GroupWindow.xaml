@@ -4,75 +4,91 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Grupa" SizeToContent="WidthAndHeight" MinWidth="400" MinHeight="420" Loaded="Window_Loaded">
+        Title="Grupa" SizeToContent="WidthAndHeight" Loaded="Window_Loaded"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        WindowStartupLocation="CenterOwner" ResizeMode="CanResizeWithGrip" MouseLeftButtonDown="Drag">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </Window.Resources>
-    
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        
-        <Label                  Grid.Row="0" Grid.Column="0" Margin="5" Padding="5">Nazwa</Label>
-        <TextBox Name="name"    Grid.Row="0" Grid.Column="1" Margin="5" Padding="5" Grid.ColumnSpan="2"/>
 
-        <Button Click="AddStudent"      Grid.Row="1" Grid.Column="0" Margin="5" Padding="5">Dodaj ucznia</Button>
-        <Button Click="RemoveStudent"   Grid.Row="1" Grid.Column="1" Margin="5" Padding="5">Usuń ucznia</Button>
-        <ComboBox Name="studentBox"     Grid.Row="1" Grid.Column="2" Margin="5" MinWidth="150" SelectedValue="{Binding ElementName=SearchStudentListBox, Path=SelectedItem}"/>
+    <Border CornerRadius="50" BorderThickness="5" BorderBrush="Black">
 
-        <Button Click="SearchStudentClick" Grid.Row="2" Grid.Column="0" Margin="5" Padding="5">Szukaj</Button>
-        <Grid Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Margin="5" Padding="5" Text=" Nazwisko..." Visibility="{Binding ElementName=SearchStudentTextBox, Path=Text.IsEmpty,
+        <Border Name="border" CornerRadius="35" BorderThickness="20" BorderBrush="AliceBlue">
+
+            <Grid Background="{Binding ElementName=border, Path=BorderBrush}" ShowGridLines="False">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Content="" BorderThickness="0" BorderBrush="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top"
+                        Height="32"  Width="32" Style="{DynamicResource CloseWindowButton}" Click="Exit_Click" RenderTransformOrigin="5.45,-0.112" Grid.Column="2" Margin="0,-16,0,0">
+                    <Button.Background>
+                        <ImageBrush ImageSource="../Styles/Global/Close_Default.png" Stretch="None"/>
+                    </Button.Background>
+                </Button>
+
+                <Label                  Grid.Row="1" Grid.Column="0" Margin="5" Padding="5">Nazwa</Label>
+                <TextBox Name="name"    Grid.Row="1" Grid.Column="1" Margin="5" Padding="5" Grid.ColumnSpan="2"/>
+
+                <Button Click="AddStudent"      Grid.Row="2" Grid.Column="0" Margin="5" Padding="5">Dodaj ucznia</Button>
+                <Button Click="RemoveStudent"   Grid.Row="2" Grid.Column="1" Margin="5" Padding="5">Usuń ucznia</Button>
+                <ComboBox Name="studentBox"     Grid.Row="2" Grid.Column="2" Margin="5" MinWidth="150" SelectedValue="{Binding ElementName=SearchStudentListBox, Path=SelectedItem}"/>
+
+                <Button Click="SearchStudentClick" Grid.Row="3" Grid.Column="0" Margin="5" Padding="5">Szukaj</Button>
+                <Grid Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Margin="5" Padding="5" Text=" Nazwisko..." Visibility="{Binding ElementName=SearchStudentTextBox, Path=Text.IsEmpty,
                         Converter={StaticResource BooleanToVisibilityConverter}}" />
-            <TextBox Grid.Row="0" Name="SearchStudentTextBox" Margin="5" Padding="5" Background="Transparent"/>
-            <ListBox Grid.Row="1" Name="SearchStudentListBox" Margin="5" Padding="5" MinHeight="20"/>
-        </Grid>
-        
+                    <TextBox Grid.Row="0" Name="SearchStudentTextBox" Margin="5" Padding="5" Background="Transparent"/>
+                    <ListBox Grid.Row="1" Name="SearchStudentListBox" Margin="5" Padding="5" MinHeight="20"/>
+                </Grid>
 
-        <Label                      Grid.Row="4" Grid.Column="0" Margin="5" Padding="5">Lista uczniów</Label>
-        <ListBox Name="studentList" Grid.Row="4" Grid.Column="1" Margin="5" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" MinHeight="20"/>
 
-        <Button Click="AddSubject"      Grid.Row="5" Grid.Column="0" Margin="5" Padding="5">Dodaj przedmiot</Button>
-        <Button Click="RemoveSubject"   Grid.Row="5" Grid.Column="1" Margin="5" Padding="5">Usuń przedmiot</Button>
-        <ComboBox Name="subjectBox"     Grid.Row="5" Grid.Column="2" Margin="5" MinWidth="150" SelectedValue="{Binding ElementName=SearchSubjectListBox, Path=SelectedItem}"/>
+                <Label                      Grid.Row="5" Grid.Column="0" Margin="5" Padding="5">Lista uczniów</Label>
+                <ListBox Name="studentList" Grid.Row="5" Grid.Column="1" Margin="5" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" MinHeight="20"/>
 
-        <Button Click="SearchSubjectClick" Grid.Row="6" Grid.Column="0" Margin="5" Padding="5">Szukaj</Button>
-        <Grid Grid.Row="6" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Margin="5" Padding="5" Text=" Nazwa..." Visibility="{Binding ElementName=SearchSubjectTextBox, Path=Text.IsEmpty,
+                <Button Click="AddSubject"      Grid.Row="6" Grid.Column="0" Margin="5" Padding="5">Dodaj przedmiot</Button>
+                <Button Click="RemoveSubject"   Grid.Row="6" Grid.Column="1" Margin="5" Padding="5">Usuń przedmiot</Button>
+                <ComboBox Name="subjectBox"     Grid.Row="6" Grid.Column="2" Margin="5" MinWidth="150" SelectedValue="{Binding ElementName=SearchSubjectListBox, Path=SelectedItem}"/>
+
+                <Button Click="SearchSubjectClick" Grid.Row="7" Grid.Column="0" Margin="5" Padding="5">Szukaj</Button>
+                <Grid Grid.Row="7" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Margin="5" Padding="5" Text=" Nazwa..." Visibility="{Binding ElementName=SearchSubjectTextBox, Path=Text.IsEmpty,
                         Converter={StaticResource BooleanToVisibilityConverter}}" />
-            <TextBox Grid.Row="0" Name="SearchSubjectTextBox" Margin="5" Padding="5" Background="Transparent"/>
-            <ListBox Grid.Row="1" Name="SearchSubjectListBox" Margin="5" Padding="5" MinHeight="20"/>
-        </Grid>
+                    <TextBox Grid.Row="0" Name="SearchSubjectTextBox" Margin="5" Padding="5" Background="Transparent"/>
+                    <ListBox Grid.Row="1" Name="SearchSubjectListBox" Margin="5" Padding="5" MinHeight="20"/>
+                </Grid>
 
-        <Label                      Grid.Row="8" Grid.Column="0" Margin="5" Padding="5">Lista przedmiotów</Label>
-        <ListBox Name="subjectList" Grid.Row="8" Grid.Column="1" Margin="5" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" MinHeight="20"/>
+                <Label                      Grid.Row="9" Grid.Column="0" Margin="5" Padding="5">Lista przedmiotów</Label>
+                <ListBox Name="subjectList" Grid.Row="9" Grid.Column="1" Margin="5" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" MinHeight="20"/>
 
-        <StackPanel Grid.Row="9" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button IsDefault="True" Click="OkClick"    Margin="5" Padding="15,3">OK</Button>
-            <Button IsCancel="True"                     Margin="5" Padding="15,3">Anuluj</Button>
-        </StackPanel>
-    </Grid>
+                <StackPanel Grid.Row="10" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button IsDefault="True" Click="OkClick"    Margin="5" Padding="15,3">OK</Button>
+                    <Button IsCancel="True"                     Margin="5" Padding="15,3">Anuluj</Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Border>
 </Window>

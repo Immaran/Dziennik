@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 using Microsoft.EntityFrameworkCore;
 using SBD.Models;
 
@@ -22,6 +24,11 @@ namespace SBD.Windows
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
             InitializeComponent();
+            SourceInitialized += (s, e) =>
+            {
+                MinWidth = ActualWidth;
+                MinHeight = ActualHeight;
+            };
             name.Focus();
         }
         public GroupWindow(Group group) // konstrukor, gdy dane są do modyfikacji
@@ -304,6 +311,22 @@ namespace SBD.Windows
             if (subjectList.SelectedItem != null)
             {
                 subjectList.Items.Remove(subjectList.SelectedItem);
+            }
+        }
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Drag(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                DragMove();
+            }
+            catch (Exception)
+            {
+                // do not throw
             }
         }
     }

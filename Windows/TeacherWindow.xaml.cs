@@ -3,6 +3,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
+using System.Windows.Input;
 using Microsoft.EntityFrameworkCore;
 using SBD.Models;
 
@@ -153,6 +154,21 @@ namespace SBD.Windows
             Array.Copy(hash, 0, combinedBytes, 16, 20);
             string hashedPassword = Convert.ToBase64String(combinedBytes);
             return hashedPassword;
+        }
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+        private void Drag(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                DragMove();
+            }
+            catch (Exception)
+            {
+                // do not throw
+            }
         }
     }
 }

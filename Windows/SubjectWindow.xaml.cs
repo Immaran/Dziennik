@@ -3,6 +3,8 @@ using System.Windows;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using SBD.Models;
+using System.Windows.Input;
+using System;
 
 namespace SBD.Windows
 {
@@ -87,6 +89,22 @@ namespace SBD.Windows
             else
             {
                 MessageBox.Show("Brak wszystkich danych", "Przedmiot", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Drag(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                DragMove();
+            }
+            catch (Exception)
+            {
+                // do not throw
             }
         }
     }

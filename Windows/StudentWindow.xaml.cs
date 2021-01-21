@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using SBD.Models;
 using System;
 using System.Security.Cryptography;
+using System.Windows.Input;
 
 namespace SBD.Windows
 {
@@ -156,5 +157,21 @@ namespace SBD.Windows
             return hashedPassword;
         }
 
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Drag(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                DragMove();
+            }
+            catch(Exception)
+            {
+                // do not throw
+            }
+        }
     }
 }
