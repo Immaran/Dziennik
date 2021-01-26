@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Windows;
 using SBD.Models;
+using System.Media;
 
 namespace SBD.Windows
 {
@@ -23,18 +24,21 @@ namespace SBD.Windows
         {
             if (actualPassword.Password.Length < 5 || newPassword.Password.Length < 5)
             {
+                SystemSounds.Beep.Play();
                 MessageBox.Show("Hasła o długości mniejszej niż 5 znaków nie są akceptowalne.");
                 return;
             }
 
             if (newPassword.Password != repeatedPassword.Password)
             {
+                SystemSounds.Beep.Play();
                 MessageBox.Show("Nowe hasło nie zostało poprawnie powtórzone. Spróbuj ponownie. Jeśli stare hasło również zostanie poprawnie zweryfikowane, zostanie zmienione.");
                 return;
             }
 
             if (newPassword.Password == actualPassword.Password)
             {
+                SystemSounds.Beep.Play();
                 MessageBox.Show("Nowe hasło nie może być takie samo jak stare. Spróbuj ponownie.");
                 return;
             }
@@ -61,6 +65,7 @@ namespace SBD.Windows
 
             else
             {
+                SystemSounds.Beep.Play();
                 MessageBox.Show("Dotychczasowe hasło ma inną treść.");
             }
         }

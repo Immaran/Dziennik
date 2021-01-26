@@ -10,7 +10,7 @@
                             CornerRadius="3 3 3 3" Background="#1877f2"
                             TextBlock.Foreground="White">
                         <Grid >
-                            <Rectangle Name="FocusCue" Visibility =" Hidden"
+                            <Rectangle Name="FocusCue" Visibility ="Hidden"
                                 Stroke ="Black" StrokeThickness ="1"
                                 StrokeDashArray ="1 2"
                                 SnapsToDevicePixels ="True" />

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Security.Cryptography;
 using System.Windows;
 using System.Windows.Controls;
@@ -42,6 +43,7 @@ namespace SBD.Pages
         }
         private void onLogin(object sender, EventArgs e)
         {
+            
             if (login.Text.Length > 0 && password.Password.Length > 0)
             {
                 if (login.Text == "admin" && password.Password == "admin")
@@ -72,12 +74,16 @@ namespace SBD.Pages
                 }
                 if (logged == false)
                 {
+                    SystemSounds.Beep.Play();
                     MessageBox.Show("Błędne nazwa użytkownika lub hasło");
+                    
                 }
             }
             else
             {
+                SystemSounds.Beep.Play();
                 MessageBox.Show("Brak wszystkich danych");
+                
             }
         }
 
@@ -142,5 +148,6 @@ namespace SBD.Pages
                 password.Foreground = new SolidColorBrush(Colors.Black);
             }
         }
+
     }
 }
