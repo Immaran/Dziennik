@@ -10,7 +10,8 @@
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
         <StackPanel Orientation="Horizontal">
             <Label Margin="5" Padding="5">Login:</Label>
-            <TextBox Name="login" Margin="5" Padding="5" MinWidth="100" Style="{StaticResource LoginTextBox}" TextChanged="Login_TextChanged"></TextBox>
+            <TextBox Name="login" Margin="5" Padding="5" MinWidth="100" Style="{StaticResource LoginTextBox}" TextChanged="Login_TextChanged">
+            </TextBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label Margin="5" Padding="5">Hasło:</Label>
