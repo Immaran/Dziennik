@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using SBD.Models;
 using SBD.Pages.Student;
 using SBD.Pages.StudentHome;
@@ -18,6 +20,8 @@ namespace SBD.Pages
     {
         private readonly ModelContext _context;
         private bool logged = false;
+        private bool adminLoginattempt;
+        LinearGradientBrush gradient;
         public Login()
         {
             _context = ((MainWindow)Application.Current.MainWindow).context;
@@ -25,6 +29,16 @@ namespace SBD.Pages
             InitializeComponent();
 
             login.Focus();
+
+            gradient = new LinearGradientBrush();
+            gradient.StartPoint = new System.Windows.Point(0.5, 0);
+            gradient.EndPoint = new System.Windows.Point(0.5, 1);
+            System.Windows.Media.Color color1 = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#9a9c8e");
+            System.Windows.Media.Color color2 = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#adb09b");
+            gradient.GradientStops.Add(new GradientStop(color1, 0));
+            gradient.GradientStops.Add(new GradientStop(color2, 1));
+
+
         }
         private void onLogin(object sender, EventArgs e)
         {
@@ -79,6 +93,54 @@ namespace SBD.Pages
             if (hash.SequenceEqual(originalHash))
                 return true;
             return false;
+        }
+
+        private void Login_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string login = ((TextBox)sender).Text;
+
+            if (login == "admin")
+            {
+                adminLoginattempt = true;
+                password.Background = new SolidColorBrush(Colors.Black); ;
+                password.Foreground = new SolidColorBrush(Colors.White); ;
+            }
+            else if (adminLoginattempt == true)
+            {
+                adminLoginattempt = false;
+                if (password.Password == "")
+                {
+                    
+                    password.Background = gradient;
+                }
+                else
+                {
+                    password.Background = new SolidColorBrush(Colors.AliceBlue);
+                }
+
+                password.Foreground = new SolidColorBrush(Colors.Black); ;
+
+            }
+                
+        }
+
+        private void PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Media.Brush aliceBrush = new SolidColorBrush(Colors.AliceBlue);
+            if (login.Text != "admin")
+            {
+                if (password.Password == "")
+                {
+
+                    password.Background = gradient;
+                }
+                else
+                {
+                    password.Background = aliceBrush;
+                }
+
+                password.Foreground = new SolidColorBrush(Colors.Black);
+            }
         }
     }
 }

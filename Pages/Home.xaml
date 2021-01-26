@@ -5,8 +5,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Home">
-    
+      Title="Home" Background="{StaticResource MainPageBackground}">
+
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
         <Label FontSize="24">Witaj w E-dzienniku</Label>
         <Button Click="onClick" IsDefault="True" Style="{StaticResource HomeButton}">Zaloguj się</Button>

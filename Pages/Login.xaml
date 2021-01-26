@@ -5,16 +5,16 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="200" d:DesignWidth="300"
-      Title="Login">
-    
+      Title="Login" Background="{StaticResource MainPageBackground}">
+
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
         <StackPanel Orientation="Horizontal">
             <Label Margin="5" Padding="5">Login:</Label>
-            <TextBox Name="login" Margin="5" Padding="5" MinWidth="100"></TextBox>
+            <TextBox Name="login" Margin="5" Padding="5" MinWidth="100" Style="{StaticResource LoginTextBox}" TextChanged="Login_TextChanged"></TextBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label Margin="5" Padding="5">Hasło:</Label>
-            <PasswordBox Name="password" Margin="5" Padding="5" MinWidth="100"></PasswordBox>
+            <PasswordBox x:Name="password" Margin="5" Padding="5" MinWidth="100" Style="{StaticResource LoginPasswordBox}" PasswordChanged="PasswordChanged"/>
         </StackPanel>
         <Button Margin="5" Padding="5" Click="onLogin" IsDefault="True" ToolTip="Wciśnij jeśli dane są poprawne" Style="{StaticResource HomeButton}">Zaloguj</Button>
     </StackPanel>

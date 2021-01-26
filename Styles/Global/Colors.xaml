@@ -34,6 +34,16 @@
 
     <!--#endregion admin-->
 
-    
+    <LinearGradientBrush x:Key="MainPageBackground" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="#b4b564" Offset="0.0"/>
+        <GradientStop Color="#539e2e" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="LoginTextBoxBackground" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="#9a9c8e" Offset="0.0"/>
+        <GradientStop Color="#adb09b" Offset="1.0"/>
+    </LinearGradientBrush>
+
+
 
 </ResourceDictionary>

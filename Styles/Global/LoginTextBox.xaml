@@ -1,0 +1,20 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:SBD.Styles.Global">
+
+
+    <Style x:Key="LoginTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="Background" Value="AliceBlue"/>
+        <Style.Triggers>
+            <Trigger Property="Text" Value="">
+                <Setter Property="Background" Value="{StaticResource LoginTextBoxBackground}" />
+            </Trigger>
+            <Trigger Property="Text" Value="admin">
+                <Setter Property="Background" Value="Black" />
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+</ResourceDictionary>

@@ -24,6 +24,8 @@
                 <ResourceDictionary Source="Styles/Administrator/TextBoxTemplate.xaml"/>
                 <ResourceDictionary Source="Styles/Administrator/ComboBoxTemplate.xaml"/>
                 <ResourceDictionary Source="Styles/Administrator/ListBoxTemplate.xaml"/>
+                <ResourceDictionary Source="Styles/Global/LoginTextBox.xaml"/>
+                <ResourceDictionary Source="Styles/Global/LoginPasswordBox.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
