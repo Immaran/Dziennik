@@ -14,12 +14,6 @@ namespace SBD.Pages
         public Home()
         {
             InitializeComponent();
-            /*ColorAnimation animation = new ColorAnimation();
-            animation.From = Colors.Black;
-            animation.To = Colors.White;
-            animation.Duration = new Duration(TimeSpan.FromSeconds(1));
-            animation.RepeatBehavior = RepeatBehavior.Forever;
-            this.homeLabel.Foreground.BeginAnimation(SolidColorBrush.ColorProperty, animation);*/
         }
         private void onClick(object sender, EventArgs e)
         {

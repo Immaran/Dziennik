@@ -43,6 +43,8 @@
         <GradientStop Color="#adb09b" Offset="1.0"/>
     </LinearGradientBrush>
 
+    <ImageBrush x:Key="BackgroundImageBrush" ImageSource="/Styles/Global/black-1072366_1920.jpg" />
+
 
 
 </ResourceDictionary>

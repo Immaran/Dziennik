@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="iTextSharp" Version="5.5.13.2" />
     <None Remove="applications_education.ico" />
+    <None Remove="Styles\Global\black-1072366_1920.jpg" />
     <None Remove="Styles\Global\Close_Default.png" />
     <None Remove="Styles\Global\Close_MouseOver.png" />
   </ItemGroup>
@@ -37,6 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Styles\Global\black-1072366_1920.jpg" />
     <Resource Include="Styles\Global\Close_Default.png" />
     <Resource Include="Styles\Global\Close_MouseOver.png" />
   </ItemGroup>
