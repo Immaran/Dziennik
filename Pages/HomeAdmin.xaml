@@ -14,12 +14,12 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Vertical">
-            <Button Padding="5" Margin="5" Click="CLickGroup" Style="{StaticResource AdminButtonTemplate}">Zarządzanie grupami</Button>
-            <Button Padding="5" Margin="5" Click="ClickSubject" Style="{StaticResource AdminButtonTemplate}">Zarządzanie przedmiotami</Button>
-            <Button Padding="5" Margin="5" Click="ClickStudent" Style="{StaticResource AdminButtonTemplate}">Zarządzanie uczniami</Button>
-            <Button Padding="5" Margin="5" Click="ClickTeacher" Style="{StaticResource AdminButtonTemplate}">Zarządzanie nauczycielami</Button>
+            <Button FontSize="20" Padding="5" Margin="5" Click="CLickGroup" Style="{StaticResource AdminButtonTemplate}">Zarządzanie grupami</Button>
+            <Button FontSize="20" Padding="5" Margin="5" Click="ClickSubject" Style="{StaticResource AdminButtonTemplate}">Zarządzanie przedmiotami</Button>
+            <Button FontSize="20" Padding="5" Margin="5" Click="ClickStudent" Style="{StaticResource AdminButtonTemplate}">Zarządzanie uczniami</Button>
+            <Button FontSize="20" Padding="5" Margin="5" Click="ClickTeacher" Style="{StaticResource AdminButtonTemplate}">Zarządzanie nauczycielami</Button>
         </StackPanel>
-        <Label Grid.Row="1" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="LightGreen">Panel administracyjny</Label>
+        <Label Grid.Row="1" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FFFD6D6D">Panel administracyjny</Label>
         <Button Grid.Row="2" Margin="5" Padding="5" HorizontalAlignment="Right" Click="ClickLogOut" Content="Wyloguj" Background="Black" Foreground="Yellow" BorderThickness="3">
             <Button.Resources>
                 <Style TargetType="Border">

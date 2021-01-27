@@ -26,7 +26,7 @@
 
         </WrapPanel>
 
-        <ListBox Name="SubjectListBox" Grid.Row="2"   ScrollViewer.VerticalScrollBarVisibility="Auto"
+        <ListBox FontSize="20" Name="SubjectListBox" Grid.Row="2"   ScrollViewer.VerticalScrollBarVisibility="Auto"
                                                     ScrollViewer.CanContentScroll="True" 
                                                     VirtualizingPanel.ScrollUnit="Pixel" 
                                                     SelectionChanged="LB_SelectionChanged" Style="{StaticResource AdminListBox}"/>

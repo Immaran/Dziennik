@@ -3,9 +3,9 @@
                     xmlns:local="clr-namespace:SBD.Styles.Administrator">
 
     <LinearGradientBrush x:Key="NormalBrush" EndPoint="0,1" StartPoint="0,0">
-        <GradientStop Color="#121211" Offset="0.0"/>
-        <GradientStop Color="#0f0f0e" Offset="0.5"/>
-        <GradientStop Color="#1a1a16" Offset="1.0"/>
+        <GradientStop Color="#FF3A3A3A" Offset="0.0"/>
+        <GradientStop Color="#FF2C2E28" Offset="0.5"/>
+        <GradientStop Color="#FF313129" Offset="1.0"/>
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="PressedBrush" EndPoint="0,1" StartPoint="0,0">
         <GradientStop Color="#596160" Offset="0.0"/>
@@ -14,8 +14,8 @@
         <GradientStop Color="#3b3b3b" Offset="1.0"/>
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="NormalBorderBrush" EndPoint="0,1" StartPoint="0,0">
-        <GradientStop Color="#c4c472" Offset="0.0"/>
-        <GradientStop Color="#757537" Offset="1.0"/>
+        <GradientStop Color="#FFC47272" Offset="0.0"/>
+        <GradientStop Color="#FF753737" Offset="1.0"/>
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="BorderBrush" EndPoint="0,1" StartPoint="0,0">
         <GradientStop Color="#CCC" Offset="0.0"/>
@@ -38,16 +38,17 @@
         <GradientStop Color="#16361d" Offset="1.0"/>
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="BackgroundForListbox" EndPoint="0,1" StartPoint="0,0">
-        <GradientStop Color="#a2b54c" Offset="0.0"/>
-        <GradientStop Color="#d9eb8a" Offset="1.0"/>
+        <GradientStop Color="#FFED9C9C" Offset="0.0"/>
+        <GradientStop Color="#FFE76969" Offset="0.5"/>
+        <GradientStop Color="#FFBC6B6B" Offset="1.0"/>
     </LinearGradientBrush>
+    <SolidColorBrush x:Key="ButtonForeground" Color="#FFE25656"/>
 
 
-
-    <SolidColorBrush x:Key="GlyphBrush" Color="Violet"/>
-    <SolidColorBrush x:Key="StandardBorderBrush" Color="MediumPurple"/>
+    <SolidColorBrush x:Key="GlyphBrush" Color="#FFC00000"/>
+    <SolidColorBrush x:Key="StandardBorderBrush" Color="#FFCA3030"/>
     <SolidColorBrush x:Key="StandardBrush" Color="MediumSeaGreen"/>
-    <SolidColorBrush x:Key="BackgroundBrush" Color="Yellow"/>
+    <SolidColorBrush x:Key="BackgroundBrush" Color="#FFDDDD3F"/>
 
 
 </ResourceDictionary>

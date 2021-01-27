@@ -13,10 +13,10 @@
                 <ColumnDefinition Width="15" />
             </Grid.ColumnDefinitions>
             <Border x:Name="Border" Grid.ColumnSpan="2" CornerRadius="1" BorderThickness="1" 
-                    Background="{StaticResource BackgroundBrush}" 
+                    Background="{StaticResource BackgroundForListbox}" 
                     BorderBrush="{StaticResource StandardBorderBrush}"/>
             <Border Grid.Column="0" CornerRadius="2,0,0,2" Margin="1" 
-                    Background="{StaticResource BackgroundBrush}"/>
+                    Background="{StaticResource BackgroundForListbox}"/>
             <Path x:Name="Arrow" Grid.Column="1" HorizontalAlignment="Center"
                     VerticalAlignment="Center" Data="M 0 0 L 4 4 L 8 0 Z" 
                     Fill="{StaticResource GlyphBrush}"/>
@@ -76,7 +76,7 @@
                                     MaxHeight="{TemplateBinding MaxDropDownHeight}">
                                 <Border x:Name="DropDownBorder" BorderThickness="2" 
                                         BorderBrush="{StaticResource StandardBorderBrush}"
-                                        Background="{StaticResource BackgroundBrush}"/>
+                                        Background="{StaticResource BackgroundForListbox}"/>
                                 <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
                                     <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
                                 </ScrollViewer>

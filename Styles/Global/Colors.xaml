@@ -25,13 +25,12 @@
     <!--#region admin-->
 
     <LinearGradientBrush x:Key="AdminPageBackground" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#b92f33" Offset="0"/>
-        <GradientStop Color="#9b1015" Offset="0.5"/>
-        <GradientStop Color="#5f0000" Offset="1"/>
+        <GradientStop Color="#FFD1D1D1" Offset="0"/>
+        <GradientStop Color="#FF858585" Offset="0.5"/>
+        <GradientStop Color="#FF262626" Offset="1"/>
     </LinearGradientBrush >
-
-    <SolidColorBrush x:Key="AdminWindowsBackground" Color="#9b1015"/>
-
+    <SolidColorBrush x:Key="AdminWindowsBackground" Color="Silver"/>
+    
     <!--#endregion admin-->
 
     <LinearGradientBrush x:Key="MainPageBackground" EndPoint="0,1" StartPoint="0,0">
