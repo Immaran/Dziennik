@@ -61,7 +61,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Margin="5" Padding="5" Text=" Nazwisko..." Visibility="{Binding ElementName=SearchStudentTextBox, Path=Text.IsEmpty,
-                        Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        Converter={StaticResource BooleanToVisibilityConverter}}" Background="LightBlue"/>
                     <TextBox Grid.Row="0" Name="SearchStudentTextBox" Margin="5" Padding="5" Background="Transparent"/>
                     <ListBox Grid.Row="1" Name="SearchStudentListBox" Margin="5" Padding="5" MinHeight="20" Style="{StaticResource AdminListBox}"/>
                 </Grid>
@@ -86,7 +86,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Margin="5" Padding="5" Text=" Nazwa..." Visibility="{Binding ElementName=SearchSubjectTextBox, Path=Text.IsEmpty,
-                        Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        Converter={StaticResource BooleanToVisibilityConverter}}" Background="LightBlue"/>
                     <TextBox Grid.Row="0" Name="SearchSubjectTextBox" Margin="5" Padding="5" Background="Transparent"/>
                     <ListBox Grid.Row="1" Name="SearchSubjectListBox" Margin="5" Padding="5" MinHeight="20" Style="{StaticResource AdminListBox}"/>
                 </Grid>
