@@ -16,7 +16,7 @@
         
         <Label x:Name="StartLabel" FontSize="30" HorizontalAlignment="Center">Lista uczniów w grupie</Label>
 
-        <ListView x:Name="GroupLView" Grid.Row="1" FontSize="20">
+        <ListView x:Name="GroupLView" Grid.Row="1" FontSize="20" Style="{StaticResource StudentListView}">
 
             <ListView.View>
                 <GridView>
@@ -25,19 +25,6 @@
                 </GridView>
             </ListView.View>
 
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="Background" Value="RoyalBlue" />
-                    <Setter Property="BorderBrush" Value="Black" />
-                    <Setter Property="BorderThickness" Value="4" />
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseDirectlyOver" Value="True">
-                            <Setter Property="Foreground" Value="Orange" />
-                            <Setter Property="Background" Value="DarkSeaGreen" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </ListView.ItemContainerStyle>
         </ListView>
     </Grid>
 </Page>
