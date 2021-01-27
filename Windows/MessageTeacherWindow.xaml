@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SBD.Windows"
         mc:Ignorable="d"
-        Title="Nowa wiadomość" SizeToContent="Height" Width="300" MinWidth="200" MinHeight="200" 
+        Title="Nowa wiadomość" SizeToContent="Height" Width="300" MinWidth="280" MinHeight="200" 
         Loaded="Window_Loaded" Background="{StaticResource TeacherPageBackground}">
     <Grid>
         <Grid.RowDefinitions>

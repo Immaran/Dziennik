@@ -4,7 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Ocena" SizeToContent="Height" Width="300" MinWidth="225" MinHeight="182" 
+        Title="Ocena" SizeToContent="Height" Width="300" MinWidth="270" MinHeight="185" 
         Loaded="Window_Loaded" Background="{StaticResource TeacherPageBackground}">
     
     <Grid>
